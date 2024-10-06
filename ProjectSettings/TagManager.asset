@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Global Resource
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: background_5
+    uniqueID: 187492747
+    locked: 0
+  - name: background_4
+    uniqueID: 1146366583
+    locked: 0
+  - name: background_3
+    uniqueID: 2468426403
+    locked: 0
+  - name: background_2
+    uniqueID: 1524727991
+    locked: 0
+  - name: background_1
+    uniqueID: 3580842959
+    locked: 0
+  - name: prospect_1
+    uniqueID: 2207748263
+    locked: 0
+  - name: ground_1
+    uniqueID: 2445016221
+    locked: 0
+  - name: player
+    uniqueID: 2887141241
+    locked: 0
