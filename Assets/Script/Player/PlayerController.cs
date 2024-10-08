@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,13 +10,16 @@ public class PlayerController : MonoBehaviour
     private PlayerInputControl inputControl;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
+    private PlayerAnimation playerAnimation;
     private Vector2 inputDirection;
     [Header("把计")]
     public float speed;
     public float jumpForce;
     public float hurtForce;
+    [Header("篈")]
     public bool isHurt;
     public bool isDead;
+    public bool isAttack;
     //╬把计
     private int faceDir;
 
@@ -23,9 +27,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();
+        playerAnimation = transform.Find("Ani").GetComponent<PlayerAnimation>();
         //龄砞竚
         inputControl = new PlayerInputControl();
         inputControl.GamePlay.Jump.started += jump;
+        inputControl.GamePlay.Attack.started += attack;
     }
 
     private void OnEnable()
@@ -63,6 +69,12 @@ public class PlayerController : MonoBehaviour
     {
         if (physicsCheck.isGround)
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void attack(InputAction.CallbackContext obj)
+    {
+        playerAnimation.playerAttack();
+        isAttack = true;
     }
 
     public void getHurt(Transform attacker) 

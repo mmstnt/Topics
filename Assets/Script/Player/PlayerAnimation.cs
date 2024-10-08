@@ -28,10 +28,16 @@ public class PlayerAnimation : MonoBehaviour
         ani.SetFloat("velocityY", rb.velocity.y);
         ani.SetBool("isGround", physicsCheck.isGround);
         ani.SetBool("isDead", playerController.isDead);
+        ani.SetBool("isAttack", playerController.isAttack);
     }
 
     public void playerHurt() 
     {
         ani.SetTrigger("hurt");
+    }
+
+    public void playerAttack() 
+    {
+        ani.SetTrigger("attack");
     }
 }
