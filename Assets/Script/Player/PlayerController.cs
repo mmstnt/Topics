@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private void attack(InputAction.CallbackContext obj)
     {
         playerAnimation.playerAttack();
+
         isAttack = true;
     }
 

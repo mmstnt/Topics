@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     public bool invulnerable;
     public float invulnerableTime;
     public float invulnerableDuration;
+    [Header("¨Æ¥ó")]
+    public UnityEvent<Character> onHealthChange;
     public UnityEvent<Transform> onTakeDamage;
     public UnityEvent onDead;
     
@@ -34,7 +36,7 @@ public class Character : MonoBehaviour
 
     public void takeDamage(Attack attacker) 
     {
-        if (invulnerable) 
+        if (invulnerable || currentHp == 0) 
             return;
         if (currentHp - attacker.damage > 0) 
         {
@@ -50,6 +52,7 @@ public class Character : MonoBehaviour
             //¦º¤`
             onDead?.Invoke();
         }
+        onHealthChange?.Invoke(this);
     }
 
     
