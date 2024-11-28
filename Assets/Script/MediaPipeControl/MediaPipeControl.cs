@@ -96,12 +96,12 @@ public class MediaPipeControl : MonoBehaviour
         return site;
     }
 
-    Vector3 SmoothKeyPoint(Vector3 newPoint, Vector3 prevPoint, float smoothingFactor = 0.85f)
+    Vector3 SmoothKeyPoint(Vector3 newPoint, Vector3 prevPoint, float smoothingFactor = 0.5f)
     {
         return Vector3.Lerp(prevPoint, newPoint, 1 - smoothingFactor);
     }
 
-    Vector3 FixDirection(Vector3 direction, Vector3 cameraForward, float smoothingFactor = 0.85f, float stabilityThreshold = 0.05f)
+    Vector3 FixDirection(Vector3 direction, Vector3 cameraForward, float smoothingFactor = 0.5f, float stabilityThreshold = 0.05f)
     {
         Vector3 worldDirection = _camera.transform.TransformDirection(direction);
 
@@ -126,7 +126,7 @@ public class MediaPipeControl : MonoBehaviour
         return lastFixedDirection;
     }
 
-    public static (Vector3 rightEyeDirection, Vector3 leftEyeDirection) Gaze(int frameHeight,int frameWidth,List<Vector3> faceLandmarkList, Vector3 previousDirection, float smoothingFactor = 0.9f, float stabilityThreshold = 0.02f)
+    public static (Vector3 rightEyeDirection, Vector3 leftEyeDirection) Gaze(int frameHeight,int frameWidth,List<Vector3> faceLandmarkList, Vector3 previousDirection, float smoothingFactor = 0.5f, float stabilityThreshold = 0.02f)
     {
         // 2D ¹Ï¹³ÂI
         double[,] imagePoints = new double[6, 2]
