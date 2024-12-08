@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Global Resource
+  - Bounds
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -63,8 +65,14 @@ TagManager:
   - name: ground_1
     uniqueID: 2445016221
     locked: 0
+  - name: item
+    uniqueID: 2180037899
+    locked: 0
   - name: enemy
     uniqueID: 2970741561
+    locked: 0
+  - name: enemyAttack
+    uniqueID: 4089094921
     locked: 0
   - name: player
     uniqueID: 2887141241

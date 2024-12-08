@@ -1,4 +1,4 @@
-using Google.Protobuf.WellKnownTypes;
+ï»¿using Google.Protobuf.WellKnownTypes;
 using Mediapipe;
 using Mediapipe.Tasks.Vision.FaceLandmarker;
 using Mediapipe.Unity.CoordinateSystem;
@@ -35,7 +35,7 @@ public class MediaPipeControl : MonoBehaviour
 
         for (int i = 0; i < 478; i++)
         {
-            GameObject g = Instantiate(pointGameObject, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Game/Game Camera").transform);
+            GameObject g = Instantiate(pointGameObject, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Game Camera").transform);
             g.name = i.ToString();
             pointGameObjectList.Add(g);
             faceLandmarkList.Add(new Vector3(0, 0, 0));
@@ -69,22 +69,28 @@ public class MediaPipeControl : MonoBehaviour
         for (int i = 0; i < pointGameObjectList.Count; i++)
         {
             pointGameObjectList[i].transform.position = getPointSite(i);
-
-            if (rightDirection != Vector3.zero)
-            {
-                Quaternion rightEyeRotation = Quaternion.LookRotation(rightDirection);
-                pointGameObjectList[473].transform.rotation = rightEyeRotation;
-            }
-
-            if (leftDirection != Vector3.zero)
-            {
-                Quaternion leftEyeRotation = Quaternion.LookRotation(leftDirection);
-                pointGameObjectList[468].transform.rotation = leftEyeRotation;
-            }
-            testgame.transform.position = Vector3.Lerp(pointGameObjectList[468].GetComponent<MediaPipeRay>().hit,pointGameObjectList[473].GetComponent<MediaPipeRay>().hit,0.5f);
-
-            //testgame.transform.position = (pointGameObjectList[468].GetComponent<MediaPipeRay>().hit + pointGameObjectList[473].GetComponent<MediaPipeRay>().hit) / 2;
         }
+        
+        if (rightDirection != Vector3.zero)
+        {
+            Quaternion rightEyeRotation = Quaternion.LookRotation(rightDirection);
+            pointGameObjectList[473].transform.rotation = rightEyeRotation;
+            //rightEve.transform.position = (pointGameObjectList[33].transform.position + pointGameObjectList[173].transform.position) / 2 - pointGameObjectList[468].transform.rotation * Vector3.forward * test;
+            //rightEve.transform.LookAt(pointGameObjectList[468].transform);
+        }
+        if (leftDirection != Vector3.zero)
+        {
+            Quaternion leftEyeRotation = Quaternion.LookRotation(leftDirection);
+            pointGameObjectList[468].transform.rotation = leftEyeRotation;
+            //leftEve.transform.position = (pointGameObjectList[362].transform.position + pointGameObjectList[263].transform.position) / 2 - pointGameObjectList[473].transform.rotation * Vector3.forward * test;
+            //leftEve.transform.LookAt(pointGameObjectList[473].transform);
+        }
+
+        
+        
+        testgame.transform.position = Vector3.Lerp(pointGameObjectList[473].GetComponent<MediaPipeRay>().hit, pointGameObjectList[468].GetComponent<MediaPipeRay>().hit, 0.5f);
+
+        //testgame.transform.position = (pointGameObjectList[468].GetComponent<MediaPipeRay>().hit + pointGameObjectList[473].GetComponent<MediaPipeRay>().hit) / 2;
     }
 
     private Vector3 getPointSite(int i)
@@ -117,7 +123,7 @@ public class MediaPipeControl : MonoBehaviour
 
         worldDirection.Normalize();
 
-        // ¥­·Æ³B²z
+        // å¹³æ»‘è™•ç†
         if (Vector3.Distance(lastFixedDirection, worldDirection) > stabilityThreshold)
         {
             lastFixedDirection = Vector3.Lerp(lastFixedDirection, worldDirection, 1 - smoothingFactor);
@@ -126,36 +132,45 @@ public class MediaPipeControl : MonoBehaviour
         return lastFixedDirection;
     }
 
-    public static (Vector3 rightEyeDirection, Vector3 leftEyeDirection) Gaze(int frameHeight,int frameWidth,List<Vector3> faceLandmarkList, Vector3 previousDirection, float smoothingFactor = 0.5f, float stabilityThreshold = 0.02f)
+    public static (Vector3 rightEyeDirection, Vector3 leftEyeDirection) Gaze(int frameHeight, int frameWidth, List<Vector3> faceLandmarkList, Vector3 previousDirection, float smoothingFactor = 0.5f, float stabilityThreshold = 0.02f)
     {
-        // 2D ¹Ï¹³ÂI
+        // 2D åœ–åƒé»
         double[,] imagePoints = new double[6, 2]
         {
-        { faceLandmarkList[4].x * frameWidth, faceLandmarkList[4].y * frameHeight },        // »ó¦y
-        { faceLandmarkList[152].x * frameWidth, faceLandmarkList[152].y * frameHeight },    // ¤U¤Ú
-        { faceLandmarkList[263].x * frameWidth, faceLandmarkList[263].y * frameHeight },    // ¥ª²´¥ª¨¤
-        { faceLandmarkList[33].x * frameWidth, faceLandmarkList[33].y * frameHeight },      // ¥k²´¥k¨¤
-        { faceLandmarkList[287].x * frameWidth, faceLandmarkList[287].y * frameHeight },    // ¥ª¼L¨¤
-        { faceLandmarkList[57].x * frameWidth, faceLandmarkList[57].y * frameHeight }       // ¥k¼L¨¤
+        { faceLandmarkList[4].x * frameWidth, faceLandmarkList[4].y * frameHeight },        // é¼»å°–
+        { faceLandmarkList[152].x * frameWidth, faceLandmarkList[152].y * frameHeight },    // ä¸‹å·´
+        { faceLandmarkList[263].x * frameWidth, faceLandmarkList[263].y * frameHeight },    // å·¦çœ¼å·¦è§’
+        { faceLandmarkList[33].x * frameWidth, faceLandmarkList[33].y * frameHeight },      // å³çœ¼å³è§’
+        { faceLandmarkList[287].x * frameWidth, faceLandmarkList[287].y * frameHeight },    // å·¦å˜´è§’
+        { faceLandmarkList[57].x * frameWidth, faceLandmarkList[57].y * frameHeight }       // å³å˜´è§’
         };
 
-
-        // 3D ¼Ò«¬ÂI
+        // 3D æ¨¡å‹é»
         double[,] modelPoints = new double[6, 3]
         {
-        { 0.0, 0.0, 0.0 },       // »ó¦y
-        { 0, -63.6, -12.5 },     // ¤U¤Ú
-        { -43.3, 32.7, -26 },    // ¥ª²´¥ª¨¤
-        { 43.3, 32.7, -26 },     // ¥k²´¥k¨¤
-        { -28.9, -28.9, -24.1 }, // ¥ª¼L¨¤
-        { 28.9, -28.9, -24.1 }   // ¥k¼L¨¤
+        { 0.0, 0.0, 0.0 },       // é¼»å°–
+        { 0, -63.6, -12.5 },     // ä¸‹å·´
+        { -43.3, 32.7, -26 },    // å·¦çœ¼å·¦è§’
+        { 43.3, 32.7, -26 },     // å³çœ¼å³è§’
+        { -28.9, -28.9, -24.1 }, // å·¦å˜´è§’
+        { 28.9, -28.9, -24.1 }   // å³å˜´è§’
         };
 
-        // 3D ¼Ò«¬²´·úÂI
-        double[,] eyeBallCenterRight = new double[3, 1] { { -29.05 }, { 32.7 }, { -39.5 } }; // ¥k²´²y¤¤¤ß
-        double[,] eyeBallCenterLeft = new double[3, 1] { { 29.05 }, { 32.7 }, { -39.5 } };   // ¥ª²´²y¤¤¤ß
+        // 3D æ¨¡å‹çœ¼ç›é» (æ ¹æ“šfaceLandmarkListä¸­çš„3Dåº§æ¨™)
+        double[] eyeBallCenterRight = new double[3] {
+        faceLandmarkList[473].x, // å³çœ¼çœ¼çƒä¸­å¿ƒçš„ x
+        faceLandmarkList[473].y, // å³çœ¼çœ¼çƒä¸­å¿ƒçš„ y
+        faceLandmarkList[473].z  // å³çœ¼çœ¼çƒä¸­å¿ƒçš„ z
+        };
 
-        // ¬Û¾÷¤º°Ñ¯x°}
+        double[] eyeBallCenterLeft = new double[3] {
+        faceLandmarkList[468].x, // å·¦çœ¼çœ¼çƒä¸­å¿ƒçš„ x
+        faceLandmarkList[468].y, // å·¦çœ¼çœ¼çƒä¸­å¿ƒçš„ y
+        faceLandmarkList[468].z  // å·¦çœ¼çœ¼çƒä¸­å¿ƒçš„ z
+        };
+
+
+        // ç›¸æ©Ÿå…§åƒçŸ©é™£
         double focalLength = frameWidth;
         var center = (frameWidth / 2.0, frameHeight / 2.0);
         double[,] cameraMatrix = new double[,] {
@@ -163,8 +178,8 @@ public class MediaPipeControl : MonoBehaviour
         { 0, focalLength, center.Item2 },
         { 0, 0, 1 }
         };
-        
-        double[,] distCoeffs = new double[5, 1] { { 0 }, { 0 }, { 0 }, { 0 }, { 0 } }; // ¨Ï¥Î 5 ­Ó°Ñ¼ÆÁ×§K¤£Ã­©w
+
+        double[,] distCoeffs = new double[5, 1] { { 0 }, { 0 }, { 0 }, { 0 }, { 0 } }; // ä½¿ç”¨ 5 å€‹åƒæ•¸é¿å…ä¸ç©©å®š
 
         Mat rvec = new Mat(), tvec = new Mat();
         Mat modelPointsMat = Mat.FromArray(modelPoints);
@@ -172,21 +187,21 @@ public class MediaPipeControl : MonoBehaviour
         Mat cameraMatrixMat = Mat.FromArray(cameraMatrix);
         Mat distCoeffsMat = Mat.FromArray(distCoeffs);
 
-        Cv2.SolvePnP(modelPointsMat, imagePointsMat, cameraMatrixMat, distCoeffsMat, rvec, tvec, flags: SolvePnPFlags.EPNP);
+        Cv2.SolvePnP(modelPointsMat, imagePointsMat, cameraMatrixMat, distCoeffsMat, rvec, tvec, flags: SolvePnPFlags.Iterative);
 
-        // ­pºâ¥k²´¤è¦V
+        // è¨ˆç®—å³çœ¼æ–¹å‘
         Mat eyeBallCenterRightMat = Mat.FromArray(eyeBallCenterRight);
         Mat rightDirectionVector = new Mat();
         Cv2.Subtract(eyeBallCenterRightMat, tvec, rightDirectionVector);
         Cv2.Normalize(rightDirectionVector, rightDirectionVector);
 
-        // ­pºâ¥ª²´¤è¦V
+        // è¨ˆç®—å·¦çœ¼æ–¹å‘
         Mat eyeBallCenterLeftMat = Mat.FromArray(eyeBallCenterLeft);
         Mat leftDirectionVector = new Mat();
         Cv2.Subtract(eyeBallCenterLeftMat, tvec, leftDirectionVector);
         Cv2.Normalize(leftDirectionVector, leftDirectionVector);
 
-        // ´£¨ú¤è¦V¦V¶q
+        // æå–æ–¹å‘å‘é‡
         Vector3 ExtractDirection(Mat directionVector)
         {
             Vector3 currentDirection = new Vector3(
@@ -195,7 +210,7 @@ public class MediaPipeControl : MonoBehaviour
                 (float)directionVector.At<double>(2, 0)
             );
 
-            // ¥­·Æ¹LÂo
+            // å¹³æ»‘éæ¿¾
             if ((currentDirection - previousDirection).sqrMagnitude > stabilityThreshold)
             {
                 previousDirection = Vector3.Lerp(previousDirection, currentDirection, 1 - smoothingFactor);
@@ -203,7 +218,6 @@ public class MediaPipeControl : MonoBehaviour
 
             return previousDirection.normalized;
         }
-
 
         Vector3 rightEyeDirection = ExtractDirection(rightDirectionVector);
         Vector3 leftEyeDirection = ExtractDirection(leftDirectionVector);

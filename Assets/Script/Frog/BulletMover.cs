@@ -5,26 +5,47 @@ using UnityEngine;
 
 public class BulletMover : MonoBehaviour
 {
-    public float time;
-    private float disTime;
-    public float speed = 10f;             // 子彈移動速度
-    public Vector3 direction;  // 子彈方向
+    public Vector3 startSite;
+    public Vector3 endSite;
+    public bool back;
+    public float speed;             // 子彈移動速度
+    private LineRenderer lineRenderer;
 
     private void Start() 
     {
-        disTime = time;
+        lineRenderer = transform.GetComponent<LineRenderer>();
+        
+        back = false;
     }
 
     void Update()
     {
-        if (disTime < 0) 
+        startSite = transform.parent.position;
+        if (endSite == null) return;
+        if (!back && transform.position == endSite)
         {
+            back = true;
+        }
+        if (back && transform.position == startSite)
+        {
+            transform.parent.GetComponent<Frog>().action = false;
             Destroy(this.gameObject);
         }
-        // 使用 Transform 移動子彈
-        disTime -= Time.deltaTime;
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, back ? startSite : endSite, (back ? 1.5f * speed : speed) * Time.deltaTime);
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, startSite);
+    }
 
+    public void frogAttack(Vector3 Site) 
+    {
+        endSite = Site;
+    }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.GetComponent<Character>()) 
+        {
+            back = true;
+        }
     }
 }

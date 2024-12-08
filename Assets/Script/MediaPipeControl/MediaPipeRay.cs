@@ -30,6 +30,16 @@ public class MediaPipeRay : MonoBehaviour
                 Debug.DrawLine(transform.position, hit, Color.blue);
                 Debug.DrawRay(transform.position, transform.forward);
             }
+            if (transform.name == "LeftEve")
+            {
+                Debug.DrawLine(transform.position, hit,Color.green);
+                Debug.DrawRay(transform.position, transform.forward);
+            }
+            if (transform.name == "RightEve")
+            {
+                Debug.DrawLine(transform.position, hit,Color.green);
+                Debug.DrawRay(transform.position, transform.forward);
+            }
         }
     }
 
