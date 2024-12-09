@@ -38,7 +38,7 @@ public class Frog : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         physicsCheck = transform.GetComponent<PhysicsCheck>();
-        player = GameObject.Find("Game/Player");  // 找到 Player 物件
+        player = GameObject.Find("Player");  // 找到 Player 物件
     }
 
     private void Update()

@@ -463,13 +463,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1387538478288743397, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644555892957817126, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: invulnerableTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3818590816556879370, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
     - target: {fileID: 3818590816556879370, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781834841838884898, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781834841838884898, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6481129346915648920, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -510,6 +526,10 @@ PrefabInstance:
     - target: {fileID: 6481129346915648920, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065017539679984317, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3633,7 +3653,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1685060820}
   - component: {fileID: 1685060821}
-  - component: {fileID: 1685060822}
   m_Layer: 9
   m_Name: main_background
   m_TagString: Untagged
@@ -3708,27 +3727,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1685060822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685060819}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 64, y: 36, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0.1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
