@@ -1,11 +1,13 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    [Header("®∆•Û∫ ≈•")]
+    public VoidEventSO afterSceneLoadEvent;
     private CinemachineConfiner2D confiner2D;
 
     private void Awake()
@@ -13,7 +15,17 @@ public class CameraControl : MonoBehaviour
         confiner2D = transform.GetComponent<CinemachineConfiner2D>();
     }
 
-    private void Start()
+    private void OnEnable()
+    {
+        afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+    }
+
+    private void OnDisable()
+    {
+        afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+    }
+
+    private void onAfterSceneLoadEvent()
     {
         GetNewCameraBound();
     }
