@@ -11,15 +11,20 @@ public class SceneLoadManager : MonoBehaviour
 {
     public Transform playerTrans;
     public Vector3 firstPosition;
+    public Vector3 menuPosition;
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
-    public GameSceneSO firstLoadScene;
+    public VoidEventSO newGameEvent;
 
     [Header("廣播")]
     public VoidEventSO afterSceneLoadedEvent;
     public FadeEventSO fadeEventSO;
+    public SceneLoadEventSO unloadedSceneEvent;
 
-    [SerializeField] private GameSceneSO currentLoadedScene;
+    [Header("場景")]
+    public GameSceneSO firstLoadScene;
+    public GameSceneSO menuScene;
+    private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     private Vector3 positionToGo;
     private bool fadeScreen;
@@ -34,23 +39,27 @@ public class SceneLoadManager : MonoBehaviour
 
     private void Start()
     {
-        newGame();
+        loadEventSO.RaiseLoadRequestEvent(menuScene, menuPosition, true);
+
+        //newGame();
     }
 
     private void OnEnable()
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
+        newGameEvent.onEventRaised += newGame;
     }
 
     private void OnDisable()
     {
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
+        newGameEvent.onEventRaised -= newGame;
     }
 
     private void newGame() 
     {
         sceneToLoad = firstLoadScene;
-        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     private void OnLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGo, bool fadeScreen)
@@ -82,6 +91,8 @@ public class SceneLoadManager : MonoBehaviour
 
         yield return new WaitForSeconds(fadeDuration);
 
+        unloadedSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);
+
         if (currentLoadedScene != null) 
         {
             yield return currentLoadedScene.sceneReference.UnLoadScene();
@@ -111,7 +122,9 @@ public class SceneLoadManager : MonoBehaviour
         }
         isLoading = false;
 
+
         //場景完成後事件
-        afterSceneLoadedEvent.raiseEvent();
+        if(currentLoadedScene.sceneType != SceneType.Menu)
+            afterSceneLoadedEvent.raiseEvent();
     }
 }

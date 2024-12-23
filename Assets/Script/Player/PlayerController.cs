@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("®∆•Û∫ ≈•")]
+    public SceneLoadEventSO loadEvent;
+    public VoidEventSO afterSceneLoadedEvent;
+
     private PlayerInputControl inputControl;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
@@ -37,12 +41,17 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         inputControl.Enable();
+        loadEvent.LoadRequestEvent += onLoadEvent;
+        afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
     }
 
     private void OnDisable()
     {
         inputControl.Disable();
+        loadEvent.LoadRequestEvent -= onLoadEvent;
+        afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
     }
+
 
     private void Update()
     {
@@ -52,6 +61,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         move();
+    }
+
+    private void onLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
+    {
+        inputControl.GamePlay.Disable();
+    }
+
+    private void onAfterSceneLoadedEvent()
+    {
+        inputControl.GamePlay.Enable();
     }
 
     public void move() 

@@ -22,8 +22,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8f8ef1a2567b60940af1d8b4c155cd6d
-    m_Address: Start
+  - m_GUID: bab9fbbe0ca30fc449a6e750a2da7f00
+    m_Address: StartHall
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -33,27 +33,32 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0553eb1008bd51742941d5de7b2958d2
-    m_Address: Assets/Scenes/Cave1.unity
+    m_Address: Cave1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0f8107fa759193746838a19bcc58caa3
-    m_Address: Assets/Scenes/Cave2.unity
+    m_Address: Cave2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c22010c60e155e43bbcc3a0a566e7c4
-    m_Address: Assets/Scenes/Dark Forest.unity
+    m_Address: Dark Forest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9fc80a8c06e46140913a8809c48f7cc
-    m_Address: Assets/Scenes/Forest.unity
+    m_Address: Forest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 683aa94649feea54cb001017b41079a6
-    m_Address: Assets/Scenes/Space Forest.unity
+    m_Address: Space Forest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2538cf56188fa3c408bf42a8ee23f134
+    m_Address: Menu
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

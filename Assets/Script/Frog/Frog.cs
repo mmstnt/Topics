@@ -23,8 +23,8 @@ public class Frog : MonoBehaviour
 
     [Header("狀態")]
     public bool action;
-    public actionList actionMode;
-    public enum actionList { jump,attack };
+    public actionKind actionMode;
+    public enum actionKind { jump,attack };
 
     [Header("物件")]
     public GameObject bullet;
@@ -55,14 +55,14 @@ public class Frog : MonoBehaviour
             time -= Time.deltaTime;
             return;
         }
-        actionMode = (actionList)Random.Range(0, 2);
+        actionMode = (actionKind)Random.Range(0, 2);
         switch (actionMode)
         {
-            case actionList.jump:
+            case actionKind.jump:
                 Jump();
                 idleTime();
                 break;
-            case actionList.attack:
+            case actionKind.attack:
                 action = true;
                 attack();
                 idleTime();

@@ -728,7 +728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &756704901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45db770bfe8f32741902450fc5c2fb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: 06296da18f7598a47a73948ab5a22deb, type: 2}
   maxHp: 18
   currentHp: 0
   invulnerable: 0
@@ -835,6 +836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05edce5ebf38d4d886f74be3434936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadEvent: {fileID: 11400000, guid: 4644fe515e4e6c44e901f64d80b2df5e, type: 2}
+  afterSceneLoadedEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   speed: 400
   jumpForce: 18
   hurtForce: 8
@@ -982,11 +985,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTrans: {fileID: 100333604}
   firstPosition: {x: 0, y: 5, z: 0}
+  menuPosition: {x: 0, y: 0, z: 0}
   loadEventSO: {fileID: 11400000, guid: 4644fe515e4e6c44e901f64d80b2df5e, type: 2}
-  firstLoadScene: {fileID: 11400000, guid: 8683c7db3574fe04c8fef9aaf9720454, type: 2}
+  newGameEvent: {fileID: 11400000, guid: 06296da18f7598a47a73948ab5a22deb, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   fadeEventSO: {fileID: 11400000, guid: a7a80909ed0cb3c4a87d65303630a654, type: 2}
-  currentLoadedScene: {fileID: 0}
+  unloadedSceneEvent: {fileID: 11400000, guid: 6973f618c47aa0241b79810ff53ece3e, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: 61e31ca792b3b8743869b4389a7d76cd, type: 2}
+  menuScene: {fileID: 11400000, guid: d6d5d081ddb0e114fae21d69a5ca8f29, type: 2}
   fadeDuration: 0.5
 --- !u!1 &933498204
 GameObject:
@@ -2769,7 +2775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2095911984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,6 +2940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHp: {fileID: 2095911984}
   healthEvent: {fileID: 11400000, guid: 1e6c9f07a2fd811498ecff09a79792dd, type: 2}
+  loadEvent: {fileID: 11400000, guid: 6973f618c47aa0241b79810ff53ece3e, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
