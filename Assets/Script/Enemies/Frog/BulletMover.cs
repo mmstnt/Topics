@@ -31,9 +31,13 @@ public class BulletMover : MonoBehaviour
             transform.parent.GetComponent<Frog>().action = false;
             Destroy(this.gameObject);
         }
-        transform.position = Vector3.MoveTowards(transform.position, back ? startSite : endSite, (back ? 1.5f * speed : speed) * Time.deltaTime);
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, startSite);
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, back ? startSite : endSite, (back ? 1.5f * speed : speed) * Time.deltaTime);
     }
 
     public void frogAttack(Vector3 Site) 

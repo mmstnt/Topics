@@ -12,6 +12,9 @@ public class Frog : MonoBehaviour
     private GameObject player;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
+    [Header("事件監聽")]
+    public VoidEventSO afterSceneLoadEvent;
+
     [Header("參數")]
     public float MoveSpeed;  // 角色移動速度
     public float jumpForce;  // 跳躍力度
@@ -34,11 +37,25 @@ public class Frog : MonoBehaviour
     private float time;
 
 
-    private void Start()
+    private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
         physicsCheck = transform.GetComponent<PhysicsCheck>();
-        player = GameObject.Find("Player");  // 找到 Player 物件
+    }
+
+    private void OnEnable()
+    {
+        afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+    }
+
+    private void OnDisable()
+    {
+        afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+    }
+
+    private void onAfterSceneLoadEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
     }
 
     private void Update()
