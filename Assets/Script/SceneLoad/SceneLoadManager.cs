@@ -7,14 +7,16 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadManager : MonoBehaviour
+public class SceneLoadManager : MonoBehaviour,ISaveable
 {
     public Transform playerTrans;
     public Vector3 firstPosition;
     public Vector3 menuPosition;
+    public int currentLevel;
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
     public VoidEventSO newGameEvent;
+    public VoidEventSO backToMenuEvent;
 
     [Header("廣播")]
     public VoidEventSO afterSceneLoadedEvent;
@@ -39,30 +41,46 @@ public class SceneLoadManager : MonoBehaviour
 
     private void Start()
     {
-        loadEventSO.RaiseLoadRequestEvent(menuScene, menuPosition, true);
+        loadEventSO.RaiseLoadRequestEvent(menuScene, menuPosition, true, false);
 
         //newGame();
     }
 
     private void OnEnable()
     {
-        loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
+        loadEventSO.LoadRequestEvent += onLoadRequestEvent;
         newGameEvent.onEventRaised += newGame;
+        backToMenuEvent.onEventRaised += onBackToMenuEvent;
+
+        ISaveable saveable = this;
+        saveable.registerSaveDate();
     }
 
     private void OnDisable()
     {
-        loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
+        loadEventSO.LoadRequestEvent -= onLoadRequestEvent;
         newGameEvent.onEventRaised -= newGame;
+        backToMenuEvent.onEventRaised -= onBackToMenuEvent;
+
+        ISaveable saveable = this;
+        saveable.unregisterSaveDate();
+    }
+
+    private void onBackToMenuEvent()
+    {
+        sceneToLoad = menuScene;
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, menuPosition, true, false);
     }
 
     private void newGame() 
     {
+        currentLevel = 0;
         sceneToLoad = firstLoadScene;
-        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true, false);
+        
     }
 
-    private void OnLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGo, bool fadeScreen)
+    private void onLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGo, bool fadeScreen, bool nextLevel)
     {
         if (isLoading)
             return;
@@ -71,6 +89,7 @@ public class SceneLoadManager : MonoBehaviour
         sceneToLoad = locationToLoad;
         positionToGo = posToGo;
         this.fadeScreen = fadeScreen;
+        if (nextLevel) currentLevel += 1;
         if (currentLoadedScene != null)
         {
             StartCoroutine(unLoadPreviousScene());
@@ -91,7 +110,7 @@ public class SceneLoadManager : MonoBehaviour
 
         yield return new WaitForSeconds(fadeDuration);
 
-        unloadedSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);
+        unloadedSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true, false);
 
         if (currentLoadedScene != null) 
         {
@@ -126,5 +145,29 @@ public class SceneLoadManager : MonoBehaviour
         //場景完成後事件
         if(currentLoadedScene.sceneType != SceneType.Menu)
             afterSceneLoadedEvent.raiseEvent();
+    }
+
+    public DataDefinition getDataID()
+    {
+        return GetComponent<DataDefinition>();
+    }
+
+    public void getSaveDate(Data data)
+    {
+        data.saveGameScene(currentLoadedScene);
+        data.levelSave = currentLevel;
+    }
+
+    public void loadData(Data data)
+    {
+        var playerID = playerTrans.GetComponent<DataDefinition>().ID;
+        if (data.characterPosDict.ContainsKey(playerID)) 
+        {
+            positionToGo = data.characterPosDict[playerID];
+            sceneToLoad = data.getSavedScene();
+            currentLevel = data.levelSave;
+
+            onLoadRequestEvent(sceneToLoad, positionToGo, true, false);
+        }
     }
 }

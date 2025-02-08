@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour,ISaveable
 {
     [Header("事件監聽")]
     public VoidEventSO newGameEvent;
@@ -18,7 +18,8 @@ public class Character : MonoBehaviour
     public UnityEvent<Character> onHealthChange;
     public UnityEvent<Transform> onTakeDamage;
     public UnityEvent onDead;
-    
+
+
     private void newGame()
     {
         currentHp = maxHp;
@@ -28,11 +29,15 @@ public class Character : MonoBehaviour
     private void OnEnable()
     {
         newGameEvent.onEventRaised += newGame;
+        ISaveable saveable = this;
+        saveable.registerSaveDate();
     }
 
     private void OnDisable()
     {
         newGameEvent.onEventRaised -= newGame;
+        ISaveable saveable = this;
+        saveable.unregisterSaveDate();
     }
 
     private void Update()
@@ -75,6 +80,37 @@ public class Character : MonoBehaviour
         {
             invulnerableDuration = invulnerableTime;
             invulnerable = true;
+        }
+    }
+
+    public DataDefinition getDataID()
+    {
+        return GetComponent<DataDefinition>();
+    }
+
+    public void getSaveDate(Data data)
+    {
+        if (data.characterPosDict.ContainsKey(getDataID().ID))
+        {
+            data.characterPosDict[getDataID().ID] = transform.position;
+            data.floatSaveData[getDataID().ID + "health"] = this.currentHp;
+        }
+        else 
+        {
+            data.characterPosDict.Add(getDataID().ID, transform.position);
+            data.floatSaveData.Add(getDataID().ID + "health", this.currentHp);
+        }
+    }
+
+    public void loadData(Data data)
+    {
+        if (data.characterPosDict.ContainsKey(getDataID().ID)) 
+        {
+            transform.position = data.characterPosDict[getDataID().ID];
+            this.currentHp = data.floatSaveData[getDataID().ID + "health"];
+
+            //通知UI更新
+            onHealthChange?.Invoke(this);
         }
     }
 }

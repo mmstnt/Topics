@@ -8,23 +8,26 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("事件監聽")]
-    public SceneLoadEventSO loadEvent;
+    public SceneLoadEventSO sceneLoadEvent;
     public VoidEventSO afterSceneLoadedEvent;
+    public VoidEventSO loadDataEvent;
+    public VoidEventSO backToMenuEvent;
 
-    private PlayerInputControl inputControl;
-    private Rigidbody2D rb;
-    private PhysicsCheck physicsCheck;
-    private PlayerAnimation playerAnimation;
-    private Vector2 inputDirection;
     [Header("參數")]
     public float speed;
     public float jumpForce;
     public float hurtForce;
+
     [Header("狀態")]
     public bool isHurt;
     public bool isDead;
     public bool isAttack;
     //私人參數
+    private PlayerInputControl inputControl;
+    private Rigidbody2D rb;
+    private PhysicsCheck physicsCheck;
+    private PlayerAnimation playerAnimation;
+    private Vector2 inputDirection;
     private int faceDir;
 
     private void Awake()
@@ -36,22 +39,26 @@ public class PlayerController : MonoBehaviour
         inputControl = new PlayerInputControl();
         inputControl.GamePlay.Jump.started += jump;
         inputControl.GamePlay.Attack.started += attack;
+        inputControl.Enable();
     }
 
     private void OnEnable()
     {
-        inputControl.Enable();
-        loadEvent.LoadRequestEvent += onLoadEvent;
+        sceneLoadEvent.LoadRequestEvent += onLoadEvent;
         afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
+        loadDataEvent.onEventRaised += onLoadDataEvent;
+        backToMenuEvent.onEventRaised += onLoadDataEvent;
     }
 
     private void OnDisable()
     {
         inputControl.Disable();
-        loadEvent.LoadRequestEvent -= onLoadEvent;
+        sceneLoadEvent.LoadRequestEvent -= onLoadEvent;
         afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
-    }
+        loadDataEvent.onEventRaised -= onLoadDataEvent;
+        backToMenuEvent.onEventRaised -= onLoadDataEvent;
 
+    }
 
     private void Update()
     {
@@ -63,9 +70,16 @@ public class PlayerController : MonoBehaviour
         move();
     }
 
-    private void onLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
+    //場景加載停止控制
+    private void onLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2, bool n)
     {
         inputControl.GamePlay.Disable();
+    }
+
+    //讀取遊戲進度
+    private void onLoadDataEvent()
+    {
+        isDead = false;
     }
 
     private void onAfterSceneLoadedEvent()

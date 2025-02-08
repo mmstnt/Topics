@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour,IInteractable
 
     public void triggerAction()
     {
-        loadEventSO.RaiseLoadRequestEvent(sceneToGo, positionToGo, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToGo, sceneToGo.positionToGo, true, true);
     }
 
 }
