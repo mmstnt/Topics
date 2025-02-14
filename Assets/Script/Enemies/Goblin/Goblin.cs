@@ -8,6 +8,7 @@ public class Goblin : MonoBehaviour
     private Rigidbody2D rb;
     private GoblinAnimation goblinAnimation;
     private GameObject player;
+
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
 
@@ -79,6 +80,7 @@ public class Goblin : MonoBehaviour
             bombObject.GetComponent<Bomb>().startSpeedMax /= 2;
         }
         bombObject.GetComponent<Bomb>().isThrow(direction);
+        bombObject.GetComponent<AttackSource>().attackSource = this.transform;
     }
 
     public void move()

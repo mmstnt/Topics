@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [Header("²Õ¥ó")]
     public GameObject gameOverPanel;
     public GameObject Btn;
+    public GameObject cardChoose;
 
     private void OnEnable()
     {

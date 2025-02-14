@@ -10,6 +10,7 @@ public class Character : MonoBehaviour,ISaveable
     [Header("屬性")]
     public float maxHp;
     public float currentHp;
+    public float damage;
     [Header("無敵")]
     public bool invulnerable;
     public float invulnerableTime;
@@ -56,10 +57,11 @@ public class Character : MonoBehaviour,ISaveable
     {
         if (invulnerable || currentHp == 0) 
             return;
-        if (currentHp - attacker.damage > 0) 
+        float attackDamage = (attacker.damageSource.damage * attacker.damageRatio) + (attacker.damageBasic) + (attacker.damagePercentage * maxHp);
+        if (currentHp - attackDamage > 0) 
         {
             //扣血無敵
-            currentHp -= attacker.damage;
+            currentHp -= attackDamage;
             triggerInvulnerable();
             //執行受傷
             onTakeDamage?.Invoke(attacker.transform);

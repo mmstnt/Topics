@@ -9,7 +9,7 @@ public class Data
 
     public Dictionary<string, Vector3> characterPosDict = new Dictionary<string, Vector3>();
 
-    public Dictionary<string,float> floatSaveData = new Dictionary<string,float>();
+    public Dictionary<string, float> floatSaveData = new Dictionary<string, float>();
 
     public void saveGameScene(GameSceneSO savedScene) 
     {

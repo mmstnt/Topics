@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3818590816556879370, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4728960195533311852, guid: 8124213528cc47e4f8ac580558bf6d9e, type: 3}
       propertyPath: afterSceneLoadEvent
       value: 

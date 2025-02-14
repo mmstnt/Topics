@@ -20,9 +20,13 @@ public class GameEventManager : MonoBehaviour
     [Header("Ãö¥d¦À")]
     public List<GameSceneSO> levelPool_01;
 
+    [Header("¥dµP®w")]
+    public CardDataList cardDataList;
+
     private void Awake() 
     {
         startSave = true;
+        cardDataList.cardInitialize();
     }
 
     private void OnEnable()
