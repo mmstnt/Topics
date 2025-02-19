@@ -18,7 +18,7 @@ public class CardChoose : MonoBehaviour
     {
         for(int i = 0; i < cardDataList.cardDataList.Count; i++) 
         {
-            if (cardDataList.cardDataList[i].cardKind == CardKind.normal) 
+            if (cardDataList.cardDataList[i].cardKind == CardKind.Normal) 
             {
                 cardPool.Add(cardDataList.cardDataList[i].cardID);
             }

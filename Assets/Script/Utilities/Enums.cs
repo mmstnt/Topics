@@ -10,5 +10,14 @@ public enum PersistentType
 
 public enum CardKind 
 {
-    normal, boss
+    Normal, Boss
+}
+
+public enum BuffType
+{
+    Passive,      
+    Timed,        
+    OnAttack,     
+    OnHit,        
+    Attribute
 }
