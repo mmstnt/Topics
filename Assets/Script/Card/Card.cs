@@ -34,4 +34,13 @@ public class Card : MonoBehaviour
             cardChoose.cardPool.Add(cardID);
         }
     }
+
+    public void cardIsChoose() 
+    {
+        isChoose = true;
+        IBuff newBuff = BuffManager.instance.getCardBuff(cardID);
+        BuffManager.instance.registerBuff(newBuff, BuffManager.instance.player);
+    }
+
+    
 }

@@ -19,12 +19,14 @@ public class Character : MonoBehaviour,ISaveable
     public UnityEvent<Character> onHealthChange;
     public UnityEvent<Transform> onTakeDamage;
     public UnityEvent onDead;
+    public UnityEvent<Transform> onHitEvent;
 
 
     private void newGame()
     {
         currentHp = maxHp;
         onHealthChange?.Invoke(this);
+        onHitEvent = new UnityEvent<Transform>();
     }
 
     private void OnEnable()
@@ -57,6 +59,7 @@ public class Character : MonoBehaviour,ISaveable
     {
         if (invulnerable || currentHp == 0) 
             return;
+        onHitEvent?.Invoke(this.transform);
         float attackDamage = (attacker.damageSource.damage * attacker.damageRatio) + (attacker.damageBasic) + (attacker.damagePercentage * maxHp);
         if (currentHp - attackDamage > 0) 
         {
