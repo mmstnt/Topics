@@ -4319,7 +4319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1643337694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4832,7 +4832,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHitEvent: {fileID: 0}
   player: {fileID: 756704901}
-  a: {fileID: 0}
 --- !u!1 &1922419670
 GameObject:
   m_ObjectHideFlags: 0
