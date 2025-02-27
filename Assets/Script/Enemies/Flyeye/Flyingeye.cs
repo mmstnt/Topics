@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Flyingeye : MonoBehaviour
 {
     private Rigidbody2D rb;
     private FlyingeyeAnimation flyingeyeAnimation;
     private GameObject player;
+    public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -22,6 +24,7 @@ public class Flyingeye : MonoBehaviour
     public float moveTimeMax;
     public float flyDistance;
     public float laserDistance;
+    public RaycastHit2D up;
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
@@ -85,6 +88,7 @@ public class Flyingeye : MonoBehaviour
     }
     private void Update()
     {
+        CliffTurn();
         updateCharacterFacing();
         flyingeyeAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.y - transform.position.y);
@@ -96,6 +100,17 @@ public class Flyingeye : MonoBehaviour
          
     }
 
+    public void CliffTurn()
+    {
+        // 計算射線的方向
+        Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        // 射線的起點
+        Vector3 rayStart = transform.position + new Vector3(0, -1f, 0);
+        up = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        // 繪製射線（用於調試，可視化射線）
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
+    }
+
 
 
     public void move()
@@ -105,19 +120,29 @@ public class Flyingeye : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            if (upDuring < 0)
+             
+            if (up.collider != null)
             {
-                upDuring = Random.Range(1, 2);
-                if (flyDistance > distanceToPlayer)
-                {
-                    MoveSpeedY = Random.Range(-150, 150);
-                }
-                else if(flyDistance < distanceToPlayer)
-                {
-                    MoveSpeedY = Random.Range(-100, -300);
-                }
+           
+                MoveSpeedY = 300;
             }
-            upDuring -= Time.deltaTime;
+            if (up.collider == null)
+            {
+                if (upDuring < 0)
+                { 
+                    upDuring = Random.Range(0.5f, 1);
+                    if (flyDistance > distanceToPlayer)
+                    {
+                        MoveSpeedY = Random.Range(-150, 150);
+                    }
+                    else if (flyDistance < distanceToPlayer)
+                    {
+                        MoveSpeedY = Random.Range(-100, -300);
+                    }
+                }
+                upDuring -= Time.deltaTime;
+            }
+            
             rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
             if (moveDuring < 0)
             {
