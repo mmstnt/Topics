@@ -1315,7 +1315,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6842881585863791110, guid: 806c7933d3ac1b74592e2b7f9dab7700, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream
       value: 20
+=======
+      value: 22
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6842881585863791110, guid: 806c7933d3ac1b74592e2b7f9dab7700, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10365,7 +10369,7 @@ Tilemap:
       - {fileID: 1034533889, guid: c2b0bb22716843f418301020e576b401, type: 3}
       - {fileID: -1912514828, guid: c2b0bb22716843f418301020e576b401, type: 3}
       - {fileID: 485189103, guid: c2b0bb22716843f418301020e576b401, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 14, y: -4, z: 0}
