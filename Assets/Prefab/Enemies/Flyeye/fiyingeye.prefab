@@ -78,7 +78,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -110,15 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7527e14b3802349855018e67097031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   sand: {fileID: 6192421418138148303, guid: 84d5706e611dd8b49b8cd71a28ddef63, type: 3}
   wind: {fileID: 7316076562366683970, guid: 0700a97f9b2c42842a727dac366e8c30, type: 3}
-  laser: {fileID: 0}
-  MoveSpeedX: 0
+  laser: {fileID: 4199061640421336476, guid: f1bb21148e0f08a44bab7cdec25647a5, type: 3}
+  MoveSpeedX: 400
   MoveSpeedY: 0
-  moveTimeMin: 0
-  moveTimeMax: 0
-  flyDistance: 0
+  moveTimeMin: 1
+  moveTimeMax: 3
+  flyDistance: 3
   laserDistance: 0
   direction: 20
   distanceToPlayer: 0
