@@ -1,0 +1,752 @@
+fileFormatVersion: 2
+guid: fe25378f7d2718e4cbe74e699963a394
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 51
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e91dab2af2180a04a8dfa947a6ae7f4d
+      internalID: 2017203577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a17ece2c97215c4e9fe412d54c11816
+      internalID: 1421778811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f9d6a20cf645e42b1b28f73762f4c7
+      internalID: 1579783621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2af44aaf5e1bf74e9198c5e453b2fe1
+      internalID: -1341408578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_4
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e9a6784fb418b147920ffdbab305c12
+      internalID: 572273767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd56e7d6c657134bad9773bc6e2bf6d
+      internalID: -1856975164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_6
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87fb8c2734761446928565f46641456
+      internalID: -413000261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_7
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b05ff31d984e34db8669426ec5d897
+      internalID: 543468799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_8
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a02675f42c326146a6b02b166210e34
+      internalID: 958113227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_9
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb598e2e52ec14540a90e2485014c4fb
+      internalID: -1688207857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_10
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 50.666664
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fa86343eb7100c4ba60262fd9c0e1ac
+      internalID: -1088749317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c076d4e292c6aa04f86595db65c59d55
+      internalID: 959712112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_12
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce451a4ce8b038488248d703c83af57
+      internalID: -1937437194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_13
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa425f96ad1586843a5c5a9db6ae74c6
+      internalID: 718086117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_14
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6421d8d77ad7d540b59edf98f7c08e9
+      internalID: 990966229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_15
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 25
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363b4617d3f0fa5409137e03a6cfd206
+      internalID: 217981968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_16
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f91f42886adb72b4ab99d0944ab6f59a
+      internalID: -543891669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_17
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b459bba7f18677840823bb702d8d9a71
+      internalID: -1518472574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_18
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396e43b50be187649baafe73c3a16382
+      internalID: -10272762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_19
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0a583afbcc3654d88ed127a6c57049
+      internalID: -1825344260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_20
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1757c7f48a485fa4f81c3253c2f9368c
+      internalID: 544880682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_21
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 25.666666
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2f860de8f09c94ab03015c17cc597a
+      internalID: -2099176322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_22
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0112680bff0a9429e10edfa980a66d
+      internalID: -1026530474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_23
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8ebf5d895b4db4594003d78ac323cf
+      internalID: 305002933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_24
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a4a20f4a3cfcd49851f512c3d692df
+      internalID: 62166893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_25
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19596353e84640c4f9e91dddfdbd4587
+      internalID: 1296849623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_26
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2de30da76f3e0499a5edcbdc2f2186
+      internalID: 117408161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_27
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc4a4fdb47be3e47aa9ed0e6bad3d6d
+      internalID: -647268448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Volcano_Temple_Doors_28
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0.66666603
+        width: 26.363636
+        height: 25.333334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0132157a1ecc65f45b64256078b1f3bb
+      internalID: -1615939537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Volcano_Temple_Doors_0: 2017203577
+      Volcano_Temple_Doors_1: 1421778811
+      Volcano_Temple_Doors_10: -1088749317
+      Volcano_Temple_Doors_11: 959712112
+      Volcano_Temple_Doors_12: -1937437194
+      Volcano_Temple_Doors_13: 718086117
+      Volcano_Temple_Doors_14: 990966229
+      Volcano_Temple_Doors_15: 217981968
+      Volcano_Temple_Doors_16: -543891669
+      Volcano_Temple_Doors_17: -1518472574
+      Volcano_Temple_Doors_18: -10272762
+      Volcano_Temple_Doors_19: -1825344260
+      Volcano_Temple_Doors_2: 1579783621
+      Volcano_Temple_Doors_20: 544880682
+      Volcano_Temple_Doors_21: -2099176322
+      Volcano_Temple_Doors_22: -1026530474
+      Volcano_Temple_Doors_23: 305002933
+      Volcano_Temple_Doors_24: 62166893
+      Volcano_Temple_Doors_25: 1296849623
+      Volcano_Temple_Doors_26: 117408161
+      Volcano_Temple_Doors_27: -647268448
+      Volcano_Temple_Doors_28: -1615939537
+      Volcano_Temple_Doors_3: -1341408578
+      Volcano_Temple_Doors_4: 572273767
+      Volcano_Temple_Doors_5: -1856975164
+      Volcano_Temple_Doors_6: -413000261
+      Volcano_Temple_Doors_7: 543468799
+      Volcano_Temple_Doors_8: 958113227
+      Volcano_Temple_Doors_9: -1688207857
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
