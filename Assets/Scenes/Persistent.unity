@@ -318,10 +318,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2bd90c413cbf2428301361575c2c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalGenerateEvent: {fileID: 11400000, guid: 10427bd3b6d4906459331a1c31675ec1, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  portalGenerateEvent: {fileID: 11400000, guid: 10427bd3b6d4906459331a1c31675ec1, type: 2}
+  cardChooseEvent: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
+  portalChooseEvent: {fileID: 11400000, guid: 09f5ac7c3ea6f924bb7d4d171dba286c, type: 2}
   saveDataEvent: {fileID: 11400000, guid: 079f07b5f84fa9a49a7e240f628142f2, type: 2}
+  portalList: []
   portal: {fileID: 6467029122583636270, guid: 17d6755fc4f18424cb9ef079a3e4d184, type: 3}
+  cardChooseGameObject: {fileID: 1643337693}
+  sceneLoadManager: {fileID: 832533757}
+  curLevelPool: []
   levelPool_01:
   - {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
   - {fileID: 11400000, guid: df44ef87efd0e0c4aa51f3e5b5bf6d83, type: 2}
@@ -2319,7 +2325,7 @@ MonoBehaviour:
   firstPosition: {x: 0, y: 5, z: 0}
   menuPosition: {x: 0, y: 0, z: 0}
   currentLevel: 0
-  loadEventSO: {fileID: 11400000, guid: 4644fe515e4e6c44e901f64d80b2df5e, type: 2}
+  sceneLoadEventSO: {fileID: 11400000, guid: 4644fe515e4e6c44e901f64d80b2df5e, type: 2}
   newGameEvent: {fileID: 11400000, guid: 06296da18f7598a47a73948ab5a22deb, type: 2}
   backToMenuEvent: {fileID: 11400000, guid: 6ed75c826f8bdda47adb3ffba2a81073, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
@@ -2327,6 +2333,7 @@ MonoBehaviour:
   unloadedSceneEvent: {fileID: 11400000, guid: 6973f618c47aa0241b79810ff53ece3e, type: 2}
   firstLoadScene: {fileID: 11400000, guid: 61e31ca792b3b8743869b4389a7d76cd, type: 2}
   menuScene: {fileID: 11400000, guid: d6d5d081ddb0e114fae21d69a5ca8f29, type: 2}
+  currentLoadedScene: {fileID: 0}
   fadeDuration: 0.5
 --- !u!1 &866372785
 GameObject:

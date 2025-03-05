@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBuff : MonoBehaviour, IBuff
+public class BaseBuff : ScriptableObject, IBuff
 {
-    BuffType IBuff.buffType => throw new System.NotImplementedException();
+    public BuffType buffType => BuffType.Attribute;
 
     public void Apply(Character character)
     {
-        throw new System.NotImplementedException();
+        character.maxHp += 6;
     }
 
     public void Remove(Character character)
     {
-        throw new System.NotImplementedException();
+        character.maxHp -= 6;
     }
+
 }

@@ -93,6 +93,8 @@ public class BuffManager : MonoBehaviour
         {
             case "10001":
                 return new Buff();
+            case "10002":
+                return new BaseBuff();
             default:
                 return null;
         }

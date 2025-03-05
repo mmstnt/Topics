@@ -8,16 +8,22 @@ public class GameEventManager : MonoBehaviour
 {
     private bool startSave;
     [Header("事件監聽")]
-    public VoidEventSO portalGenerateEvent;
     public VoidEventSO afterSceneLoadedEvent;
+    public VoidEventSO portalGenerateEvent;
+    public VoidEventSO cardChooseEvent;
+    public VoidEventSO portalChooseEvent;
 
     [Header("廣播")]
     public VoidEventSO saveDataEvent;
 
     [Header("組件")]
+    public List<GameObject> portalList;
     public GameObject portal;
+    public GameObject cardChooseGameObject;
+    public SceneLoadManager sceneLoadManager;
 
     [Header("關卡池")]
+    public List<GameSceneSO> curLevelPool;
     public List<GameSceneSO> levelPool_01;
 
     [Header("卡牌庫")]
@@ -27,18 +33,23 @@ public class GameEventManager : MonoBehaviour
     {
         startSave = true;
         cardDataList.cardInitialize();
+        levelInitialize(levelPool_01);
     }
 
     private void OnEnable()
     {
-        portalGenerateEvent.onEventRaised += portalGenerat;
         afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
+        portalGenerateEvent.onEventRaised += portalGenerat;
+        cardChooseEvent.onEventRaised += cardChoose;
+        portalChooseEvent.onEventRaised += portalChoose;
     }
 
     private void OnDisable()
     {
-        portalGenerateEvent.onEventRaised -= portalGenerat;
         afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
+        portalGenerateEvent.onEventRaised -= portalGenerat;
+        cardChooseEvent.onEventRaised -= cardChoose;
+        portalChooseEvent.onEventRaised -= portalChoose;
     }
 
     private void onAfterSceneLoadedEvent()
@@ -53,11 +64,46 @@ public class GameEventManager : MonoBehaviour
 
     private void portalGenerat()
     {
-        Transform portalObject = Instantiate(portal, transform.position, Quaternion.identity).transform;
-        int levelPoolChoose = Random.Range(0,levelPool_01.Count);
-        
-        
-        portalObject.GetComponent<Portal>().sceneToGo = levelPool_01[levelPoolChoose];
+        for (int i = 0; i < 3; i++)
+        {
+            if (curLevelPool != null && curLevelPool.Count > 0)
+            {
+                Vector3 vector = sceneLoadManager.currentLoadedScene.portalPosition;
+                vector.x += i==1?4:(i==2?-4:0);
+                int levelPoolChoose = Random.Range(0, curLevelPool.Count);
+                Transform portalObject = Instantiate(portal, vector, Quaternion.identity).transform;
+                portalObject.GetComponent<Portal>().sceneToGo = curLevelPool[levelPoolChoose];
+                portalObject.GetComponent<Portal>().changeImage();
+                portalList.Add(portalObject.gameObject);
+                curLevelPool.Remove(curLevelPool[levelPoolChoose]);
+            }
+        }
     }
 
+    private void cardChoose()
+    {
+        cardChooseGameObject.SetActive(true);
+    }
+
+    private void levelInitialize(List<GameSceneSO> pool) 
+    {
+        curLevelPool = new List<GameSceneSO>();
+        for (int i = 0; i < pool.Count; i++) 
+        {
+            curLevelPool.Add(pool[i]);
+        }
+    }
+
+    private void portalChoose()
+    {
+        for(int i=0;i< portalList.Count; i++) 
+        {
+            Portal portalScript = portalList[i].GetComponent<Portal>();
+            if (!portalScript.isChoose) 
+            {
+                curLevelPool.Add(portalScript.sceneToGo);
+            }
+            Destroy(portalList[i]);
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     public Vector3 menuPosition;
     public int currentLevel;
     [Header("事件監聽")]
-    public SceneLoadEventSO loadEventSO;
+    public SceneLoadEventSO sceneLoadEventSO;
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;
 
@@ -26,7 +26,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     [Header("場景")]
     public GameSceneSO firstLoadScene;
     public GameSceneSO menuScene;
-    private GameSceneSO currentLoadedScene;
+    public GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     private Vector3 positionToGo;
     private bool fadeScreen;
@@ -41,14 +41,14 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
 
     private void Start()
     {
-        loadEventSO.RaiseLoadRequestEvent(menuScene, menuPosition, true, false);
+        sceneLoadEventSO.RaiseLoadRequestEvent(menuScene, menuPosition, true, false);
 
         //newGame();
     }
 
     private void OnEnable()
     {
-        loadEventSO.LoadRequestEvent += onLoadRequestEvent;
+        sceneLoadEventSO.LoadRequestEvent += onLoadRequestEvent;
         newGameEvent.onEventRaised += newGame;
         backToMenuEvent.onEventRaised += onBackToMenuEvent;
 
@@ -58,7 +58,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
 
     private void OnDisable()
     {
-        loadEventSO.LoadRequestEvent -= onLoadRequestEvent;
+        sceneLoadEventSO.LoadRequestEvent -= onLoadRequestEvent;
         newGameEvent.onEventRaised -= newGame;
         backToMenuEvent.onEventRaised -= onBackToMenuEvent;
 
@@ -69,14 +69,14 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     private void onBackToMenuEvent()
     {
         sceneToLoad = menuScene;
-        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, menuPosition, true, false);
+        sceneLoadEventSO.RaiseLoadRequestEvent(sceneToLoad, menuPosition, true, false);
     }
 
     private void newGame() 
     {
         currentLevel = 0;
         sceneToLoad = firstLoadScene;
-        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true, false);
+        sceneLoadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true, false);
         
     }
 
