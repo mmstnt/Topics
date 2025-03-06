@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7384901795475785953}
   - component: {fileID: 8181423995646040748}
   - component: {fileID: 7793253248014647916}
-  - component: {fileID: 2283261662544494565}
+  - component: {fileID: 7363809694209354661}
+  - component: {fileID: 161256352731882538}
   m_Layer: 8
   m_Name: skeleton2
   m_TagString: Untagged
@@ -97,7 +98,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.3600024, y: -0.37105632}
   m_Size: {x: 1.2766187, y: 2.176849}
   m_Direction: 0
---- !u!114 &2283261662544494565
+--- !u!114 &7363809694209354661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892881745388278042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: -0.3, y: -1.3}
+  checkRaduis: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  normal: {fileID: 0}
+  wall: {fileID: 0}
+--- !u!114 &161256352731882538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,9 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2569916722b0ad449bf5fb7d43fe082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
-  skeleton2: {fileID: 0}
-  MoveSpeed: 300
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  MoveSpeed: 400
   direction: 0
   distanceToPlayer: 0
   action: 0

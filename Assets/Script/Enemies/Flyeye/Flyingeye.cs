@@ -77,7 +77,7 @@ public class Flyingeye : MonoBehaviour
     public void ThrowSand2()
     {
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
-        laserObject.GetComponent<Laser>().Move(direction);
+        //laserObject.GetComponent<Laser>().Move(direction);
     }
     public void ThrowWind()
     {

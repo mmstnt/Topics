@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: flyeyedeath
+  m_Name: mushroomdeath
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 945078734, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
+      value: {fileID: 1097156949, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
     - time: 0.2
-      value: {fileID: 738642479, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
+      value: {fileID: 1818381619, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
     - time: 0.4
-      value: {fileID: 1438739378, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
+      value: {fileID: 1396972217, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
     - time: 0.6
-      value: {fileID: 1855254660, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
+      value: {fileID: -203021840, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 945078734, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
-    - {fileID: 738642479, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
-    - {fileID: 1438739378, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
-    - {fileID: 1855254660, guid: ebcaa0d86b308bb4e8160c5b10179f98, type: 3}
+    - {fileID: 1097156949, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
+    - {fileID: 1818381619, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
+    - {fileID: 1396972217, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
+    - {fileID: -203021840, guid: 77065abcb1df7c145ae5fae29513b95a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

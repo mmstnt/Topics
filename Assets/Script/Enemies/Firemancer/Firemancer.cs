@@ -7,6 +7,7 @@ public class Firemancer : MonoBehaviour
     private Rigidbody2D rb;
     private FiremancerAnimation firemancerAnimation;
     private GameObject player;
+    public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -14,12 +15,15 @@ public class Firemancer : MonoBehaviour
     [Header("角色參數")]
     public GameObject fire;
     public GameObject fire2;
-    public float MoveSpeed; // 角色移動速度
+    public float MoveSpeedX; // 角色移動速度
+    public float MoveSpeedY;
     public float moveTimeMin;
     public float moveTimeMax;
     public float spoutDistance;
+    public float flyDistance;
+    public RaycastHit2D up;
     public float y;
-     
+
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
@@ -28,11 +32,14 @@ public class Firemancer : MonoBehaviour
     public enum actionKind { move, fire,fire2,spout }
     public actionKind actionMode;
     private float moveDuring;
+    public float upDuring;
+    public float downDuring;
 
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
         firemancerAnimation = transform.Find("Ani").GetComponent<FiremancerAnimation>();
+        player = GameObject.Find("Game/Player");
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
@@ -53,6 +60,7 @@ public class Firemancer : MonoBehaviour
 
     private void Update()
     {
+        CliffTurn();
         updateCharacterFacing();
         firemancerAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
@@ -64,10 +72,11 @@ public class Firemancer : MonoBehaviour
             Vector3 newPosition = transform.position;
             float x = Random.Range(-5f, 5f);
             newPosition.x = player.transform.position.x + x;
-            newPosition.y = 3;
+            newPosition.y = player.transform.position.y + 5;
 
             // 生成 Fire 物件
-            Instantiate(fire, newPosition, transform.rotation);
+            GameObject fireGameObject = Instantiate(fire, newPosition, transform.rotation);
+            fireGameObject.GetComponent<AttackSource>().attackSource = this.transform;
     }
 
 
@@ -77,7 +86,7 @@ public class Firemancer : MonoBehaviour
         Vector3 newPosition = transform.position;
         
         newPosition.x = player.transform.position.x + y * direction;
-        newPosition.y = 3;
+        newPosition.y = player.transform.position.y + 5;
         y = y + 10;
 
         Instantiate(fire2, newPosition, transform.rotation);
@@ -91,7 +100,19 @@ public class Firemancer : MonoBehaviour
     {
         move();
     }
-     
+
+
+    public void CliffTurn()
+    {
+        // 計算射線的方向
+        Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        // 射線的起點
+        Vector3 rayStart = transform.position + new Vector3(0, -1.5f, 0);
+        up = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        // 繪製射線（用於調試，可視化射線）
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
+    }
+
 
     public void move()
     {
@@ -99,13 +120,36 @@ public class Firemancer : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+
+            if (up.collider != null)
+            {
+
+                MoveSpeedY = 300;
+            }
+            if (up.collider == null)
+            {
+                if (upDuring < 0)
+                {
+                    upDuring = Random.Range(0.5f, 1);
+                    if (flyDistance > distanceToPlayer)
+                    {
+                        MoveSpeedY = Random.Range(-150, 150);
+                    }
+                    else if (flyDistance < distanceToPlayer)
+                    {
+                        MoveSpeedY = Random.Range(-100, -300);
+                    }
+                }
+                upDuring -= Time.deltaTime;
+            }
+
+            rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
             if (moveDuring < 0)
             {
                 action = false;
             }
         }
-        else if (moveDuring < 0 || distanceToPlayer < spoutDistance)
+        else if (moveDuring < 0)
         {
             rb.velocity = Vector2.zero;
             return;

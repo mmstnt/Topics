@@ -11,6 +11,8 @@ public class Golem : MonoBehaviour
     private Transform golemTransform;
     private float timer;
     private float moveDuring;
+    public GameObject ani;
+    private PhysicsCheck physicsCheck;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -35,6 +37,7 @@ public class Golem : MonoBehaviour
         rb = transform.GetComponent<Rigidbody2D>();
         golemAnimation = transform.Find("Ani").GetComponent<GolemAnimation>();
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
+        physicsCheck = GetComponent<PhysicsCheck>();
     }
 
     private void OnEnable()
@@ -54,6 +57,7 @@ public class Golem : MonoBehaviour
 
     private void Update()
     {
+        jump();
         updateCharacterFacing();
         mushroomAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
@@ -65,16 +69,18 @@ public class Golem : MonoBehaviour
     }
     public void transmit()
     {
+        ani.GetComponent<SpriteRenderer>().enabled = false;
         golemTransform = this.transform;
+        float randomY = 10f;
         float randomX = Random.Range(-20f, 20f); // 隨機生成 -20 到 20 的數值
-        Vector3 newPosition = new Vector3(randomX, golemTransform.position.y, golemTransform.position.z); // 保持 y 和 z 不變
+        Vector3 newPosition = new Vector3(randomX, randomY, golemTransform.position.z); // 保持 y 和 z 不變
         golemTransform.position = newPosition; // 更新位置
     }
 
     public void shootlaser()
     {
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
-        laserObject.GetComponent<Laser>().Move(direction);
+        laserObject.GetComponent<Laser>().site = this.transform;
     }  
 
     public void shootrock()
@@ -117,10 +123,17 @@ public class Golem : MonoBehaviour
         }
     }
 
-
-    public void mushroomAction()
+    private void jump()
     {
-        if (action) return;
+        if (physicsCheck.isGround)
+        {
+            ani.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+    }
+        public void mushroomAction()
+    {
+        if (action || !physicsCheck.isGround) return;
         actionMode = (actionKind)Random.Range(0, 4);
 
         switch (actionMode)

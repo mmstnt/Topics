@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 542964310685851873}
   - component: {fileID: 6499406791803953962}
   - component: {fileID: 8398565914650785643}
-  m_Layer: 0
+  - component: {fileID: 5635678415706765250}
+  - component: {fileID: -2223405620507050472}
+  m_Layer: 8
   m_Name: firemancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +52,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -109,18 +111,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb51851b81fd1946adff4a27e27d1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   fire: {fileID: 9135480583386369532, guid: faa23c9d8da2d734da3bbe736a4e51b7, type: 3}
   fire2: {fileID: 1476278109873938325, guid: cfb742e50e7c1a64cb6759594bc88f45, type: 3}
-  MoveSpeed: 400
-  moveTimeMin: 0.5
-  moveTimeMax: 2
+  MoveSpeedX: 400
+  MoveSpeedY: 0
+  moveTimeMin: 1
+  moveTimeMax: 3
   spoutDistance: 4
+  flyDistance: 3
   y: 0
   direction: 0
   distanceToPlayer: 0
   action: 0
   actionMode: 0
+  upDuring: 0
+  downDuring: 0
+--- !u!114 &5635678415706765250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813018644363572524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 1
+  ID: 
+--- !u!114 &-2223405620507050472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813018644363572524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45db770bfe8f32741902450fc5c2fb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 0}
+  maxHp: 100
+  currentHp: 0
+  damage: 5
+  invulnerable: 0
+  invulnerableTime: 0
+  invulnerableDuration: 0
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7154539855932293735
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +187,7 @@ GameObject:
   - component: {fileID: 457591182043029847}
   - component: {fileID: 8532120092054121183}
   - component: {fileID: 634890850236924298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ani
   m_TagString: Untagged
   m_Icon: {fileID: 0}

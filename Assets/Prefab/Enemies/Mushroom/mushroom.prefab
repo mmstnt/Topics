@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 3431615498754563217}
   - component: {fileID: 2187217707659450406}
   - component: {fileID: 8993924508477670575}
+  - component: {fileID: 7171669830285228188}
   m_Layer: 8
   m_Name: mushroom
   m_TagString: Untagged
@@ -241,3 +242,17 @@ MonoBehaviour:
   distanceToPlayer: 0
   action: 0
   actionMode: 0
+--- !u!114 &7171669830285228188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394464918190352623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 1
+  ID: 

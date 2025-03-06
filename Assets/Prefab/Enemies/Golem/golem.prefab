@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5433768143671512956}
   - component: {fileID: 3389940328810472854}
   - component: {fileID: 4258521230536626767}
+  - component: {fileID: 6147811989732723053}
+  - component: {fileID: 47168456555127896}
   m_Layer: 8
   m_Name: golem
   m_TagString: Untagged
@@ -77,7 +79,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -109,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fcc1203ba947f40989bd6c991f79ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani: {fileID: 7638632754962894983}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   laser: {fileID: 4199061640421336476, guid: 875f385e0b9c22e45976291e13b5867b, type: 3}
   rock: {fileID: 8078933060929011391, guid: ea55969fc26c1dd4d9ae3919d072c92e, type: 3}
@@ -119,6 +122,40 @@ MonoBehaviour:
   distanceToPlayer: 0
   action: 0
   actionMode: 0
+--- !u!114 &6147811989732723053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: -1.2}
+  checkRaduis: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  normal: {fileID: 0}
+  wall: {fileID: 0}
+--- !u!114 &47168456555127896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 1
+  ID: 
 --- !u!1 &7638632754962894983
 GameObject:
   m_ObjectHideFlags: 0

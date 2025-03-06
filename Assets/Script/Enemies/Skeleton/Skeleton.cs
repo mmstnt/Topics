@@ -7,6 +7,8 @@ public class Skeleton : MonoBehaviour
     private Rigidbody2D rb;
     private SkeletonAnimation skeletonAnimation;
     private GameObject player;
+    public LayerMask GroundLayer;
+    private PhysicsCheck physicsCheck;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -17,17 +19,20 @@ public class Skeleton : MonoBehaviour
     public float moveTimeMin;
     public float moveTimeMax;
     public float cutDistance;
+    public RaycastHit2D hit;
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
-    public enum actionKind {move,call,cut,wave}
+    public enum actionKind { move, call, cut, wave }
     public actionKind actionMode;
     private float moveDuring;
+    public bool isDead;
 
     private void Awake()
     {
+        physicsCheck = GetComponent<PhysicsCheck>();
         rb = transform.GetComponent<Rigidbody2D>();
         skeletonAnimation = transform.Find("Ani").GetComponent<SkeletonAnimation>();
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
@@ -50,6 +55,7 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
+        CliffTurn();
         updateCharacterFacing();
         skeletonAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
@@ -60,6 +66,17 @@ public class Skeleton : MonoBehaviour
         move();
     }
 
+    public void CliffTurn()
+    {
+        // 計算射線的方向
+        Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        // 射線的起點
+        Vector3 rayStart = transform.position;
+        hit = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        // 繪製射線（用於調試，可視化射線）
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
+    }
+
     public void move()
     {
         if (actionMode != actionKind.move)
@@ -67,6 +84,10 @@ public class Skeleton : MonoBehaviour
         if (actionMode == actionKind.move)
         {
             rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+            if (hit.collider != null && physicsCheck.isGround)
+            {
+                transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 3, 10), ForceMode2D.Impulse);
+            }
             if (moveDuring < 0)
             {
                 action = false;
@@ -99,21 +120,21 @@ public class Skeleton : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             Vector3 newPosition = transform.position;
+
             float x = Random.Range(-10f, 10f);
             newPosition.x = player.transform.position.x + x;
-            newPosition.y = 1;
+            newPosition.y = 5;
             GameObject skeleton2Object = Instantiate(skeleton2, newPosition, transform.rotation);
-            skeleton2Object.GetComponent<Skeleton2>().findPlayer();
         }
     }
 
-     
+
 
 
     public void skeletonAction()
     {
         if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4); 
+        actionMode = (actionKind)Random.Range(0, 4);
 
         switch (actionMode)
         {
@@ -150,9 +171,10 @@ public class Skeleton : MonoBehaviour
                 break;
         }
     }
-
-
-
-
+    public void SkeletonDead()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
+    }
 
 }
