@@ -24,6 +24,9 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.GetComponent<Character>()?.takeDamage(this);
+        if (damageSource != other.GetComponent<Character>()) 
+        {
+            other.GetComponent<Character>()?.takeDamage(this);
+        }
     }
 }

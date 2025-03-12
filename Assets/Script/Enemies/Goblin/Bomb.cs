@@ -8,20 +8,18 @@ public class Bomb : MonoBehaviour
     public Vector2 startSpeedMax;
     public GameObject bombCollider;
     private BombAnimation bombAnimation;
-    private bool isExploded = false; // 防止多次觸發銷毀
+    private bool isExploded; // 防止多次觸發銷毀
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         bombAnimation = transform.Find("Ani").GetComponent<BombAnimation>();
+        isExploded = false;
     }
-
 
     public void isThrow(int direction) 
     {
         transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * Random.Range(startSpeedMin.x, startSpeedMax.x), Random.Range(startSpeedMin.y, startSpeedMax.y)), ForceMode2D.Impulse);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

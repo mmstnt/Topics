@@ -77,7 +77,6 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
         currentLevel = 0;
         sceneToLoad = firstLoadScene;
         sceneLoadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true, false);
-        
     }
 
     private void onLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGo, bool fadeScreen, bool nextLevel)
@@ -132,8 +131,10 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
         currentLoadedScene = sceneToLoad;
 
         playerTrans.position = positionToGo;
+        
+        var isMenu = (currentLoadedScene.sceneType == SceneType.Menu);
 
-        playerTrans.gameObject.SetActive(true);
+        playerTrans.gameObject.SetActive(!isMenu);
         if (fadeScreen) 
         {
             //漸透明
@@ -143,8 +144,8 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
 
 
         //場景完成後事件
-        if(currentLoadedScene.sceneType != SceneType.Menu)
-            afterSceneLoadedEvent.raiseEvent();
+        //if(currentLoadedScene.sceneType != SceneType.Menu)
+        afterSceneLoadedEvent.raiseEvent();
     }
 
     public DataDefinition getDataID()

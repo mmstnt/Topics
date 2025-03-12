@@ -9,6 +9,9 @@ public class Card : MonoBehaviour
     [Header("卡牌庫")]
     public CardDataList cardDataList;
 
+    [Header("廣播")]
+    public VoidEventSO cardChooseEndEvent;
+
     [Header("參數")]
     public string cardID;
     public bool isChoose;
@@ -29,9 +32,9 @@ public class Card : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!isChoose) 
+        if (!isChoose && cardID != "0") 
         {
-            cardChoose.cardPool.Add(cardID);
+            BuffManager.instance.cardPool.Add(cardID);
         }
     }
 
@@ -40,8 +43,7 @@ public class Card : MonoBehaviour
         isChoose = true;
         IBuff newBuff = BuffManager.instance.getCardBuff(cardID);
         BuffManager.instance.registerBuff(newBuff, BuffManager.instance.player);
-        cardChoose.gameObject.SetActive(false);
+        cardChooseEndEvent.raiseEvent();
     }
 
-    
 }

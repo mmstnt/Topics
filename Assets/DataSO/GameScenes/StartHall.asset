@@ -18,3 +18,6 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  positionToGo: {x: 0, y: 0, z: 0}
+  portalPosition: {x: 0, y: -1, z: 0}
+  image: {fileID: 0}

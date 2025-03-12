@@ -6,7 +6,6 @@ public class Portal : MonoBehaviour,IInteractable
 {
     [Header("¼s¼½")]
     public SceneLoadEventSO sceneLoadEventSO;
-    public VoidEventSO portalChooseEvent;
 
     [Header("°Ñ¼Æ")]
     public SpriteRenderer image;
@@ -28,7 +27,6 @@ public class Portal : MonoBehaviour,IInteractable
     {
         isChoose = true;
         sceneLoadEventSO.RaiseLoadRequestEvent(sceneToGo, sceneToGo.positionToGo, true, true);
-        portalChooseEvent.raiseEvent();
     }
 
 }

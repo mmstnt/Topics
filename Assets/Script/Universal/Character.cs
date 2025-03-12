@@ -7,6 +7,9 @@ public class Character : MonoBehaviour,ISaveable
 {
     [Header("事件監聽")]
     public VoidEventSO newGameEvent;
+    [Header("初始屬性")]
+    public float startHp;
+    public float startDamage;
     [Header("屬性")]
     public float maxHp;
     public float currentHp;
@@ -19,14 +22,21 @@ public class Character : MonoBehaviour,ISaveable
     public UnityEvent<Character> onHealthChange;
     public UnityEvent<Transform> onTakeDamage;
     public UnityEvent onDead;
-    public UnityEvent<Transform> onHitEvent;
+    public UnityEvent<Transform, Character> onHitEvent;
+    public UnityEvent<Transform, Character> onTime;
+    public UnityEvent<Transform, Character, Attack> onAttack;
 
+    private float time;
 
-    private void newGame()
+    public void newGame()
     {
+        maxHp = startHp;
+        damage = startDamage;
         currentHp = maxHp;
         onHealthChange?.Invoke(this);
-        onHitEvent = new UnityEvent<Transform>();
+        onHitEvent = new UnityEvent<Transform, Character>();
+        onTime = new UnityEvent<Transform, Character>();
+        onAttack = new UnityEvent<Transform, Character, Attack>();
     }
 
     private void OnEnable()
@@ -45,6 +55,15 @@ public class Character : MonoBehaviour,ISaveable
 
     private void Update()
     {
+        if (currentHp == 0)
+            return;
+        currentHp = currentHp > maxHp ? maxHp : currentHp;
+        time -= Time.deltaTime;
+        if (time < 0)  
+        {
+            onTime?.Invoke(this.transform,this);
+            time = 1;
+        }
         if (invulnerable) 
         {
             invulnerableDuration -= Time.deltaTime;
@@ -59,7 +78,8 @@ public class Character : MonoBehaviour,ISaveable
     {
         if (invulnerable || currentHp == 0) 
             return;
-        onHitEvent?.Invoke(this.transform);
+        onHitEvent?.Invoke(this.transform, this);
+        attacker.damageSource.onAttack?.Invoke(this.transform, this, attacker);
         float attackDamage = (attacker.damageSource.damage * attacker.damageRatio) + (attacker.damageBasic) + (attacker.damagePercentage * maxHp);
         if (currentHp - attackDamage > 0) 
         {

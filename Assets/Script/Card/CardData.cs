@@ -11,4 +11,5 @@ public class CardData
     public string cardID;
     public Sprite cardImage;
     public CardKind cardKind;
+    public int cardCount;
 }

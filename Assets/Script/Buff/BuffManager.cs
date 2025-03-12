@@ -1,89 +1,74 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-public class BuffManager : MonoBehaviour
+public class BuffManager : MonoBehaviour,ISaveable
 {
     public static BuffManager instance;
+
     [Header("事件監聽")]
-    public CharacterEventSo onHitEvent;
+    public VoidEventSO newGameEvent;
 
-    [Header("受擊事件")]
-    public List<IBuff> onHitBuffs;
-    public List<IBuff> onAttackBuffs;
-    public List<IBuff> timedBuffs;
-    public List<IBuff> passiveBuffs;
-    public List<IBuff> attributeBuffs;
+    [Header("Buff")]
+    public Dictionary<IBuff, Character> allBuffs;
 
-    public Character player;
+    [Header("玩家")]
+    public Character player;//讓其他物件調用
 
-    private void Awake()
+    [Header("組件")]
+    public GameObject goblinBomb;
+
+    [Header("卡池")]
+    public CardDataList cardDataList;
+    public List<string> cardPool;
+
+    private void newGame()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this.gameObject);
-        onHitBuffs = new List<IBuff>();
-        onAttackBuffs = new List<IBuff>();
-        timedBuffs = new List<IBuff>();
-        passiveBuffs = new List<IBuff>();
-        attributeBuffs = new List<IBuff>();
+        
+        foreach (var cardID in cardDataList.cardIDList)
+        {
+            for (int i = 0; i < cardDataList.cardDataList[cardID.Value].cardCount; i++)
+            {
+                if (cardDataList.cardDataList[cardID.Value].cardKind == CardKind.Normal)
+                {
+                    cardPool.Add(cardDataList.cardDataList[cardID.Value].cardID);
+                }
+            }
+        }
+        
+        allBuffs = new Dictionary<IBuff, Character>();
     }
 
     private void OnEnable()
     {
-        
+        newGameEvent.onEventRaised += newGame;
+        ISaveable saveable = this;
+        saveable.registerSaveDate();
     }
 
     private void OnDisable()
     {
-        
+        newGameEvent.onEventRaised -= newGame;
+        ISaveable saveable = this;
+        saveable.unregisterSaveDate();
     }
 
     public void registerBuff(IBuff newBuff,Character character) 
     {
-        switch (newBuff.buffType) 
-        {
-            case BuffType.OnHit:
-                onHitBuffs.Add(newBuff);
-                break;
-            case BuffType.OnAttack:
-                onAttackBuffs.Add(newBuff);
-                break;
-            case BuffType.Timed:
-                timedBuffs.Add(newBuff);
-                break;
-            case BuffType.Passive:
-                passiveBuffs.Add(newBuff);
-                break;
-            case BuffType.Attribute:
-                attributeBuffs.Add(newBuff);
-                break;
-        }
+        allBuffs.Add(newBuff, character);
         newBuff.Apply(character);
     }
 
     public void unRegisterBuff(IBuff newBuff, Character character)
     {
-        switch (newBuff.buffType)
-        {
-            case BuffType.OnHit:
-                onHitBuffs.Remove(newBuff);
-                break;
-            case BuffType.OnAttack:
-                onAttackBuffs.Remove(newBuff);
-                break;
-            case BuffType.Timed:
-                timedBuffs.Remove(newBuff);
-                break;
-            case BuffType.Passive:
-                passiveBuffs.Remove(newBuff);
-                break;
-            case BuffType.Attribute:
-                attributeBuffs.Remove(newBuff);
-                break;
-        }
+        allBuffs.Remove(newBuff);
         newBuff.Remove(character);
     }
 
@@ -92,11 +77,53 @@ public class BuffManager : MonoBehaviour
         switch (cardID)
         {
             case "10001":
-                return new Buff();
+                return new AttackIncrease();
             case "10002":
-                return new BaseBuff();
+                return new HealthIncrease();
+            case "20001":
+                return new HealthRegeneration();
+            case "30001":
+                return new GoblinBomb(goblinBomb);
+            case "40001":
+                return new BloodSuck();
             default:
                 return null;
+        }
+    }
+
+    public DataDefinition getDataID()
+    {
+        return GetComponent<DataDefinition>();
+    }
+
+    public void getSaveDate(Data data)
+    {
+        data.cardPool = this.cardPool;
+        foreach(var buff in allBuffs) 
+        {
+            if (data.buffCharacter.ContainsKey(buff.Key))
+            {
+                data.buffCharacter[buff.Key] = buff.Value;
+            }
+            else
+            {
+                data.buffCharacter.Add(buff.Key, buff.Value);
+            }
+        }
+    }
+
+    public void loadData(Data data)
+    {
+        this.cardPool = data.cardPool;
+        foreach (var buff in allBuffs) 
+        {
+            buff.Key.Remove(buff.Value);
+        }
+        allBuffs = new Dictionary<IBuff, Character>();
+        foreach (var buff in data.buffCharacter)
+        {
+            allBuffs.Add(buff.Key, buff.Value);
+            buff.Key.Apply(buff.Value);
         }
     }
 }

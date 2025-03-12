@@ -8,9 +8,11 @@ public class UIManager : MonoBehaviour
 {
     [Header("物件監聽")]
     public PlayerHPUI playerHp;
+    public PlayerHPUI bossHp;
 
     [Header("事件監聽")]
-    public CharacterEventSo healthEvent;
+    public CharacterEventSO playerHealthEvent;
+    public CharacterEventSO bossHealthEvent;
     public SceneLoadEventSO unLoadedSceneEvent;
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
@@ -23,7 +25,8 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        healthEvent.onEventRaised += onHealthEvent;
+        playerHealthEvent.onEventRaised += onPlayerHealthEvent;
+        bossHealthEvent.onEventRaised += onBossHealthEvent;
         unLoadedSceneEvent.LoadRequestEvent += onUnLoadedSceneEvent;
         loadDataEvent.onEventRaised += onLoadDataEvent;
         gameOverEvent.onEventRaised += onGameOverEvent;
@@ -32,7 +35,8 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        healthEvent.onEventRaised -= onHealthEvent;
+        playerHealthEvent.onEventRaised -= onPlayerHealthEvent;
+        bossHealthEvent.onEventRaised -= onBossHealthEvent;
         unLoadedSceneEvent.LoadRequestEvent -= onUnLoadedSceneEvent;
         loadDataEvent.onEventRaised -= onLoadDataEvent;
         gameOverEvent.onEventRaised -= onGameOverEvent;
@@ -53,13 +57,20 @@ public class UIManager : MonoBehaviour
     private void onUnLoadedSceneEvent(GameSceneSO sceneToload, Vector3 arg1, bool arg2, bool n)
     {
         var isMenu = (sceneToload.sceneType == SceneType.Menu);
+        var isBoss = (sceneToload.sceneType == SceneType.Boss);
         playerHp.gameObject.SetActive(!isMenu);
+        bossHp.gameObject.SetActive(isBoss);
     }
 
-    private void onHealthEvent(Character character)
+    private void onPlayerHealthEvent(Character character)
     {
         float persentage = character.currentHp / character.maxHp;
         playerHp.playerHealthChange(persentage);
     }
-
+    
+    private void onBossHealthEvent(Character character)
+    {
+        float persentage = character.currentHp / character.maxHp;
+        bossHp.playerHealthChange(persentage);
+    }
 }

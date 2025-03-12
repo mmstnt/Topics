@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6285276623287534044}
   - component: {fileID: 4936333470561677886}
   - component: {fileID: 5011384003618590167}
-  - component: {fileID: 8869137040840814267}
+  - component: {fileID: 193260939624589791}
   - component: {fileID: 3690184659598974121}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: GoblinBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2729905786630081894}
+  - {fileID: 9021049657800442304}
   - {fileID: 1727366734984218732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,7 +99,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.08, y: -0.05}
   m_Size: {x: 0.3, y: 0.3}
   m_Direction: 0
---- !u!114 &8869137040840814267
+--- !u!114 &193260939624589791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,12 +108,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3537624931708074332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af27f72e4951be249b424bb902e194b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 149a4cd33b37def488ad8ee4b56ce678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeedMin: {x: 10, y: 15}
-  startSpeedMax: {x: 20, y: 25}
-  bombCollider: {fileID: 7646755935021312265}
+  explodeTime: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &3690184659598974121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ani: {fileID: 0}
---- !u!1 &7646755935021312265
+--- !u!1 &7806154295374841695
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,8 +341,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2729905786630081894}
-  - component: {fileID: 5329946164730137247}
+  - component: {fileID: 9021049657800442304}
+  - component: {fileID: 465116223271476435}
   m_Layer: 0
   m_Name: bombCollider
   m_TagString: Untagged
@@ -349,13 +350,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2729905786630081894
+--- !u!4 &9021049657800442304
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7646755935021312265}
+  m_GameObject: {fileID: 7806154295374841695}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -364,13 +365,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6285276623287534044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &5329946164730137247
+--- !u!70 &465116223271476435
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7646755935021312265}
+  m_GameObject: {fileID: 7806154295374841695}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -379,7 +380,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

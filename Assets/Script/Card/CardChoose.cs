@@ -5,35 +5,18 @@ using UnityEngine;
 
 public class CardChoose : MonoBehaviour
 {
-    [Header("¥d¦À")]
-    public CardDataList cardDataList;
-    public List<string> cardPool;
-
     [Header("²Õ¥ó")]
     public GameObject[] card = new GameObject[3];
-    
-    public string[] curCardID = new string[3];
-
-    private void Awake()
-    {
-        for(int i = 0; i < cardDataList.cardDataList.Count; i++) 
-        {
-            if (cardDataList.cardDataList[i].cardKind == CardKind.Normal) 
-            {
-                cardPool.Add(cardDataList.cardDataList[i].cardID);
-            }
-        }
-    }
 
     private void OnEnable()
     {
-        for(int i = 0; i < curCardID.Length; i++) 
+        for(int i = 0; i < card.Length; i++) 
         {
-            if (cardPool != null && cardPool.Count > 0)  
+            if (BuffManager.instance.cardPool != null && BuffManager.instance.cardPool.Count > 0)  
             {
-                int chooseCard = Random.Range(0, cardPool.Count);
-                card[i].GetComponent<Card>().cardID = cardPool[chooseCard];
-                cardPool.Remove(cardPool[chooseCard]);
+                int chooseCard = Random.Range(0, BuffManager.instance.cardPool.Count);
+                card[i].GetComponent<Card>().cardID = BuffManager.instance.cardPool[chooseCard];
+                BuffManager.instance.cardPool.Remove(BuffManager.instance.cardPool[chooseCard]);
             }
             else 
             {

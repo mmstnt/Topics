@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public VoidEventSO afterSceneLoadedEvent;
     public VoidEventSO loadDataEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO cardChooseEvent;
+    public VoidEventSO cardChooseEndEvent;
 
     [Header("參數")]
     public float speed;
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
         loadDataEvent.onEventRaised += onLoadDataEvent;
         backToMenuEvent.onEventRaised += onLoadDataEvent;
+        cardChooseEvent.onEventRaised += onCardChooseEvent;
+        cardChooseEndEvent.onEventRaised += onCardChooseEndEvent;
     }
 
     private void OnDisable()
@@ -57,7 +61,8 @@ public class PlayerController : MonoBehaviour
         afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
         loadDataEvent.onEventRaised -= onLoadDataEvent;
         backToMenuEvent.onEventRaised -= onLoadDataEvent;
-
+        cardChooseEvent.onEventRaised -= onCardChooseEvent;
+        cardChooseEndEvent.onEventRaised -= onCardChooseEndEvent;
     }
 
     private void Update()
@@ -76,15 +81,25 @@ public class PlayerController : MonoBehaviour
         inputControl.GamePlay.Disable();
     }
 
+    private void onAfterSceneLoadedEvent()
+    {
+        inputControl.GamePlay.Enable();
+    }
+
+    private void onCardChooseEvent()
+    {
+        inputControl.GamePlay.Disable();
+    }
+
+    private void onCardChooseEndEvent()
+    {
+        inputControl.GamePlay.Enable();
+    }
+
     //讀取遊戲進度
     private void onLoadDataEvent()
     {
         isDead = false;
-    }
-
-    private void onAfterSceneLoadedEvent()
-    {
-        inputControl.GamePlay.Enable();
     }
 
     public void move() 

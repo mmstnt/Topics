@@ -1,6 +1,6 @@
 public enum SceneType 
 {
-    Loaction, Menu
+    Loaction, Menu, Boss
 }
 
 public enum PersistentType 
@@ -10,14 +10,6 @@ public enum PersistentType
 
 public enum CardKind 
 {
-    Normal, Boss
+    Normal, Boss, None
 }
 
-public enum BuffType
-{
-    Passive,      
-    Timed,        
-    OnAttack,     
-    OnHit,        
-    Attribute
-}

@@ -4,23 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GameEventManager : MonoBehaviour
+public class GameEventManager : MonoBehaviour,ISaveable
 {
     private bool startSave;
+    private bool load;
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadedEvent;
     public VoidEventSO portalGenerateEvent;
     public VoidEventSO cardChooseEvent;
-    public VoidEventSO portalChooseEvent;
+    public VoidEventSO cardChooseEndEvent;
+    public VoidEventSO newGameEvent;
 
     [Header("廣播")]
     public VoidEventSO saveDataEvent;
 
     [Header("組件")]
     public List<GameObject> portalList;
-    public GameObject portal;
-    public GameObject cardChooseGameObject;
+    public GameObject portalObject;
+    public GameObject cardChoose;
     public SceneLoadManager sceneLoadManager;
+    public Transform player;
 
     [Header("關卡池")]
     public List<GameSceneSO> curLevelPool;
@@ -29,40 +32,58 @@ public class GameEventManager : MonoBehaviour
     [Header("卡牌庫")]
     public CardDataList cardDataList;
 
-    private void Awake() 
-    {
-        startSave = true;
-        cardDataList.cardInitialize();
-        levelInitialize(levelPool_01);
-    }
-
     private void OnEnable()
     {
+        newGameEvent.onEventRaised += newGame;
         afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
-        portalGenerateEvent.onEventRaised += portalGenerat;
-        cardChooseEvent.onEventRaised += cardChoose;
-        portalChooseEvent.onEventRaised += portalChoose;
+        portalGenerateEvent.onEventRaised += onPortalGenerat;
+        cardChooseEvent.onEventRaised += onCardChoose;
+        cardChooseEndEvent.onEventRaised += onCardChooseEnd;
+
+        ISaveable saveable = this;
+        saveable.registerSaveDate();
     }
 
     private void OnDisable()
     {
+        newGameEvent.onEventRaised -= newGame;
         afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
-        portalGenerateEvent.onEventRaised -= portalGenerat;
-        cardChooseEvent.onEventRaised -= cardChoose;
-        portalChooseEvent.onEventRaised -= portalChoose;
+        portalGenerateEvent.onEventRaised -= onPortalGenerat;
+        cardChooseEvent.onEventRaised -= onCardChoose;
+        cardChooseEndEvent.onEventRaised -= onCardChooseEnd;
+
+        ISaveable saveable = this;
+        saveable.unregisterSaveDate();
+    }
+
+    private void newGame() 
+    {
+        startSave = true;
+        cardDataList.cardInitialize();
+        levelInitialize(levelPool_01);
+
+        player.GetComponent<Character>().newGame();
     }
 
     private void onAfterSceneLoadedEvent()
     {
-        if (startSave) 
+        if (startSave)
         {
-            saveDataEvent.raiseEvent();
             portalGenerateEvent.raiseEvent();
+            saveDataEvent.raiseEvent();
             startSave = false;
+        }
+        else if(load)
+        {
+            load = false;
+        }
+        else 
+        {
+            removePortal();
         }
     }
 
-    private void portalGenerat()
+    private void onPortalGenerat()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -71,18 +92,38 @@ public class GameEventManager : MonoBehaviour
                 Vector3 vector = sceneLoadManager.currentLoadedScene.portalPosition;
                 vector.x += i==1?4:(i==2?-4:0);
                 int levelPoolChoose = Random.Range(0, curLevelPool.Count);
-                Transform portalObject = Instantiate(portal, vector, Quaternion.identity).transform;
-                portalObject.GetComponent<Portal>().sceneToGo = curLevelPool[levelPoolChoose];
-                portalObject.GetComponent<Portal>().changeImage();
-                portalList.Add(portalObject.gameObject);
+                Transform portalObjectTrans = Instantiate(portalObject, vector, Quaternion.identity).transform;
+                portalObjectTrans.GetComponent<Portal>().sceneToGo = curLevelPool[levelPoolChoose];
+                portalObjectTrans.GetComponent<Portal>().changeImage();
+                portalList.Add(portalObjectTrans.gameObject);
                 curLevelPool.Remove(curLevelPool[levelPoolChoose]);
             }
         }
     }
 
-    private void cardChoose()
+    private void removePortal() 
     {
-        cardChooseGameObject.SetActive(true);
+        for (int i = 0; i < portalList.Count; i++)
+        {
+            Portal portalScript = portalList[i].GetComponent<Portal>();
+            if (!portalScript.isChoose)
+            {
+                curLevelPool.Add(portalScript.sceneToGo);
+            }
+            Destroy(portalList[i]);
+        }
+        portalList = new List<GameObject>();
+    }
+
+    private void onCardChoose()
+    {
+        cardChoose.SetActive(true);
+    }
+
+    private void onCardChooseEnd()
+    {
+        cardChoose.SetActive(false);
+        portalGenerateEvent.onEventRaised();
     }
 
     private void levelInitialize(List<GameSceneSO> pool) 
@@ -94,16 +135,30 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    private void portalChoose()
+    public DataDefinition getDataID()
     {
-        for(int i=0;i< portalList.Count; i++) 
+        return GetComponent<DataDefinition>();
+    }
+
+    public void getSaveDate(Data data)
+    {
+        data.saveGameSceneList(curLevelPool);
+        data.savePortal(portalList);
+    }
+
+    public void loadData(Data data)
+    {
+        load = true;
+        curLevelPool = data.getSaveGameSceneList();
+        portalList = new List<GameObject>();
+        foreach(var portal in data.getSavePortal()) 
         {
-            Portal portalScript = portalList[i].GetComponent<Portal>();
-            if (!portalScript.isChoose) 
-            {
-                curLevelPool.Add(portalScript.sceneToGo);
-            }
-            Destroy(portalList[i]);
+            Transform portalObjectTrans = Instantiate(portalObject, portal.Value, Quaternion.identity).transform;
+            portalObjectTrans.GetComponent<Portal>().sceneToGo = portal.Key;
+            portalObjectTrans.GetComponent<Portal>().changeImage();
+            portalList.Add(portalObjectTrans.gameObject);
         }
+
+        player.GetComponent<Character>().loadData(data);
     }
 }

@@ -55,7 +55,7 @@ public class DataManager : MonoBehaviour
             saveable.getSaveDate(saveData);
         }
 
-        foreach (var a in saveData.characterPosDict)
+        foreach (var a in saveData.buffCharacter)
         {
             Debug.Log(a);
         }
