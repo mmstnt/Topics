@@ -137,7 +137,7 @@ public class Skeleton : MonoBehaviour
     public void skeletonAction()
     {
         if (action) return;
-        actionMode = (actionKind)2;
+        actionMode = (actionKind)Random.Range(0, 4);
 
         switch (actionMode)
         {
