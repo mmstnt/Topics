@@ -55,6 +55,7 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         CliffTurn();
         updateCharacterFacing();
         skeletonAction();
@@ -63,6 +64,7 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         move();
     }
 
@@ -83,11 +85,11 @@ public class Skeleton : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // ¶È¦b X ¶b¤W²¾°Ê
+            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y);  
             if (hit.collider != null && physicsCheck.isGround)
             {
                 transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 3, 10), ForceMode2D.Impulse);
-            }
+            } 
             if (moveDuring < 0)
             {
                 action = false;
@@ -125,6 +127,7 @@ public class Skeleton : MonoBehaviour
             newPosition.x = player.transform.position.x + x;
             newPosition.y = 5;
             GameObject skeleton2Object = Instantiate(skeleton2, newPosition, transform.rotation);
+            skeleton2Object.GetComponent<AttackSource>().attackSource = this.transform;
         }
     }
 
@@ -134,7 +137,7 @@ public class Skeleton : MonoBehaviour
     public void skeletonAction()
     {
         if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
+        actionMode = (actionKind)2;
 
         switch (actionMode)
         {

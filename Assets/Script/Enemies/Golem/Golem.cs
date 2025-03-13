@@ -28,6 +28,7 @@ public class Golem : MonoBehaviour
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
+    public bool isDead;
     public enum actionKind { move, transmit ,shoot,laser}
     public actionKind actionMode;
 
@@ -57,6 +58,7 @@ public class Golem : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         jump();
         updateCharacterFacing();
         mushroomAction();
@@ -65,6 +67,7 @@ public class Golem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         move();
     }
     public void transmit()
@@ -170,5 +173,10 @@ public class Golem : MonoBehaviour
 
 
         }
+    }
+    public void GolemDead()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
     }
 }

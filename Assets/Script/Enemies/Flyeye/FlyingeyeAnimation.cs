@@ -7,11 +7,26 @@ public class FlyingeyeAnimation : MonoBehaviour
      
     public Animator ani;
     public Rigidbody2D rb;
+    private Flyingeye flyingeye;
+   
     
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        flyingeye = transform.parent.GetComponent<Flyingeye>();
+    }
+
+
+    private void Update()
+    {
+        SetAnimation();
+    }
+
+    public void SetAnimation()
+    {
+         
+        ani.SetBool("isDead",flyingeye.isDead);
     }
 
     public void attack1()
@@ -27,5 +42,10 @@ public class FlyingeyeAnimation : MonoBehaviour
     public void attack3()
     {
         ani.SetTrigger("attack3");
+    }
+
+    public void hurt()
+    {
+        ani.SetTrigger("hurt");
     }
 }

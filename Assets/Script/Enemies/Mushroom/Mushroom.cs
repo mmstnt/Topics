@@ -24,6 +24,7 @@ public class Mushroom : MonoBehaviour
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
+    public bool isDead;
     public enum actionKind {move, controlMushroom,bite, throwSpore }
     public actionKind actionMode;
 
@@ -51,6 +52,7 @@ public class Mushroom : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         updateCharacterFacing();
         mushroomAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
@@ -58,6 +60,7 @@ public class Mushroom : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         move();
     }
 
@@ -67,6 +70,7 @@ public class Mushroom : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             GameObject sporeObject = Instantiate(spore, transform.position, transform.rotation);
+            sporeObject.GetComponent<AttackSource>().attackSource = this.transform;
             sporeObject.GetComponent<Spore>().attack3(direction);
         }
     }
@@ -80,6 +84,7 @@ public class Mushroom : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             GameObject spore2Object = Instantiate(spore2, newPosition, transform.rotation);
+            spore2Object.GetComponent<AttackSource>().attackSource = this.transform;
             spore2Object.GetComponent<Spore2>().attack3(direction);
         }
     }
@@ -163,5 +168,10 @@ public class Mushroom : MonoBehaviour
 
 
         }
+    }
+    public void MushroomDead()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
     }
 }

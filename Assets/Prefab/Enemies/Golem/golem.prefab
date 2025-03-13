@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4258521230536626767}
   - component: {fileID: 6147811989732723053}
   - component: {fileID: 47168456555127896}
+  - component: {fileID: 8280975130857699541}
   m_Layer: 8
   m_Name: golem
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
   direction: 0
   distanceToPlayer: 0
   action: 0
+  isDead: 0
   actionMode: 0
 --- !u!114 &6147811989732723053
 MonoBehaviour:
@@ -140,8 +142,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  normal: {fileID: 0}
-  wall: {fileID: 0}
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &47168456555127896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +158,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentType: 1
   ID: 
+--- !u!114 &8280975130857699541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45db770bfe8f32741902450fc5c2fb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  maxHp: 100
+  currentHp: 0
+  damage: 5
+  invulnerable: 0
+  invulnerableTime: 0
+  invulnerableDuration: 0
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6720957367639520187}
+        m_TargetAssemblyTypeName: GolemAnimation, Assembly-CSharp
+        m_MethodName: hurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4258521230536626767}
+        m_TargetAssemblyTypeName: Golem, Assembly-CSharp
+        m_MethodName: GolemDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7638632754962894983
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +286,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1324225735
-  m_SortingLayer: 16
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: -779265880, guid: 3ad28931a0aafab41aa64f8c6d7d1327, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

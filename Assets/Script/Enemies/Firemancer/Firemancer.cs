@@ -29,6 +29,7 @@ public class Firemancer : MonoBehaviour
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
+    public bool isDead;
     public enum actionKind { move, fire,fire2,spout }
     public actionKind actionMode;
     private float moveDuring;
@@ -60,6 +61,7 @@ public class Firemancer : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         CliffTurn();
         updateCharacterFacing();
         firemancerAction();
@@ -88,8 +90,8 @@ public class Firemancer : MonoBehaviour
         newPosition.x = player.transform.position.x + y * direction;
         newPosition.y = player.transform.position.y + 5;
         y = y + 10;
-
-        Instantiate(fire2, newPosition, transform.rotation);
+        GameObject fire2GameObject = Instantiate(fire2, newPosition, transform.rotation);
+        fire2GameObject.GetComponent<AttackSource>().attackSource = this.transform;
         if (y > 20)
         {
             y = 0;
@@ -98,6 +100,7 @@ public class Firemancer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         move();
     }
 
@@ -143,7 +146,7 @@ public class Firemancer : MonoBehaviour
                 upDuring -= Time.deltaTime;
             }
 
-            rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime);  
             if (moveDuring < 0)
             {
                 action = false;
@@ -212,5 +215,11 @@ public class Firemancer : MonoBehaviour
                 firemancerAnimation.Spout();
                 break;
         }
+
+    }
+    public void fireDead()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
     }
 }

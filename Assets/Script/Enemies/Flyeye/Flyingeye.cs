@@ -30,6 +30,7 @@ public class Flyingeye : MonoBehaviour
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
+    public bool isDead;
     public enum actionKind { move, throwSand, throwWind, laser }
     public actionKind actionMode;
     public float moveDuring;
@@ -88,6 +89,7 @@ public class Flyingeye : MonoBehaviour
     }
     private void Update()
     {
+        if (isDead) return;
         CliffTurn();
         updateCharacterFacing();
         flyingeyeAction();
@@ -96,6 +98,7 @@ public class Flyingeye : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isDead) return;
         move();
          
     }
@@ -209,7 +212,11 @@ public class Flyingeye : MonoBehaviour
 
         }
     }
-
+    public void flyingeyeDead()
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
+    }
 }
 
 

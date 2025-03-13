@@ -42,4 +42,8 @@ public class SkeletonAnimation : MonoBehaviour
     {
         ani.SetTrigger("wave");
     }
+    public void hurt()
+    {
+        ani.SetTrigger("hurt");
+    }
 }

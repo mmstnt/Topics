@@ -6,12 +6,14 @@ public class MushroomAnimation : MonoBehaviour
 {
     public Animator ani;
     public Rigidbody2D rb;
-   
+    private Mushroom mushroom;
+
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        mushroom = transform.parent.GetComponent<Mushroom>();
     }
 
     private void Update()
@@ -23,6 +25,7 @@ public class MushroomAnimation : MonoBehaviour
     {
 
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
+        ani.SetBool("isDead", mushroom.isDead);
 
     }
 
@@ -38,5 +41,10 @@ public class MushroomAnimation : MonoBehaviour
     public void attack3()
     {
         ani.SetTrigger("attack3");
+    }
+
+    public void hurt()
+    {
+        ani.SetTrigger("hurt");
     }
 }

@@ -95,7 +95,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1324225735
-  m_SortingLayer: 16
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: -1941122195, guid: 4399dae572fc11e46b98e42617fc38d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8929306578189272612}
   - component: {fileID: 77116264436096623}
   - component: {fileID: 1566274089223147708}
+  - component: {fileID: 7051401863622076832}
   m_Layer: 8
   m_Name: fire2
   m_TagString: Untagged
@@ -252,6 +253,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371daec484589bd4192d89538b231c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani: {fileID: 389412786489497400}
+--- !u!114 &7051401863622076832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476278109873938325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8050e157a9b1cf24a91024ae32b8f18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSource: {fileID: 0}
 --- !u!1 &5269539994406198750
 GameObject:
   m_ObjectHideFlags: 0

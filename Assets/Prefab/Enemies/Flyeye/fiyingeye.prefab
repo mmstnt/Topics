@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3590071925838309677}
   - component: {fileID: 2131692456982670133}
   - component: {fileID: 1675565280448080026}
+  - component: {fileID: -505738830590254901}
+  - component: {fileID: 5846783997821963441}
   m_Layer: 8
   m_Name: fiyingeye
   m_TagString: Untagged
@@ -127,6 +129,7 @@ MonoBehaviour:
   direction: 20
   distanceToPlayer: 0
   action: 0
+  isDead: 0
   actionMode: 0
   moveDuring: 0
   upDuring: 0
@@ -145,6 +148,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentType: 1
   ID: 
+--- !u!114 &-505738830590254901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3263228457209559906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45db770bfe8f32741902450fc5c2fb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  maxHp: 100
+  currentHp: 0
+  damage: 5
+  invulnerable: 0
+  invulnerableTime: 0
+  invulnerableDuration: 0
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3345789220474567508}
+        m_TargetAssemblyTypeName: FlyingeyeAnimation, Assembly-CSharp
+        m_MethodName: hurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2131692456982670133}
+        m_TargetAssemblyTypeName: Flyingeye, Assembly-CSharp
+        m_MethodName: flyingeyeDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5846783997821963441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3263228457209559906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: 0}
+  checkRaduis: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!1 &8565722921709463786
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +296,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1407826055
-  m_SortingLayer: 18
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_Sprite: {fileID: -1833064473, guid: dd1f6635faa1f3f4599910679d655704, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1407826055
-  m_SortingLayer: 18
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_Sprite: {fileID: -1550373019, guid: dc7d9652c4744a34aa30ee115fa0d2af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 2187217707659450406}
   - component: {fileID: 8993924508477670575}
   - component: {fileID: 7171669830285228188}
+  - component: {fileID: 2990616991161508435}
+  - component: {fileID: 1709844345190741221}
   m_Layer: 8
   m_Name: mushroom
   m_TagString: Untagged
@@ -241,6 +243,7 @@ MonoBehaviour:
   direction: 24
   distanceToPlayer: 0
   action: 0
+  isDead: 0
   actionMode: 0
 --- !u!114 &7171669830285228188
 MonoBehaviour:
@@ -256,3 +259,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentType: 1
   ID: 
+--- !u!114 &2990616991161508435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394464918190352623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: 0}
+  checkRaduis: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
+--- !u!114 &1709844345190741221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394464918190352623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45db770bfe8f32741902450fc5c2fb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  maxHp: 100
+  currentHp: 0
+  damage: 5
+  invulnerable: 0
+  invulnerableTime: 0
+  invulnerableDuration: 0
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8893609474675023403}
+        m_TargetAssemblyTypeName: MushroomAnimation, Assembly-CSharp
+        m_MethodName: hurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8993924508477670575}
+        m_TargetAssemblyTypeName: Mushroom, Assembly-CSharp
+        m_MethodName: MushroomDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
