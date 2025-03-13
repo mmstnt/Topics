@@ -24,17 +24,23 @@ MonoBehaviour:
     cardID: 10001
     cardImage: {fileID: 21300000, guid: d5fd7b1b56cf97b4ca9b2310ab050c27, type: 3}
     cardKind: 0
-    cardCount: 3
+    cardCount: 1
   - cardName: "\u751F\u547D\u63D0\u5347"
     cardIntroduce: "\u751F\u547D\u4E0A\u9650\u63D0\u53476\u9EDE"
     cardID: 10002
     cardImage: {fileID: 21300000, guid: 45c02a4d2dd5d0e499584658599e0e63, type: 3}
     cardKind: 0
-    cardCount: 1
+    cardCount: 0
   - cardName: "\u518D\u751F"
     cardIntroduce: "\u6BCF\u79D2\u6062\u5FA90.5\u9EDE\u751F\u547D"
     cardID: 20001
     cardImage: {fileID: 21300000, guid: 1ef3cdea9a13b0446b1d2e44e169c5d0, type: 3}
+    cardKind: 0
+    cardCount: 0
+  - cardName: "\u8840\u91CF\u4F4E\u65BC25%\u653B\u64CA\u529B\u5927\u5E45\u63D0\u5347"
+    cardIntroduce: "\u8840\u91CF\u4F4E\u65BC25%\u653B\u64CA\u529B\u63D0\u53475"
+    cardID: 20002
+    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u54E5\u5E03\u6797\u70B8\u5F48"
@@ -42,7 +48,7 @@ MonoBehaviour:
     cardID: 30001
     cardImage: {fileID: -145475387, guid: 19bd7bfcc97a8b7408972f7d963d8804, type: 3}
     cardKind: 0
-    cardCount: 1
+    cardCount: 0
   - cardName: "\u5438\u8840"
     cardIntroduce: "\u653B\u64CA\u5438\u53D620%\u50B7\u5BB3\u7684\u751F\u547D\u503C"
     cardID: 40001

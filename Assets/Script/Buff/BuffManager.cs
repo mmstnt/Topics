@@ -82,6 +82,8 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new HealthIncrease();
             case "20001":
                 return new HealthRegeneration();
+            case "20002":
+                return new HPlowattackup();
             case "30001":
                 return new GoblinBomb(goblinBomb);
             case "40001":
