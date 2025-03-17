@@ -88,6 +88,7 @@ public class Character : MonoBehaviour,ISaveable
             triggerInvulnerable();
             //°õ¦æ¨ü¶Ë
             onTakeDamage?.Invoke(attacker.transform);
+            attacker.attackHitTargetEvent?.Invoke(attacker.damageSource.transform, this.transform);
         }
         else 
         {

@@ -101,6 +101,9 @@ MonoBehaviour:
   damageRatio: 1
   damagePercentage: 0
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5992926892631517926
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +205,9 @@ MonoBehaviour:
   damageRatio: 1
   damagePercentage: 0
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8090759301947710403
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,9 +340,9 @@ GameObject:
   - component: {fileID: 6842881585863791110}
   - component: {fileID: 2495674259782490068}
   - component: {fileID: 2995423553406709711}
-  - component: {fileID: 4999714211092772762}
-  - component: {fileID: 8976125130410760501}
   - component: {fileID: 840220522249853799}
+  - component: {fileID: 8976125130410760501}
+  - component: {fileID: 4999714211092772762}
   - component: {fileID: 6270624461484960705}
   m_Layer: 8
   m_Name: Goblin
@@ -403,7 +409,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -420,57 +426,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.047872543, y: -0.5603759}
-  m_Size: {x: 2.0262947, y: 2.3644214}
+  m_Offset: {x: 0, y: -0.5}
+  m_Size: {x: 2, y: 2.3}
   m_Direction: 0
---- !u!114 &4999714211092772762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9050351495386671895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGround: 0
-  bottomOffset: {x: 0, y: 0}
-  checkRaduis: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
-  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
---- !u!114 &8976125130410760501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9050351495386671895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ce6867cf63e61b4aa8af59a53c8e533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
-  bomb: {fileID: 3537624931708074332, guid: 259f32058e4e3e94e8b6538e982587c6, type: 3}
-  FastSpeed: 2.5
-  MoveSpeed: 250
-  moveTimeMin: 0.5
-  moveTimeMax: 2
-  sprintTime: 0.3
-  cutDistance: 3
-  bombDistance: 7
-  direction: 24
-  distanceToPlayer: 0
-  action: 0
-  isDead: 0
-  actionMode: 0
-  moveDuring: 0
-  cut: 0
 --- !u!114 &840220522249853799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +516,54 @@ MonoBehaviour:
   onAttack:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8976125130410760501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050351495386671895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce6867cf63e61b4aa8af59a53c8e533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  bomb: {fileID: 3537624931708074332, guid: 259f32058e4e3e94e8b6538e982587c6, type: 3}
+  FastSpeed: 2.5
+  MoveSpeed: 250
+  moveTimeMin: 0.5
+  moveTimeMax: 2
+  sprintTime: 0.3
+  cutDistance: 3
+  bombDistance: 7
+  direction: 24
+  distanceToPlayer: 0
+  action: 0
+  isDead: 0
+  actionMode: 0
+  moveDuring: 0
+  cut: 0
+--- !u!114 &4999714211092772762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050351495386671895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: 0}
+  checkRaduis: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &6270624461484960705
 MonoBehaviour:
   m_ObjectHideFlags: 0

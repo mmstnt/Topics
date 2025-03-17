@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Attack : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Attack : MonoBehaviour
     //public float attackRange;
     //public float attackRate;
     public Character damageSource;
+    public UnityEvent attackHitEvent;
+    public UnityEvent<Transform, Transform> attackHitTargetEvent;
 
     private void Update()
     {
@@ -27,6 +30,7 @@ public class Attack : MonoBehaviour
         if (damageSource != other.GetComponent<Character>()) 
         {
             other.GetComponent<Character>()?.takeDamage(this);
+            attackHitEvent?.Invoke();
         }
     }
 }

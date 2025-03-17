@@ -35,6 +35,7 @@ public class GoblinAnimation : MonoBehaviour
     {
         ani.SetTrigger("isCut");
     }
+
     public void isSlide()
     {
         ani.SetTrigger("isSlide");
