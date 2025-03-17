@@ -2136,7 +2136,7 @@ MonoBehaviour:
   currentHp: 0
   damage: 0
   invulnerable: 0
-  invulnerableTime: 0.3
+  invulnerableTime: 0.2
   invulnerableDuration: 0
   onHealthChange:
     m_PersistentCalls:

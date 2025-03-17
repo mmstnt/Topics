@@ -1,37 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OldGuardian : MonoBehaviour
 {
     public Rigidbody2D rb;
     private OldGuardianAni ani;
     private GameObject player;
+    private PhysicsCheck physicsCheck;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
 
     [Header("角色參數")]
+    public GameObject oldGuardianBomb;
     public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attack01MinDistance;
     public float attack01MaxDistance;
     public Vector2 attack02Force;
+    public int oldGuardianBombMinCount;
+    public int oldGuardianBombMaxCount;
+    public Vector2 jumpForceMin;
+    public Vector2 jumpForceMax;
 
     [Header("角色狀態")]
     public float distanceToPlayer;
     public bool isDead;
     public bool action;
-    public enum actionKind { move , attack01 , attack02 }
+    public enum actionKind { move , attack01 , attack02 , spit , jump }
     public actionKind actionMode;
     public List<actionKind> actionList;
+    public bool isJump;
     private float moveDuring;
 
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        physicsCheck = transform.GetComponent<PhysicsCheck>();
         ani = transform.Find("Ani").GetComponent<OldGuardianAni>();
+        isJump = false;
     }
 
     private void OnEnable()
@@ -95,12 +105,27 @@ public class OldGuardian : MonoBehaviour
                 getPlayerSite();
                 ani.isAttack02();
                 break;
+            case actionKind.spit:
+                if (distanceToPlayer < attack01MaxDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                ani.isSpit();
+                break;
+            case actionKind.jump:
+                if (distanceToPlayer < attack01MaxDistance || !physicsCheck.isGround || isJump)
+                    break;
+                action = true;
+                getPlayerSite();
+                jump();
+                break;
         }
     }
 
     private void getActionMode()
     {
-        int mode = Random.RandomRange(0, 43);
+        int mode = Random.RandomRange(0, 6);
         switch (mode)
         {
             case 0:
@@ -117,6 +142,15 @@ public class OldGuardian : MonoBehaviour
                 actionList.Add(actionKind.attack01);
                 actionList.Add(actionKind.attack02);
                 break;
+            case 4:
+                for (int i = Random.Range(oldGuardianBombMinCount,oldGuardianBombMaxCount+1); i > 0; i--) 
+                {
+                    actionList.Add(actionKind.spit);
+                }
+                break;
+            case 5:
+                actionList.Add(actionKind.jump);
+                break;
         }
     }
     
@@ -128,7 +162,7 @@ public class OldGuardian : MonoBehaviour
 
     public void move()
     {
-        if (actionMode != actionKind.move)
+        if (actionMode != actionKind.move || isJump)
             return;
         rb.velocity = new Vector2(transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
         if (moveDuring < 0)
@@ -138,11 +172,28 @@ public class OldGuardian : MonoBehaviour
         moveDuring -= Time.deltaTime;
     }
 
+    public void jump()
+    {
+        isJump = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(transform.localScale.x * Random.Range(jumpForceMin.x, jumpForceMax.x), Random.Range(jumpForceMin.y, jumpForceMax.y)), ForceMode2D.Impulse);
+    }
+
     public void attack02(Transform damageSource, Transform target) 
     {
         Vector2 dirForce = new Vector2(target.position.x - damageSource.position.x, 0).normalized;
         dirForce.y = 1;
         target.GetComponent<Rigidbody2D>()?.AddForce(dirForce * attack02Force, ForceMode2D.Impulse);
+    }
+
+    public void spitBomb()
+    {
+        Vector3 vector = transform.position;
+        vector.x += transform.localScale.x * 2;
+        vector.y += 1;
+        GameObject bombObject = Instantiate(oldGuardianBomb, vector, transform.rotation);
+        bombObject.GetComponent<OldGuardianBomb>().isThrow(transform.localScale.x);
+        bombObject.GetComponent<AttackSource>().attackSource = this.transform;
     }
 
     public void dead()

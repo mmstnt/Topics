@@ -7,12 +7,14 @@ public class OldGuardianAni : MonoBehaviour
     private Animator ani;
     private Rigidbody2D rb;
     private OldGuardian oldGuardian;
+    private PhysicsCheck physicsCheck;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
         oldGuardian = transform.parent.GetComponent<OldGuardian>();
+        physicsCheck = transform.parent.gameObject.GetComponent<PhysicsCheck>();
     }
 
     private void Update()
@@ -23,7 +25,9 @@ public class OldGuardianAni : MonoBehaviour
     public void SetAnimation()
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
+        ani.SetFloat("velocityY", rb.velocity.y);
         ani.SetBool("isDead", oldGuardian.isDead);
+        ani.SetBool("isGround", physicsCheck.isGround);
     }
 
     public void isHurt()
@@ -44,5 +48,10 @@ public class OldGuardianAni : MonoBehaviour
     public void isSpit()
     {
         ani.SetTrigger("isSpit");
+    }
+
+    public void spitOldGuardianBomb() 
+    {
+        oldGuardian.spitBomb();
     }
 }

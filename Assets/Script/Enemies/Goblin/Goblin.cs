@@ -71,6 +71,7 @@ public class Goblin : MonoBehaviour
     {
         rb.AddForce(new Vector2(direction * FastSpeed * 10, 0), ForceMode2D.Impulse);
     }
+
     public void ThrowBomb()
     {
         GameObject bombObject = Instantiate(bomb, transform.position, transform.rotation);
