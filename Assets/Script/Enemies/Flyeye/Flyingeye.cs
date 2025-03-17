@@ -10,6 +10,8 @@ public class Flyingeye : MonoBehaviour
     private FlyingeyeAnimation flyingeyeAnimation;
     private GameObject player;
     public LayerMask GroundLayer;
+    public LayerMask WallLayer;
+
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -25,6 +27,7 @@ public class Flyingeye : MonoBehaviour
     public float flyDistance;
     public float laserDistance;
     public RaycastHit2D up;
+    public RaycastHit2D back;
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
@@ -72,19 +75,23 @@ public class Flyingeye : MonoBehaviour
             randomValueY = Random.Range(5f, 10f);
             newPosition.x = player.transform.position.x + randomValueX;
             newPosition.y += randomValueY;
-            Instantiate(sand, newPosition, transform.rotation);
+            GameObject sandObject = Instantiate(sand, newPosition, transform.rotation);
+            sandObject.GetComponent<AttackSource>().attackSource = this.transform;
         }
     }
     public void ThrowSand2()
     {
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
-        //laserObject.GetComponent<Laser>().Move(direction);
+        laserObject.GetComponent<Laser>().site = this.transform;
+        laserObject.GetComponent<AttackSource>().attackSource = this.transform;
+
     }
     public void ThrowWind()
     {
         for(int i = 0; i < 8; i++) 
         {
-            Instantiate(wind, transform.position, Quaternion.Euler(0, 0, 45*i));
+            GameObject windObject = Instantiate(wind, transform.position, Quaternion.Euler(0, 0, 45*i));
+            windObject.GetComponent<AttackSource>().attackSource = this.transform;
         }
     }
     private void Update()
@@ -110,6 +117,7 @@ public class Flyingeye : MonoBehaviour
         // 射線的起點
         Vector3 rayStart = transform.position + new Vector3(0, -1f, 0);
         up = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        back = Physics2D.Raycast(rayStart, rayDirection, 3, WallLayer);
         // 繪製射線（用於調試，可視化射線）
         Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
     }
@@ -118,7 +126,8 @@ public class Flyingeye : MonoBehaviour
 
     public void move()
     {
-         
+        if (back.collider != null)
+            direction = direction * -1;
         if (actionMode != actionKind.move)
             return;
         if (actionMode == actionKind.move)

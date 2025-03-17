@@ -332,8 +332,8 @@ MonoBehaviour:
   curLevelPool: []
   levelPool_01:
   - {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
-  - {fileID: 11400000, guid: df44ef87efd0e0c4aa51f3e5b5bf6d83, type: 2}
   - {fileID: 11400000, guid: 8818545e5e27f8141b1f028491a16e44, type: 2}
+  - {fileID: 11400000, guid: 39543ed287f8ec44b8e0bff502504dc1, type: 2}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
 --- !u!1 &59935439
 GameObject:
@@ -2228,6 +2228,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  notChangeMaterial2D: 0
   normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
   wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &756704903
@@ -3561,7 +3562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1113030173
 RectTransform:
   m_ObjectHideFlags: 0

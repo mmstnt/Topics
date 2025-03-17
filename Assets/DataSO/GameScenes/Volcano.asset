@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
-  m_Name: SpaceForest
+  m_Name: Volcano
   m_EditorClassIdentifier: 
-  sceneType: 2
+  sceneType: 0
   sceneReference:
-    m_AssetGUID: 683aa94649feea54cb001017b41079a6
+    m_AssetGUID: d0948f701326de04caaba10da0010a34
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  positionToGo: {x: -12, y: 3, z: 0}
+  positionToGo: {x: 0, y: 0, z: 0}
   portalPosition: {x: 0, y: 0, z: 0}
-  image: {fileID: -779265880, guid: 3ad28931a0aafab41aa64f8c6d7d1327, type: 3}
+  image: {fileID: 1173473613, guid: aa7358576cb83894db4eafe448dabff8, type: 3}

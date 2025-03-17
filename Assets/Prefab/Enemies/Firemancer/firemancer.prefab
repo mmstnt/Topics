@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1813018644363572524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115,6 +115,9 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   fire: {fileID: 9135480583386369532, guid: faa23c9d8da2d734da3bbe736a4e51b7, type: 3}
   fire2: {fileID: 1476278109873938325, guid: cfb742e50e7c1a64cb6759594bc88f45, type: 3}

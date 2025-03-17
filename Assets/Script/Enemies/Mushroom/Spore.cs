@@ -9,7 +9,8 @@ public class Spore : MonoBehaviour
     public float jumptime;
     private PhysicsCheck physicsCheck;
     public SporeAnimation sporeAnimation;
-     
+    private bool wasGrounded = false;
+
     void Start()
     {
         sporeAnimation = transform.Find("Ani").GetComponent<SporeAnimation>();
@@ -26,15 +27,15 @@ public class Spore : MonoBehaviour
     }
     private void jump()
     {
-        if (physicsCheck.isGround)  
+        if (physicsCheck.isGround && !wasGrounded)  // 只有當剛落地時才執行
         {
-             
-            jumptime = jumptime + 1;
+            jumptime++;
+            if (jumptime == 3)
+            {
+                sporeAnimation.sporeexplode();
+            }
         }
-        if (jumptime == 2)
-        {
-            sporeAnimation.sporeexplode();
-        }
+        wasGrounded = physicsCheck.isGround;  // 更新狀態
     }
 
 

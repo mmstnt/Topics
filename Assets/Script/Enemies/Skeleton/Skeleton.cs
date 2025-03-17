@@ -20,10 +20,12 @@ public class Skeleton : MonoBehaviour
     public float moveTimeMax;
     public float cutDistance;
     public RaycastHit2D hit;
+    public RaycastHit2D hitup;
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
+    public float distanceToPlayerY;
     public bool action;
     public enum actionKind { move, call, cut, wave }
     public actionKind actionMode;
@@ -60,6 +62,7 @@ public class Skeleton : MonoBehaviour
         updateCharacterFacing();
         skeletonAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
+        distanceToPlayerY = player.transform.position.y - transform.position.y;
     }
 
     private void FixedUpdate()
@@ -72,11 +75,18 @@ public class Skeleton : MonoBehaviour
     {
         // 計算射線的方向
         Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        Vector3 rayDirectionup = transform.localScale.x * new Vector3(1f,0, 0);
+
         // 射線的起點
-        Vector3 rayStart = transform.position;
+        Vector3 rayStart = transform.position + new Vector3(0, -1, 0);
+        Vector3 rayStartup = transform.position + new Vector3(0, 0.3f, 0);
         hit = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
         // 繪製射線（用於調試，可視化射線）
-        Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red);  
+        hitup = Physics2D.Raycast(rayStartup, rayDirectionup, 4, GroundLayer);
+        Debug.DrawRay(rayStartup, rayDirectionup * 4, Color.green);
+
+
     }
 
     public void move()
@@ -85,8 +95,8 @@ public class Skeleton : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y);  
-            if (hit.collider != null && physicsCheck.isGround)
+            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y);
+            if ((hit.collider != null && physicsCheck.isGround) ||(hitup.collider != null && physicsCheck.isGround && distanceToPlayerY > 0.5))
             {
                 transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 3, 10), ForceMode2D.Impulse);
             } 
@@ -118,14 +128,14 @@ public class Skeleton : MonoBehaviour
 
     public void call()
     {
-        int times = 2;
+        int times = 1;
         for (int i = 0; i < times; i++)
         {
             Vector3 newPosition = transform.position;
 
             float x = Random.Range(-10f, 10f);
             newPosition.x = player.transform.position.x + x;
-            newPosition.y = 5;
+            newPosition.y = 10;
             GameObject skeleton2Object = Instantiate(skeleton2, newPosition, transform.rotation);
             skeleton2Object.GetComponent<AttackSource>().attackSource = this.transform;
         }

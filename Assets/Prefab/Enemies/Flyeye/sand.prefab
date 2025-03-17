@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2136097847398901020}
   - component: {fileID: 4996919437009973790}
+  - component: {fileID: 4865266780438757945}
   m_Layer: 8
   m_Name: attack
   m_TagString: Untagged
@@ -189,6 +190,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.005515813, y: 1.3389557e-16}
   m_Size: {x: 1.0405709, y: 1.0405709}
   m_Direction: 0
+--- !u!114 &4865266780438757945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234803065396607208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2740b74b3f44cea409e34ccdcf0938bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageBasic: 0
+  damageRatio: 0
+  damagePercentage: 0
+  damageSource: {fileID: 0}
 --- !u!1 &6192421418138148303
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +218,8 @@ GameObject:
   - component: {fileID: 84975720295680632}
   - component: {fileID: 125124068410798001}
   - component: {fileID: -1596473724476476123}
+  - component: {fileID: 7034374947833808254}
+  - component: {fileID: 9163666131425740631}
   m_Layer: 8
   m_Name: sand
   m_TagString: Untagged
@@ -298,3 +317,36 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 5}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!114 &7034374947833808254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192421418138148303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8050e157a9b1cf24a91024ae32b8f18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSource: {fileID: 0}
+--- !u!114 &9163666131425740631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192421418138148303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: 0}
+  checkRaduis: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  normal: {fileID: 0}
+  wall: {fileID: 0}

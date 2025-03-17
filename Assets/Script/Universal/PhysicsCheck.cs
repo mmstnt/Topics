@@ -8,6 +8,7 @@ public class PhysicsCheck : MonoBehaviour
     public Vector2 bottomOffset;
     public float checkRaduis;
     public LayerMask groundLayer;
+    public bool notChangeMaterial2D;
     public PhysicsMaterial2D normal;
     public PhysicsMaterial2D wall;
 
@@ -30,6 +31,7 @@ public class PhysicsCheck : MonoBehaviour
 
     private void checkState()
     {
+        if (notChangeMaterial2D) return;
         GetComponent<CapsuleCollider2D>().sharedMaterial = isGround ? normal : wall;
     }
 }

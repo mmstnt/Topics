@@ -8,6 +8,7 @@ public class Firemancer : MonoBehaviour
     private FiremancerAnimation firemancerAnimation;
     private GameObject player;
     public LayerMask GroundLayer;
+    public LayerMask WallLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -22,12 +23,14 @@ public class Firemancer : MonoBehaviour
     public float spoutDistance;
     public float flyDistance;
     public RaycastHit2D up;
+    public RaycastHit2D back;
     public float y;
 
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
-    public float distanceToPlayer;
+    public float distanceToPlayerX;
+    public float distanceToPlayerY;
     public bool action;
     public bool isDead;
     public enum actionKind { move, fire,fire2,spout }
@@ -65,7 +68,8 @@ public class Firemancer : MonoBehaviour
         CliffTurn();
         updateCharacterFacing();
         firemancerAction();
-        distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
+        distanceToPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
+        distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
     }
 
     public void dofire()
@@ -112,6 +116,7 @@ public class Firemancer : MonoBehaviour
         // 射線的起點
         Vector3 rayStart = transform.position + new Vector3(0, -1.5f, 0);
         up = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        back = Physics2D.Raycast(rayStart, rayDirection, 3, WallLayer);
         // 繪製射線（用於調試，可視化射線）
         Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
     }
@@ -119,6 +124,8 @@ public class Firemancer : MonoBehaviour
 
     public void move()
     {
+        if (back.collider != null)
+            direction = direction * -1;
         if (actionMode != actionKind.move)
             return;
         if (actionMode == actionKind.move)
@@ -134,11 +141,11 @@ public class Firemancer : MonoBehaviour
                 if (upDuring < 0)
                 {
                     upDuring = Random.Range(0.5f, 1);
-                    if (flyDistance > distanceToPlayer)
+                    if (flyDistance > distanceToPlayerX)
                     {
                         MoveSpeedY = Random.Range(-150, 150);
                     }
-                    else if (flyDistance < distanceToPlayer)
+                    else if (flyDistance < distanceToPlayerX)
                     {
                         MoveSpeedY = Random.Range(-100, -300);
                     }
@@ -189,7 +196,7 @@ public class Firemancer : MonoBehaviour
                 break;
 
             case actionKind.fire:
-                if (distanceToPlayer < spoutDistance)
+                if (distanceToPlayerX < spoutDistance)
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;
@@ -198,7 +205,7 @@ public class Firemancer : MonoBehaviour
                 break;
 
             case actionKind.fire2:
-                if (distanceToPlayer < spoutDistance)
+                if (distanceToPlayerX < spoutDistance)
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;
@@ -207,7 +214,7 @@ public class Firemancer : MonoBehaviour
                 break;
 
             case actionKind.spout:
-                if (distanceToPlayer > spoutDistance)
+                if (distanceToPlayerX > spoutDistance && distanceToPlayerY > 1)
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;

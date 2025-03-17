@@ -151,8 +151,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7394464918190352623}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -174,7 +174,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -233,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c36d2ed545dfd941ac26885a94a1c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   spore: {fileID: 8629877381351620000, guid: c89992a893345094a8dc78e17b9903d6, type: 3}
   spore2: {fileID: 879221177559265303, guid: 1564b050ae4fe7142be4c6633ecdf22a, type: 3}
@@ -241,7 +244,8 @@ MonoBehaviour:
   moveTimeMax: 2
   biteDistance: 0
   direction: 24
-  distanceToPlayer: 0
+  distanceToPlayerX: 0
+  distanceToPlayerY: 0
   action: 0
   isDead: 0
   actionMode: 0
@@ -272,11 +276,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGround: 0
-  bottomOffset: {x: 0, y: 0}
-  checkRaduis: 0
+  bottomOffset: {x: 0, y: -1.7}
+  checkRaduis: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  notChangeMaterial2D: 0
   normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
   wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &1709844345190741221
@@ -292,15 +297,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  startHp: 100
+  startDamage: 3
   maxHp: 100
   currentHp: 0
   damage: 5
   invulnerable: 0
-  invulnerableTime: 0
+  invulnerableTime: 0.2
   invulnerableDuration: 0
   onHealthChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9c35c18bbf2fa574183a04c35a13e753, type: 2}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -332,5 +351,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onTime:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttack:
     m_PersistentCalls:
       m_Calls: []
