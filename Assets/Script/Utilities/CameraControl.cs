@@ -8,11 +8,23 @@ public class CameraControl : MonoBehaviour
 {
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
-    private CinemachineConfiner2D confiner2D;
+
+    [Header("組件")]
+    public GameObject playerCamera;
+    public GameObject bossCamera;
+    public SceneLoadManager sceneLoadManager;
+
+    private CinemachineConfiner2D playerConfiner2D;
+    private CinemachineConfiner2D bossConfiner2D;
+    private CinemachineVirtualCamera playerVirtualCamera;
+    private CinemachineVirtualCamera bossVirtualCamera;
 
     private void Awake()
     {
-        confiner2D = transform.GetComponent<CinemachineConfiner2D>();
+        playerConfiner2D = playerCamera.transform.GetComponent<CinemachineConfiner2D>();
+        bossConfiner2D = bossCamera.transform.GetComponent<CinemachineConfiner2D>();
+        playerVirtualCamera = playerCamera.transform.GetComponent<CinemachineVirtualCamera>();
+        bossVirtualCamera = bossCamera.transform.GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnEnable()
@@ -28,6 +40,13 @@ public class CameraControl : MonoBehaviour
     private void onAfterSceneLoadEvent()
     {
         GetNewCameraBound();
+        if(sceneLoadManager.currentLoadedScene.sceneType == SceneType.Boss) 
+        {
+            Transform boss = GameObject.FindGameObjectWithTag("Enemies").transform;
+            bossVirtualCamera.Follow = boss;
+            bossVirtualCamera.LookAt = boss;
+            getBoss();
+        }
     }
 
     private void GetNewCameraBound() 
@@ -35,7 +54,22 @@ public class CameraControl : MonoBehaviour
         var obj = GameObject.FindGameObjectWithTag("Bounds");
         if (obj == null) 
             return;
-        confiner2D.m_BoundingShape2D = obj.GetComponent<Collider2D>();
-        confiner2D.InvalidateCache();
+        playerConfiner2D.m_BoundingShape2D = obj.GetComponent<Collider2D>();
+        playerConfiner2D.InvalidateCache();
+        bossConfiner2D.m_BoundingShape2D = obj.GetComponent<Collider2D>();
+        bossConfiner2D.InvalidateCache();
+    }
+
+    private void getBoss() 
+    {
+        playerVirtualCamera.Priority = 0;
+        bossVirtualCamera.Priority = 10;
+        Invoke("getPlayer", 3.0f);
+    }
+
+    private void getPlayer()
+    {
+        playerVirtualCamera.Priority = 10;
+        bossVirtualCamera.Priority = 0;
     }
 }

@@ -11,16 +11,16 @@ public class BringerOfDeathBulletCast : MonoBehaviour
 
     [Header("¨¤¦â°Ñ¼Æ")]
     public GameObject bringerOfDeathBullet;
-    public float bulletInterval;
-    public int bulletCount;
-    private int bulletCurCount;
+    public float Interval;
+    public int Count;
+    private int CurCount;
     private float time;
     private float dir;
 
     public void Awake()
     {
-        bulletCurCount = bulletCount;
-        dir = 360.0f / bulletCount;
+        CurCount = Count;
+        dir = 360.0f / Count;
     }
 
     private void OnEnable()
@@ -43,8 +43,8 @@ public class BringerOfDeathBulletCast : MonoBehaviour
         if (attackSource == null) return;
         if (time < 0)
         {
-            time = bulletInterval;
-            float angle = dir * bulletCurCount;
+            time = Interval;
+            float angle = dir * CurCount;
             Vector2 direction = new Vector2(
                 Mathf.Cos(angle * Mathf.Deg2Rad),
                 Mathf.Sin(angle * Mathf.Deg2Rad)
@@ -55,8 +55,8 @@ public class BringerOfDeathBulletCast : MonoBehaviour
             GameObject bringerOfDeathBulletObject = Instantiate(bringerOfDeathBullet, vector, transform.rotation);
             bringerOfDeathBulletObject.GetComponent<AttackSource>().attackSource = this.attackSource;
             bringerOfDeathBulletObject.GetComponent<BringerOfDeathBullet>().attackSource = this.attackSource;
-            bulletCurCount -= 1;
-            if (bulletCurCount <= 0)
+            CurCount -= 1;
+            if (CurCount <= 0)
             {
                 Destroy(this.gameObject);
             }

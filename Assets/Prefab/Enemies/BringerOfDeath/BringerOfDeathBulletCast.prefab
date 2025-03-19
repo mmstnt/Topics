@@ -47,5 +47,5 @@ MonoBehaviour:
   attackSource: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   bringerOfDeathBullet: {fileID: 2058565713512363686, guid: 6264db81dcb97a646a978a63b2dd3474, type: 3}
-  bulletInterval: 0.25
-  bulletCount: 5
+  Interval: 0.25
+  Count: 5
