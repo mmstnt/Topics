@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
      
-    public float speed = 10f; // 移動速度
+    public float speed; // 移動速度
     private Rigidbody2D rb;   // Rigidbody2D 組件
     private int currentDirection; // 當前移動方向
 

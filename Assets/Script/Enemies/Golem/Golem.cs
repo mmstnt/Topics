@@ -13,6 +13,7 @@ public class Golem : MonoBehaviour
     private float moveDuring;
     public GameObject ani;
     private PhysicsCheck physicsCheck;
+    public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -23,10 +24,13 @@ public class Golem : MonoBehaviour
     public float MoveSpeed; // 角色移動速度
     public float moveTimeMin;
     public float moveTimeMax;
+    public RaycastHit2D back;
 
     [Header("角色狀態")]
     public int direction; // 移動方向（-1 表示左，1 表示右）
-    public float distanceToPlayer;
+    public float distanceToPlayerY1;
+    public float distanceToPlayerY2;
+   
     public bool action;
     public bool isDead;
     public enum actionKind { move, transmit ,shoot,laser}
@@ -59,10 +63,12 @@ public class Golem : MonoBehaviour
     private void Update()
     {
         if (isDead) return;
+        CliffTurn();
         jump();
         updateCharacterFacing();
         mushroomAction();
-        distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
+        distanceToPlayerY1 = Mathf.Abs(player.transform.position.y - transform.position.y);
+        distanceToPlayerY2 = player.transform.position.y - transform.position.y;
     }
 
     private void FixedUpdate()
@@ -74,8 +80,10 @@ public class Golem : MonoBehaviour
     {
         ani.GetComponent<SpriteRenderer>().enabled = false;
         golemTransform = this.transform;
-        float randomY = 10f;
-        float randomX = Random.Range(-20f, 20f); // 隨機生成 -20 到 20 的數值
+
+       float randomY = player.transform.position.y + 0.2f;
+
+        float randomX = player.transform.position.x + Random.Range(-3.0f, 3.0f); // 隨機生成 -20 到 20 的數值
         Vector3 newPosition = new Vector3(randomX, randomY, golemTransform.position.z); // 保持 y 和 z 不變
         golemTransform.position = newPosition; // 更新位置
     }
@@ -83,18 +91,22 @@ public class Golem : MonoBehaviour
     public void shootlaser()
     {
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
+        laserObject.GetComponent<AttackSource>().attackSource = this.transform;
         laserObject.GetComponent<Laser>().site = this.transform;
     }  
 
     public void shootrock()
     {
         GameObject rockObject = Instantiate(rock, transform.position, transform.rotation);
+        rockObject.GetComponent<AttackSource>().attackSource = this.transform;
         rockObject.GetComponent<Rock>().Move(direction);
     }
 
 
     public void move()
     {
+        if (back.collider != null)
+            direction = direction * -1;
         if (actionMode != actionKind.move)
             return;
         if (actionMode == actionKind.move)
@@ -111,6 +123,18 @@ public class Golem : MonoBehaviour
             return;
         }
         moveDuring -= Time.deltaTime;
+    }
+
+    public void CliffTurn()
+    {
+        // 計算射線的方向
+        Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        // 射線的起點
+        Vector3 rayStart = transform.position + new Vector3(0, 1, 0);
+        back = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        // 繪製射線（用於調試，可視化射線）
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red);
+
     }
 
     public void updateCharacterFacing()
@@ -149,18 +173,24 @@ public class Golem : MonoBehaviour
                 break;
              
             case actionKind.transmit:
+                if (distanceToPlayerY1 < 0.5f)
+                    break;
                 action = true;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 golemAnimation.Golemtransmit();
                 break;
 
             case actionKind.shoot:
+                if (distanceToPlayerY1 > 0.5f)
+                    break;
                 action = true;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 golemAnimation.Golemshoot();
                 break;
-
+            
             case actionKind.laser:
+                if (distanceToPlayerY1 > 0.5f)
+                    break;
                 action = true;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 golemAnimation.Golemlaser();

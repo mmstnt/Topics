@@ -195,9 +195,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBasic: 0
-  damageRatio: 0.25
+  damageRatio: 0.5
   damagePercentage: 0
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &6985066965622545458
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class Mushroom : MonoBehaviour
 
     public void ThrowSpore()
     {
-        int times = 10;
+        int times = 3;
         for (int i = 0; i < times; i++)
         {
             GameObject sporeObject = Instantiate(spore, transform.position, transform.rotation);
@@ -91,7 +91,7 @@ public class Mushroom : MonoBehaviour
         newPosition.y = 1;
         newPosition2.x = 28;
         newPosition2.y = 0.5f;
-        int times = 10;
+        int times = 3;
         for (int i = 0; i < times; i++)
         {
             GameObject spore2Object = Instantiate(spore2, newPosition, transform.rotation);
@@ -134,7 +134,7 @@ public class Mushroom : MonoBehaviour
         moveDuring -= Time.deltaTime;
     }
 
-        public void updateCharacterFacing()
+    public void updateCharacterFacing()
     {
         // 根據移動方向改變角色的面向
         if (direction == -1)

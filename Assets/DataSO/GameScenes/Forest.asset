@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  sceneType: 0
+  sceneType: 2
   sceneReference:
     m_AssetGUID: a9fc80a8c06e46140913a8809c48f7cc
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   positionToGo: {x: -26, y: -9, z: 0}
+  portalPosition: {x: 0, y: 0, z: 0}
+  image: {fileID: 0}

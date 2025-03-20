@@ -203,9 +203,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBasic: 0
-  damageRatio: 0
+  damageRatio: 1
   damagePercentage: 0
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6192421418138148303
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,5 +354,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  notChangeMaterial2D: 0
   normal: {fileID: 0}
   wall: {fileID: 0}

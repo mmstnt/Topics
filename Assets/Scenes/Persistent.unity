@@ -331,9 +331,9 @@ MonoBehaviour:
   player: {fileID: 100333604}
   curLevelPool: []
   levelPool_01:
-  - {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
   - {fileID: 11400000, guid: 8818545e5e27f8141b1f028491a16e44, type: 2}
-  - {fileID: 11400000, guid: fee73243675ff8f4e9b2c086df4a6820, type: 2}
+  - {fileID: 11400000, guid: 39543ed287f8ec44b8e0bff502504dc1, type: 2}
+  - {fileID: 11400000, guid: 6748e94582df4564b94770756f200d31, type: 2}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
 --- !u!1 &59935439
 GameObject:

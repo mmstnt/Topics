@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 8868611454660921914}
   - component: {fileID: 581871365540089299}
   - component: {fileID: 5866185116708447125}
+  - component: {fileID: 3537040635766563157}
   m_Layer: 0
   m_Name: rock
   m_TagString: Untagged
@@ -226,7 +227,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75ef981c25d9c409f8835937d166ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5000
+  speed: 10
+--- !u!114 &3537040635766563157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078933060929011391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8050e157a9b1cf24a91024ae32b8f18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSource: {fileID: 0}
 --- !u!1 &8898463017584228898
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,13 +251,14 @@ GameObject:
   m_Component:
   - component: {fileID: 298527260940918677}
   - component: {fileID: 5015666338964604440}
+  - component: {fileID: 5945321683673325557}
   m_Layer: 0
   m_Name: attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &298527260940918677
 Transform:
   m_ObjectHideFlags: 0
@@ -304,3 +319,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1286416, y: 0.92659247}
   m_EdgeRadius: 0
+--- !u!114 &5945321683673325557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898463017584228898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2740b74b3f44cea409e34ccdcf0938bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageBasic: 0
+  damageRatio: 1
+  damagePercentage: 0
+  damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []

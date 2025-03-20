@@ -239,6 +239,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  notChangeMaterial2D: 0
   normal: {fileID: 0}
   wall: {fileID: 0}
 --- !u!114 &1566274089223147708
@@ -284,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1067241371015887783
 Transform:
   m_ObjectHideFlags: 0
@@ -351,3 +352,9 @@ MonoBehaviour:
   damageRatio: 1
   damagePercentage: 0
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []

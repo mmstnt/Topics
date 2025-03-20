@@ -104,6 +104,9 @@ MonoBehaviour:
   attackHitEvent:
     m_PersistentCalls:
       m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5992926892631517926
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +209,9 @@ MonoBehaviour:
   damagePercentage: 0
   damageSource: {fileID: 0}
   attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8090759301947710403
@@ -345,7 +351,7 @@ GameObject:
   - component: {fileID: 4999714211092772762}
   - component: {fileID: 6270624461484960705}
   m_Layer: 8
-  m_Name: Goblin
+  m_Name: goblin
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +454,7 @@ MonoBehaviour:
   currentHp: 0
   damage: 3
   invulnerable: 0
-  invulnerableTime: 0.3
+  invulnerableTime: 0.2
   invulnerableDuration: 0
   onHealthChange:
     m_PersistentCalls:
@@ -562,6 +568,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  notChangeMaterial2D: 0
   normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
   wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &6270624461484960705
