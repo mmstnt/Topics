@@ -20,6 +20,7 @@ public class BuffManager : MonoBehaviour,ISaveable
 
     [Header("²Õ¥ó")]
     public GameObject goblinBomb;
+    public GameObject thunder;
 
     [Header("¥d¦À")]
     public CardDataList cardDataList;
@@ -80,14 +81,22 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new AttackIncrease();
             case "10002":
                 return new HealthIncrease();
+            case "10003":
+                return new HPfull();
+            case "10004":
+                return new HPfixed();
             case "20001":
                 return new HealthRegeneration();
             case "20002":
                 return new HPlowattackup();
             case "30001":
                 return new GoblinBomb(goblinBomb);
+            case "30002":
+                return new Zero();
             case "40001":
                 return new BloodSuck();
+            case "40002":
+                return new Thunder(thunder);
             default:
                 return null;
         }

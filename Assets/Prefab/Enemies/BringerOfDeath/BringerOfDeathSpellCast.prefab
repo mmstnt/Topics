@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSource: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
-  bringerOfDeathSpell: {fileID: 6978865026993742715, guid: b1b889c812e9c28448abfdc5281861c6, type: 3}
+  bringerOfDeathSpell: {fileID: 6978865026993742715, guid: 37557833dbc600e458e48351c5f51510, type: 3}
   spellInterval: 0.5
   spellMinCount: 3
   spellMaxCount: 5

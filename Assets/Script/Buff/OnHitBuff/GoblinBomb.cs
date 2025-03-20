@@ -22,7 +22,7 @@ public class GoblinBomb: ScriptableObject, IBuff
         character.onHitEvent.RemoveListener(dropBomb);
     }
 
-    public void dropBomb(Transform target, Character character) 
+    public void dropBomb(Transform target, Character character, Attack attacker) 
     {
         GameObject bomb = Instantiate(bombObject, target.position, target.rotation);
         bomb.GetComponent<AttackSource>().attackSource = target;

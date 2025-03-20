@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HPlowattackup : ScriptableObject, IBuff
 {
-    private bool a = false;
+    private bool isbuff = false;
     public void Apply(Character character)
     {
         character.onTime.AddListener(HPlowup);
@@ -19,18 +19,18 @@ public class HPlowattackup : ScriptableObject, IBuff
     {
         if (character.currentHp <= character.maxHp * 0.25f)
         {
-            if (!a)
+            if (!isbuff)
             {
                 character.damage += 5;
-                a = true;
+                isbuff = true;
             }
         }
         else
         {
-            if (a)
+            if (isbuff)
             {
                 character.damage -= 5;
-                a = false;
+                isbuff = false;
             }
         }
     }
