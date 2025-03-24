@@ -10,10 +10,13 @@ public class Character : MonoBehaviour,ISaveable
     [Header("初始屬性")]
     public float startHp;
     public float startDamage;
+    public float startSpeed;
     [Header("屬性")]
     public float maxHp;
     public float currentHp;
     public float damage;
+    public float speed;
+    public bool isDead;
     [Header("無敵")]
     public bool invulnerable;
     public float invulnerableTime;
@@ -32,7 +35,9 @@ public class Character : MonoBehaviour,ISaveable
     {
         maxHp = startHp;
         damage = startDamage;
+        speed = startSpeed;
         currentHp = maxHp;
+        isDead = false;
         onHealthChange?.Invoke(this);
         onHitEvent = new UnityEvent<Transform, Character, Attack>();
         onTime = new UnityEvent<Transform, Character>();

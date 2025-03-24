@@ -6,19 +6,19 @@ using static System.Net.WebRequestMethods;
 public class Mushroom : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private MushroomAnimation mushroomAnimation;
+    private MushroomAnimation ani;
     private GameObject player;
-    private float moveDuring;
-    public LayerMask GroundLayer;
+    private Character character;
     private PhysicsCheck physicsCheck;
+    public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject spore;
     public GameObject spore2;
-    public float MoveSpeed; // 角色移動速度
     public float moveTimeMin;
     public float moveTimeMax;
     public float biteDistance;
@@ -32,44 +32,90 @@ public class Mushroom : MonoBehaviour
     public bool isDead;
     public enum actionKind {move, controlMushroom,bite, throwSpore }
     public actionKind actionMode;
+    private float moveDuring;
 
     private void Awake()
     {
-        rb = transform.GetComponent<Rigidbody2D>();  
-        mushroomAnimation = transform.Find("Ani").GetComponent<MushroomAnimation>();
-        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
+        rb = transform.GetComponent<Rigidbody2D>();
+        character = transform.GetComponent<Character>();
         physicsCheck = GetComponent<PhysicsCheck>();
+        ani = transform.Find("Ani").GetComponent<MushroomAnimation>();
+        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         CliffTurn();
         updateCharacterFacing();
-        mushroomAction();
+        characterAction();
         distanceToPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
         distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         move();
+    }
+
+    public void characterAction()
+    {
+        if (action) return;
+        actionMode = (actionKind)Random.Range(0, 4);
+        switch (actionMode)
+        {
+            case actionKind.move:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
+                break;
+            case actionKind.controlMushroom:
+                if (distanceToPlayerX < biteDistance)
+                    break;
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.attack1();
+                break;
+            case actionKind.bite:
+                if (distanceToPlayerX > biteDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.attack2();
+                break;
+            case actionKind.throwSpore:
+                if (distanceToPlayerX < biteDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.attack3();
+                break;
+        }
     }
 
     public void ThrowSpore()
@@ -116,7 +162,7 @@ public class Mushroom : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
             if (hit.collider != null && physicsCheck.isGround && distanceToPlayerY>1)
             {
                 transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 3, 20), ForceMode2D.Impulse);
@@ -160,51 +206,6 @@ public class Mushroom : MonoBehaviour
     }    
 
 
-    public void mushroomAction()
-    {
-        if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
-
-        switch (actionMode)
-        {
-
-            case actionKind.move:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
-                break;
-             
-            case actionKind.controlMushroom:
-                if (distanceToPlayerX < biteDistance)
-                    break;
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                mushroomAnimation.attack1();
-                break;
-
-
-            case actionKind.bite:
-                if (distanceToPlayerX > biteDistance)
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                mushroomAnimation.attack2();
- 
-                break;
-            case actionKind.throwSpore:
-                if (distanceToPlayerX < biteDistance)
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                mushroomAnimation.attack3();
-                break;
-
-
-
-        }
-    }
     public void MushroomDead()
     {
         isDead = true;

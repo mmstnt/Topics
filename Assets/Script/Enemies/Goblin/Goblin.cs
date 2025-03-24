@@ -6,16 +6,17 @@ using UnityEngine.InputSystem;
 public class Goblin : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private GoblinAnimation goblinAnimation;
+    private GoblinAnimation ani;
     private GameObject player;
+    private Character character;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject bomb;
     public float FastSpeed;
-    public float MoveSpeed; // 角色移動速度
     public float moveTimeMin;
     public float moveTimeMax;
     public float sprintTime;
@@ -35,38 +36,47 @@ public class Goblin : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        goblinAnimation = transform.Find("Ani").GetComponent<GoblinAnimation>();
+        character = transform.GetComponent<Character>();
+        ani = transform.Find("Ani").GetComponent<GoblinAnimation>();
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         updateCharacterFacing();
-        goblinAction();
+        characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         move();
     }
+
     public void slide()
     {
         rb.AddForce(new Vector2(direction * FastSpeed * 10, 0), ForceMode2D.Impulse);
@@ -90,7 +100,7 @@ public class Goblin : MonoBehaviour
             return;
         if (actionMode == actionKind.move) 
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
             if (moveDuring < 0) 
             {
                 action = false;
@@ -118,7 +128,7 @@ public class Goblin : MonoBehaviour
     }
     
 
-    public void goblinAction()
+    public void characterAction()
     {
         if (action) return;
         actionMode = (actionKind)Random.Range(0, 4);
@@ -135,27 +145,25 @@ public class Goblin : MonoBehaviour
                 action = true;
                 rb.velocity = Vector2.zero;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                goblinAnimation.isCut();
+                ani.isCut();
                 break;
             case actionKind.throwBomb:
-                if (distanceToPlayer < cutDistance)
+                if (distanceToPlayer < cutDistance) 
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                goblinAnimation.isThrow();
+                ani.isThrow();
                 break;
             case actionKind.slide:
-                if (distanceToPlayer < cutDistance)
+                if (distanceToPlayer < cutDistance) 
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                goblinAnimation.isSlide();
+                ani.isSlide();
                 break;
-                
         }
-         
     }
 
     public void goblinDead()

@@ -7,6 +7,7 @@ public class SkeletonLighter : MonoBehaviour
     public Rigidbody2D rb;
     private SkeletonLighterAni ani;
     private GameObject player;
+    private Character character;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -14,7 +15,6 @@ public class SkeletonLighter : MonoBehaviour
 
     [Header("角色參數")]
     public GameObject blueFireCast;
-    public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
@@ -32,6 +32,7 @@ public class SkeletonLighter : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        character = transform.GetComponent<Character>();
         ani = transform.Find("Ani").GetComponent<SkeletonLighterAni>();
     }
 
@@ -60,7 +61,7 @@ public class SkeletonLighter : MonoBehaviour
     private void Update()
     {
         if (isDead || player == null) return;
-        skeletonLighterAction();
+        characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
@@ -70,7 +71,7 @@ public class SkeletonLighter : MonoBehaviour
         move();
     }
 
-    public void skeletonLighterAction()
+    public void characterAction()
     {
         if (action) return;
         if (actionList.Count == 0)
@@ -138,7 +139,7 @@ public class SkeletonLighter : MonoBehaviour
     {
         if (actionMode != actionKind.move)
             return;
-        rb.velocity = new Vector2(transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
         if (moveDuring < 0)
         {
             action = false;

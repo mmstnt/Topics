@@ -5,18 +5,19 @@ using UnityEngine;
 public class Firemancer : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private FiremancerAnimation firemancerAnimation;
+    private FiremancerAnimation ani;
     private GameObject player;
+    private Character character;
     public LayerMask GroundLayer;
     public LayerMask WallLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject fire;
     public GameObject fire2;
-    public float MoveSpeedX; // 角色移動速度
     public float MoveSpeedY;
     public float moveTimeMin;
     public float moveTimeMax;
@@ -42,34 +43,91 @@ public class Firemancer : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        firemancerAnimation = transform.Find("Ani").GetComponent<FiremancerAnimation>();
-        player = GameObject.Find("Game/Player");
+        character = transform.GetComponent<Character>();
+        ani = transform.Find("Ani").GetComponent<FiremancerAnimation>();
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         CliffTurn();
         updateCharacterFacing();
-        firemancerAction();
+        characterAction();
         distanceToPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
         distanceToPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDead || player == null) return;
+        move();
+    }
+
+    public void characterAction()
+    {
+        if (action) return;
+        actionMode = (actionKind)Random.Range(0, 4);
+
+        switch (actionMode)
+        {
+
+            case actionKind.move:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
+                break;
+
+            case actionKind.fire:
+                if (distanceToPlayerX < spoutDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Fire();
+                break;
+
+            case actionKind.fire2:
+                if (distanceToPlayerX < spoutDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Fire2();
+                break;
+
+            case actionKind.spout:
+                if (distanceToPlayerX > spoutDistance && distanceToPlayerY > 1)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Spout();
+                break;
+        }
+
     }
 
     public void dofire()
@@ -102,11 +160,6 @@ public class Firemancer : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (isDead) return;
-        move();
-    }
 
 
     public void CliffTurn()
@@ -120,7 +173,6 @@ public class Firemancer : MonoBehaviour
         // 繪製射線（用於調試，可視化射線）
         Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
     }
-
 
     public void move()
     {
@@ -153,7 +205,7 @@ public class Firemancer : MonoBehaviour
                 upDuring -= Time.deltaTime;
             }
 
-            rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime);  
+            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, MoveSpeedY * Time.deltaTime);  
             if (moveDuring < 0)
             {
                 action = false;
@@ -166,6 +218,7 @@ public class Firemancer : MonoBehaviour
         }
         moveDuring -= Time.deltaTime;
     }
+
 
     public void updateCharacterFacing()
     {
@@ -180,50 +233,6 @@ public class Firemancer : MonoBehaviour
         }
     }
 
-
-    public void firemancerAction()
-    {
-        if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
-
-        switch (actionMode)
-        {
-
-            case actionKind.move:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
-                break;
-
-            case actionKind.fire:
-                if (distanceToPlayerX < spoutDistance)
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                firemancerAnimation.Fire();
-                break;
-
-            case actionKind.fire2:
-                if (distanceToPlayerX < spoutDistance)
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                firemancerAnimation.Fire2();
-                break;
-
-            case actionKind.spout:
-                if (distanceToPlayerX > spoutDistance && distanceToPlayerY > 1)
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                firemancerAnimation.Spout();
-                break;
-        }
-
-    }
     public void fireDead()
     {
         isDead = true;

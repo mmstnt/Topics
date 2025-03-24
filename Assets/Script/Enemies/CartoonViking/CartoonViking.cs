@@ -8,14 +8,13 @@ public class CartoonViking : MonoBehaviour
     public Rigidbody2D rb;
     private CartoonVikingAni ani;
     private GameObject player;
-    private PhysicsCheck physicsCheck;
+    private Character character;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
     public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
-    public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
@@ -38,7 +37,7 @@ public class CartoonViking : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        physicsCheck = transform.GetComponent<PhysicsCheck>();
+        character = transform.GetComponent<Character>();
         ani = transform.Find("Ani").GetComponent<CartoonVikingAni>();
     }
 
@@ -194,7 +193,7 @@ public class CartoonViking : MonoBehaviour
     {
         if (actionMode != actionKind.move)
             return;
-        rb.velocity = new Vector2(transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
         if (moveDuring < 0)
         {
             action = false;

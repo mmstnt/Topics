@@ -8,6 +8,7 @@ public class OldGuardian : MonoBehaviour
     public Rigidbody2D rb;
     private OldGuardianAni ani;
     private GameObject player;
+    private Character character;
     private PhysicsCheck physicsCheck;
 
     [Header("事件監聽")]
@@ -16,7 +17,6 @@ public class OldGuardian : MonoBehaviour
 
     [Header("角色參數")]
     public GameObject oldGuardianBomb;
-    public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attack01MinDistance;
@@ -40,6 +40,7 @@ public class OldGuardian : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        character = transform.GetComponent<Character>();
         physicsCheck = transform.GetComponent<PhysicsCheck>();
         ani = transform.Find("Ani").GetComponent<OldGuardianAni>();
         isJump = false;
@@ -70,7 +71,7 @@ public class OldGuardian : MonoBehaviour
     private void Update()
     {
         if (isDead || player == null) return;
-        OldGuardianAction();
+        characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
@@ -80,7 +81,7 @@ public class OldGuardian : MonoBehaviour
         move();
     }
 
-    public void OldGuardianAction()
+    public void characterAction()
     {
         if (action) return;
         if (actionList.Count == 0)
@@ -172,7 +173,7 @@ public class OldGuardian : MonoBehaviour
     {
         if (actionMode != actionKind.move || isJump)
             return;
-        rb.velocity = new Vector2(transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
         if (moveDuring < 0)
         {
             action = false;

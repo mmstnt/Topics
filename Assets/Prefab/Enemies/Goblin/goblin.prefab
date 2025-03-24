@@ -101,6 +101,7 @@ MonoBehaviour:
   damageRatio: 1
   damagePercentage: 0
   attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -209,6 +210,7 @@ MonoBehaviour:
   damageRatio: 1
   damagePercentage: 0
   attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -452,9 +454,12 @@ MonoBehaviour:
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startHp: 25
   startDamage: 3
+  startSpeed: 250
   maxHp: 25
   currentHp: 0
   damage: 3
+  speed: 0
+  isDead: 0
   invulnerable: 0
   invulnerableTime: 0.2
   invulnerableDuration: 0
@@ -537,9 +542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   bomb: {fileID: 3537624931708074332, guid: 259f32058e4e3e94e8b6538e982587c6, type: 3}
   FastSpeed: 2.5
-  MoveSpeed: 250
   moveTimeMin: 0.5
   moveTimeMax: 2
   sprintTime: 0.3

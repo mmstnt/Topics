@@ -7,6 +7,7 @@ public class BringerOfDeath : MonoBehaviour
     public Rigidbody2D rb;
     private BringerOfDeathAnimation ani;
     private GameObject player;
+    private Character character;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -15,7 +16,6 @@ public class BringerOfDeath : MonoBehaviour
     [Header("角色參數")]
     public GameObject bringerOfDeathSpellCast;
     public GameObject bringerOfDeathBulletCast;
-    public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax; 
     public float attack01Distance;
@@ -35,6 +35,7 @@ public class BringerOfDeath : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        character = transform.GetComponent<Character>();
         ani = transform.Find("Ani").GetComponent<BringerOfDeathAnimation>();
     }
 
@@ -63,7 +64,7 @@ public class BringerOfDeath : MonoBehaviour
     private void Update()
     {
         if (isDead || player == null) return;
-        bringerOfDeathAction();
+        characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
@@ -73,7 +74,7 @@ public class BringerOfDeath : MonoBehaviour
         move();
     }
 
-    public void bringerOfDeathAction()
+    public void characterAction()
     {
         if (action) return;
         if (actionList.Count == 0) 
@@ -178,7 +179,7 @@ public class BringerOfDeath : MonoBehaviour
                 {
                     getPlayerSite();
                 }
-                rb.velocity = new Vector2(-transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+                rb.velocity = new Vector2(-transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
                 moveDuring -= Time.deltaTime;
             }
             else 
@@ -189,7 +190,7 @@ public class BringerOfDeath : MonoBehaviour
         }
         else 
         {
-            rb.velocity = new Vector2(-transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(-transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
             if (moveDuring < 0)
             {
                 action = false;

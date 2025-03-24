@@ -1,27 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Golem : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
-    private GolemAnimation golemAnimation;
+    private GolemAnimation ani;
     private GameObject player;
-    private Transform golemTransform;
-    private float timer;
-    private float moveDuring;
-    public GameObject ani;
+    private Character character;
     private PhysicsCheck physicsCheck;
+    private Transform golemTransform;
+
+    public GameObject aniGameObject;
     public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject laser;
     public GameObject rock;
-    public float MoveSpeed; // 角色移動速度
     public float moveTimeMin;
     public float moveTimeMax;
     public RaycastHit2D back;
@@ -35,50 +36,97 @@ public class Golem : MonoBehaviour
     public bool isDead;
     public enum actionKind { move, transmit ,shoot,laser}
     public actionKind actionMode;
+    private float moveDuring;
+    private float timer;
 
     private void Awake()
     {
         golemTransform = this.transform;
         rb = transform.GetComponent<Rigidbody2D>();
-        golemAnimation = transform.Find("Ani").GetComponent<GolemAnimation>();
-        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
+        character = transform.GetComponent<Character>();
         physicsCheck = GetComponent<PhysicsCheck>();
+        ani = transform.Find("Ani").GetComponent<GolemAnimation>();
+        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         CliffTurn();
         jump();
         updateCharacterFacing();
-        mushroomAction();
+        characterAction();
         distanceToPlayerY1 = Mathf.Abs(player.transform.position.y - transform.position.y);
         distanceToPlayerY2 = player.transform.position.y - transform.position.y;
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         move();
     }
+
+        public void characterAction()
+    {
+        if (action || !physicsCheck.isGround) return;
+        actionMode = (actionKind)Random.Range(0, 4);
+
+        switch (actionMode)
+        {
+            case actionKind.move:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
+                break;
+            case actionKind.transmit:
+                if (distanceToPlayerY1 < 0.5f)
+                    break;
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Golemtransmit();
+                break;
+            case actionKind.shoot:
+                if (distanceToPlayerY1 > 0.5f)
+                    break;
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Golemshoot();
+                break;
+            case actionKind.laser:
+                if (distanceToPlayerY1 > 0.5f)
+                    break;
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                ani.Golemlaser();
+                break;
+        }
+    }
+
     public void transmit()
     {
-        ani.GetComponent<SpriteRenderer>().enabled = false;
+        aniGameObject.GetComponent<SpriteRenderer>().enabled = false;
         golemTransform = this.transform;
 
        float randomY = player.transform.position.y + 0.2f;
@@ -102,7 +150,6 @@ public class Golem : MonoBehaviour
         rockObject.GetComponent<Rock>().Move(direction);
     }
 
-
     public void move()
     {
         if (back.collider != null)
@@ -111,7 +158,7 @@ public class Golem : MonoBehaviour
             return;
         if (actionMode == actionKind.move)
         {
-            rb.velocity = new Vector2(direction * MoveSpeed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
             if (moveDuring < 0)
             {
                 action = false;
@@ -154,56 +201,11 @@ public class Golem : MonoBehaviour
     {
         if (physicsCheck.isGround)
         {
-            ani.GetComponent<SpriteRenderer>().enabled = true;
+            aniGameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
 
     }
-        public void mushroomAction()
-    {
-        if (action || !physicsCheck.isGround) return;
-        actionMode = (actionKind)Random.Range(0, 4);
 
-        switch (actionMode)
-        {
-
-            case actionKind.move:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
-                break;
-             
-            case actionKind.transmit:
-                if (distanceToPlayerY1 < 0.5f)
-                    break;
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                golemAnimation.Golemtransmit();
-                break;
-
-            case actionKind.shoot:
-                if (distanceToPlayerY1 > 0.5f)
-                    break;
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                golemAnimation.Golemshoot();
-                break;
-            
-            case actionKind.laser:
-                if (distanceToPlayerY1 > 0.5f)
-                    break;
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                golemAnimation.Golemlaser();
-                break;
-
-
-
-
-
-
-
-        }
-    }
     public void GolemDead()
     {
         isDead = true;

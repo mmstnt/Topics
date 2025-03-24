@@ -217,9 +217,12 @@ MonoBehaviour:
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startHp: 85
   startDamage: 3
+  startSpeed: 300
   maxHp: 0
   currentHp: 0
   damage: 0
+  speed: 0
+  isDead: 0
   invulnerable: 0
   invulnerableTime: 0.2
   invulnerableDuration: 0
@@ -268,6 +271,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
+        m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
+        m_MethodName: raiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -293,7 +308,6 @@ MonoBehaviour:
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   oldGuardianBomb: {fileID: 1376869941340529918, guid: 26ec26528a902544d8c17f4f4342602e, type: 3}
-  moveSpeed: 300
   moveTimeMin: 0.5
   moveTimeMax: 1.25
   attack01MinDistance: 1

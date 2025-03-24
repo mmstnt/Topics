@@ -7,20 +7,21 @@ using UnityEngine.UIElements;
 public class Flyingeye : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private FlyingeyeAnimation flyingeyeAnimation;
+    private FlyingeyeAnimation ani;
     private GameObject player;
+    private Character character;
     public LayerMask GroundLayer;
     public LayerMask WallLayer;
 
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject sand;
     public GameObject wind;
     public GameObject laser;
-    public float MoveSpeedX; // 角色移動速度
     public float MoveSpeedY;
     public float moveTimeMin;
     public float moveTimeMax;
@@ -43,24 +44,80 @@ public class Flyingeye : MonoBehaviour
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        flyingeyeAnimation = transform.Find("Ani").GetComponent<FlyingeyeAnimation>();
-        player = GameObject.Find("Game/Player");
+        character = transform.GetComponent<Character>();
+        ani = transform.Find("Ani").GetComponent<FlyingeyeAnimation>();
         direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");  // 找到 Player 物件
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (isDead || player == null) return;
+        CliffTurn();
+        updateCharacterFacing();
+        characterAction();
+        distanceToPlayer = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+    }
+    private void FixedUpdate()
+    {
+        if (isDead || player == null) return;
+        move();
+    }
+
+    public void characterAction()
+    {
+        if (action) return;
+        actionMode = (actionKind)Random.Range(0, 4); // 隨機選擇 0, 1, 2
+        switch (actionMode)
+        {
+            case actionKind.move:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
+                break;
+            case actionKind.throwSand:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                rb.velocity = Vector2.zero;
+                ani.attack1();
+                break;
+            case actionKind.throwWind:
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                rb.velocity = Vector2.zero;
+                ani.attack2();
+                break;
+            case actionKind.laser:
+                if (distanceToPlayer > laserDistance) 
+                    break;
+                action = true;
+                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                rb.velocity = Vector2.zero;
+                ani.attack3();
+                break;
+        }
     }
 
     public void ThrowSand()
@@ -79,6 +136,7 @@ public class Flyingeye : MonoBehaviour
             sandObject.GetComponent<AttackSource>().attackSource = this.transform;
         }
     }
+
     public void ThrowSand2()
     {
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
@@ -86,6 +144,7 @@ public class Flyingeye : MonoBehaviour
         laserObject.GetComponent<AttackSource>().attackSource = this.transform;
 
     }
+
     public void ThrowWind()
     {
         for(int i = 0; i < 8; i++) 
@@ -93,21 +152,6 @@ public class Flyingeye : MonoBehaviour
             GameObject windObject = Instantiate(wind, transform.position, Quaternion.Euler(0, 0, 45*i));
             windObject.GetComponent<AttackSource>().attackSource = this.transform;
         }
-    }
-    private void Update()
-    {
-        if (isDead) return;
-        CliffTurn();
-        updateCharacterFacing();
-        flyingeyeAction();
-        distanceToPlayer = Mathf.Abs(player.transform.position.y - transform.position.y);
-
-    }
-    private void FixedUpdate()
-    {
-        if (isDead) return;
-        move();
-         
     }
 
     public void CliffTurn()
@@ -121,8 +165,6 @@ public class Flyingeye : MonoBehaviour
         // 繪製射線（用於調試，可視化射線）
         Debug.DrawRay(rayStart, rayDirection * 3, Color.red); // 紅色射線，長度為 2
     }
-
-
 
     public void move()
     {
@@ -155,7 +197,7 @@ public class Flyingeye : MonoBehaviour
                 upDuring -= Time.deltaTime;
             }
             
-            rb.velocity = new Vector2(direction * MoveSpeedX * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
             if (moveDuring < 0)
             {
                 action = false;
@@ -182,45 +224,6 @@ public class Flyingeye : MonoBehaviour
         }
     }
 
-
-    public void flyingeyeAction()
-    {
-        if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4); // 隨機選擇 0, 1, 2
-        
-        switch (actionMode)
-        {
-            
-            case actionKind.move:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
-                break;
-             
-            case actionKind.throwSand:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                rb.velocity = Vector2.zero;
-                 
-                flyingeyeAnimation.attack1();
-                break;
-            case actionKind.throwWind:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                rb.velocity = Vector2.zero;
-                flyingeyeAnimation.attack2();
-                break;
-            case actionKind.laser:
-                if (distanceToPlayer > laserDistance)
-                    break;
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                rb.velocity = Vector2.zero;
-                flyingeyeAnimation.attack3();
-                break;
-
-        }
-    }
     public void flyingeyeDead()
     {
         isDead = true;

@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 7071425794112049211}
   - component: {fileID: 5433768143671512956}
   - component: {fileID: 3389940328810472854}
+  - component: {fileID: 8280975130857699541}
   - component: {fileID: 4258521230536626767}
   - component: {fileID: 6147811989732723053}
   - component: {fileID: 47168456555127896}
-  - component: {fileID: 8280975130857699541}
   m_Layer: 8
   m_Name: golem
   m_TagString: Enemies
@@ -131,69 +131,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0099743605, y: 0.16956878}
   m_Size: {x: 2.993674, y: 2.9936748}
   m_Direction: 0
---- !u!114 &4258521230536626767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4951644094412011065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fcc1203ba947f40989bd6c991f79ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ani: {fileID: 7638632754962894983}
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
-  laser: {fileID: 4199061640421336476, guid: 8198d94c5414ac947a1868bd0d2d94fc, type: 3}
-  rock: {fileID: 8078933060929011391, guid: ea55969fc26c1dd4d9ae3919d072c92e, type: 3}
-  MoveSpeed: 400
-  moveTimeMin: 0.5
-  moveTimeMax: 2
-  direction: 0
-  distanceToPlayerY1: 0
-  distanceToPlayerY2: 0
-  action: 0
-  isDead: 0
-  actionMode: 0
---- !u!114 &6147811989732723053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4951644094412011065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGround: 0
-  bottomOffset: {x: 0, y: -1.1}
-  checkRaduis: 0.5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  notChangeMaterial2D: 0
-  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
-  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
---- !u!114 &47168456555127896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4951644094412011065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  persistentType: 1
-  ID: 
 --- !u!114 &8280975130857699541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,9 +146,12 @@ MonoBehaviour:
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startHp: 50
   startDamage: 3
+  startSpeed: 400
   maxHp: 0
   currentHp: 0
   damage: 0
+  speed: 0
+  isDead: 0
   invulnerable: 0
   invulnerableTime: 0.2
   invulnerableDuration: 0
@@ -260,6 +200,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
+        m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
+        m_MethodName: raiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -269,6 +221,69 @@ MonoBehaviour:
   onAttack:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4258521230536626767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fcc1203ba947f40989bd6c991f79ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aniGameObject: {fileID: 0}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
+  laser: {fileID: 4199061640421336476, guid: 8198d94c5414ac947a1868bd0d2d94fc, type: 3}
+  rock: {fileID: 8078933060929011391, guid: ea55969fc26c1dd4d9ae3919d072c92e, type: 3}
+  moveTimeMin: 0.5
+  moveTimeMax: 2
+  direction: 0
+  distanceToPlayerY1: 0
+  distanceToPlayerY2: 0
+  action: 0
+  isDead: 0
+  actionMode: 0
+--- !u!114 &6147811989732723053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: -1.1}
+  checkRaduis: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  notChangeMaterial2D: 0
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
+--- !u!114 &47168456555127896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951644094412011065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 1
+  ID: 
 --- !u!1 &7638632754962894983
 GameObject:
   m_ObjectHideFlags: 0
