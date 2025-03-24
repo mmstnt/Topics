@@ -10,7 +10,8 @@ public class Attack : MonoBehaviour
     public float damageBasic;
     public float damageRatio;
     public float damagePercentage;
-
+    public AttackImpact attackImpact;
+    public AttackKind attackKind;
     //public float attackRange;
     //public float attackRate;
     public Character damageSource;

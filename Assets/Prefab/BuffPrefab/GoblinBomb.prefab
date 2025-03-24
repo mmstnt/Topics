@@ -112,9 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 3
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &3690184659598974121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +208,15 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 1
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5172856225202981200
 GameObject:
   m_ObjectHideFlags: 0

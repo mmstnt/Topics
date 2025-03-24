@@ -63,6 +63,7 @@ public class GameEventManager : MonoBehaviour,ISaveable
         levelInitialize(levelPool_01);
 
         player.GetComponent<Character>().newGame();
+        player.GetComponent<PlayerController>().isDead = false;
     }
 
     private void onAfterSceneLoadedEvent()
@@ -117,7 +118,8 @@ public class GameEventManager : MonoBehaviour,ISaveable
 
     private void onCardChoose()
     {
-        cardChoose.SetActive(true);
+        if(!player.GetComponent<PlayerController>().isDead)
+            cardChoose.SetActive(true);
     }
 
     private void onCardChooseEnd()

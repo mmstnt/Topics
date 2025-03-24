@@ -78,8 +78,10 @@ public class Character : MonoBehaviour,ISaveable
     {
         if (invulnerable || currentHp == 0) 
             return;
+
         onHitEvent?.Invoke(this.transform, this, attacker);
-        attacker.damageSource.onAttack?.Invoke(this.transform, this, attacker);
+        if (attacker.attackKind == AttackKind.Self) attacker.damageSource.onAttack?.Invoke(this.transform, this, attacker);
+
         float attackDamage = (attacker.damageSource.damage * attacker.damageRatio) + (attacker.damageBasic) + (attacker.damagePercentage * maxHp);
         if (currentHp - attackDamage > 0) 
         {
@@ -96,6 +98,7 @@ public class Character : MonoBehaviour,ISaveable
             //¦º¤`
             onDead?.Invoke();
         }
+
         onHealthChange?.Invoke(this);
     }
 

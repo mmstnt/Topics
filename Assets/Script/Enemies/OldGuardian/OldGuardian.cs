@@ -12,6 +12,7 @@ public class OldGuardian : MonoBehaviour
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
     public GameObject oldGuardianBomb;
@@ -47,28 +48,35 @@ public class OldGuardian : MonoBehaviour
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
+    {
+        //player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void onCameraLensEvent()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         OldGuardianAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         move();
     }
 

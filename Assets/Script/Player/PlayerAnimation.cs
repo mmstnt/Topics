@@ -29,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
         ani.SetBool("isGround", physicsCheck.isGround);
         ani.SetBool("isDead", playerController.isDead);
         ani.SetBool("isAttack", playerController.isAttack);
+        ani.SetBool("isSlide", playerController.isSlide);
     }
 
     public void playerHurt() 
@@ -39,5 +40,10 @@ public class PlayerAnimation : MonoBehaviour
     public void playerAttack() 
     {
         ani.SetTrigger("attack");
+    }
+
+    public void playerSlide()
+    {
+        ani.SetTrigger("slide");
     }
 }

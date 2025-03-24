@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class playAttack : StateMachineBehaviour
+public class PlayerSlide : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.parent.GetComponent<PlayerController>().isAttack = true;
+        animator.transform.parent.transform.GetComponent<Character>().invulnerableDuration = 1000;
+        animator.transform.parent.transform.GetComponent<Character>().invulnerable = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,7 +21,11 @@ public class playAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.parent.GetComponent<PlayerController>().isAttack = false;
+        Rigidbody2D rb = animator.transform.parent.transform.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        animator.transform.parent.transform.GetComponent<Character>().invulnerableDuration = 0;
+        animator.transform.parent.transform.GetComponent<Character>().invulnerable = false;
+        animator.transform.parent.transform.GetComponent<PlayerController>().isSlide = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

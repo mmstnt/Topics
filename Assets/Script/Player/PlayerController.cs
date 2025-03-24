@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,26 +12,29 @@ public class PlayerController : MonoBehaviour
     public SceneLoadEventSO sceneLoadEvent;
     public VoidEventSO afterSceneLoadedEvent;
     public VoidEventSO loadDataEvent;
-    public VoidEventSO backToMenuEvent;
     public VoidEventSO cardChooseEvent;
     public VoidEventSO cardChooseEndEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("把计")]
     public float speed;
     public float jumpForce;
+    public float doubleJumpForce;
+    public float slideForce;
     public float hurtForce;
 
     [Header("篈")]
     public bool isHurt;
     public bool isDead;
     public bool isAttack;
-    //╬把计
+    public bool isSlide;
     private PlayerInputControl inputControl;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
     private PlayerAnimation playerAnimation;
     private Vector2 inputDirection;
     private int faceDir;
+    private bool canDoubleJump;
 
     private void Awake()
     {
@@ -41,6 +45,8 @@ public class PlayerController : MonoBehaviour
         inputControl = new PlayerInputControl();
         inputControl.GamePlay.Jump.started += jump;
         inputControl.GamePlay.Attack.started += attack;
+        inputControl.GamePlay.Slide.started += slide;
+        inputControl.GamePlay.MoveInterrupt.started += moveInterrupt;
         inputControl.Enable();
     }
 
@@ -49,9 +55,9 @@ public class PlayerController : MonoBehaviour
         sceneLoadEvent.LoadRequestEvent += onLoadEvent;
         afterSceneLoadedEvent.onEventRaised += onAfterSceneLoadedEvent;
         loadDataEvent.onEventRaised += onLoadDataEvent;
-        backToMenuEvent.onEventRaised += onLoadDataEvent;
         cardChooseEvent.onEventRaised += onCardChooseEvent;
         cardChooseEndEvent.onEventRaised += onCardChooseEndEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
@@ -60,9 +66,9 @@ public class PlayerController : MonoBehaviour
         sceneLoadEvent.LoadRequestEvent -= onLoadEvent;
         afterSceneLoadedEvent.onEventRaised -= onAfterSceneLoadedEvent;
         loadDataEvent.onEventRaised -= onLoadDataEvent;
-        backToMenuEvent.onEventRaised -= onLoadDataEvent;
         cardChooseEvent.onEventRaised -= onCardChooseEvent;
         cardChooseEndEvent.onEventRaised -= onCardChooseEndEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void Update()
@@ -83,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     private void onAfterSceneLoadedEvent()
     {
-        inputControl.GamePlay.Enable();
+        //inputControl.GamePlay.Enable();
     }
 
     private void onCardChooseEvent()
@@ -102,9 +108,14 @@ public class PlayerController : MonoBehaviour
         isDead = false;
     }
 
+    private void onCameraLensEvent()
+    {
+        inputControl.GamePlay.Enable();
+    }
+
     public void move() 
     {
-        if (isHurt)
+        if (isHurt || isSlide || isAttack)
             return;
         //簿笆
         rb.velocity = new Vector2(inputDirection.x * speed * Time.deltaTime, rb.velocity.y);
@@ -115,23 +126,56 @@ public class PlayerController : MonoBehaviour
 
     private void jump(InputAction.CallbackContext obj)
     {
+        isSlide = false;
         if (physicsCheck.isGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            canDoubleJump = true;
+        }
+        else if (canDoubleJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(transform.up * doubleJumpForce, ForceMode2D.Impulse);
+            canDoubleJump = false;
+        }
     }
 
     private void attack(InputAction.CallbackContext obj)
     {
+        rb.velocity = new Vector2(0, rb.velocity.y);
         playerAnimation.playerAttack();
 
+        isSlide = false;
         isAttack = true;
+    }
+
+    private void slide(InputAction.CallbackContext obj)
+    {
+        playerAnimation.playerSlide();
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        Vector2 dirForce = new Vector2(transform.localScale.x, 0).normalized;
+        rb.AddForce(dirForce * slideForce, ForceMode2D.Impulse);
+
+        isAttack = false;
+        isSlide = true;
+    }
+
+    private void moveInterrupt(InputAction.CallbackContext obj)
+    {
+        isAttack = false;
+        isSlide = false;
     }
 
     public void getHurt(Transform attacker) 
     {
         isHurt = true;
         rb.velocity = Vector2.zero;
-        Vector2 dirForce = new Vector2(transform.position.x - attacker.position.x, 0).normalized;
-        rb.AddForce(dirForce * hurtForce, ForceMode2D.Impulse);
+        if(attacker.GetComponent<Attack>().attackImpact == AttackImpact.Normal) 
+        {
+            Vector2 dirForce = new Vector2(transform.position.x - attacker.position.x, 0).normalized;
+            rb.AddForce(dirForce * hurtForce, ForceMode2D.Impulse);
+        }
     }
 
     public void playerDead() 

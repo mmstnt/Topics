@@ -93,8 +93,13 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1.2
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 1
   damageSource: {fileID: 0}
   attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1148106345145342437

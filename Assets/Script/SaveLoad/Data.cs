@@ -1,3 +1,4 @@
+using OpenCvSharp.Internal.Vectors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class Data
 
     public Dictionary<IBuff, Character> buffCharacter = new Dictionary<IBuff, Character>();
 
-    public Dictionary<string, Vector3> portalSave = new Dictionary<string, Vector3>();
+    public Dictionary<Vector3 ,string> portalSave = new Dictionary<Vector3, string>();
 
     public void saveGameScene(GameSceneSO savedScene) 
     {
@@ -33,11 +34,11 @@ public class Data
 
     public void savePortal(List<GameObject> portalList) 
     {
-        portalSave = new Dictionary<string, Vector3>();
+        portalSave = new Dictionary<Vector3, string>();
         foreach(var portal in portalList) 
         {
             GameSceneSO savedScene = portal.GetComponent<Portal>().sceneToGo;
-            portalSave.Add(JsonUtility.ToJson(savedScene),portal.transform.position);
+            portalSave.Add(portal.transform.position, JsonUtility.ToJson(savedScene));
         }
     }
 
@@ -67,8 +68,8 @@ public class Data
         foreach (var portal in portalSave)
         {
             var newScene = ScriptableObject.CreateInstance<GameSceneSO>();
-            JsonUtility.FromJsonOverwrite(portal.Key, newScene);
-            newPortalList.Add(newScene, portal.Value);
+            JsonUtility.FromJsonOverwrite(portal.Value, newScene);
+            newPortalList.Add(newScene, portal.Key);
         }
         return newPortalList;
     }

@@ -93,6 +93,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 0.8
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -213,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
-  startHp: 60
+  startHp: 85
   startDamage: 3
   maxHp: 0
   currentHp: 0
@@ -289,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   oldGuardianBomb: {fileID: 1376869941340529918, guid: 26ec26528a902544d8c17f4f4342602e, type: 3}
   moveSpeed: 300
   moveTimeMin: 0.5
@@ -296,8 +299,8 @@ MonoBehaviour:
   attack01MinDistance: 1
   attack01MaxDistance: 4
   attack02Force: {x: 4, y: 18}
-  oldGuardianBombMinCount: 2
-  oldGuardianBombMaxCount: 4
+  oldGuardianBombMinCount: 3
+  oldGuardianBombMaxCount: 5
   jumpForceMin: {x: 10, y: 15}
   jumpForceMax: {x: 20, y: 20}
   distanceToPlayer: 0
@@ -339,8 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistentType: 0
-  ID: 611f0cfc-abff-4d0b-a2dc-26f464c02984
+  persistentType: 1
+  ID: 
 --- !u!1 &5779453430093258038
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +447,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1.2
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -686,6 +691,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 0.9
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:

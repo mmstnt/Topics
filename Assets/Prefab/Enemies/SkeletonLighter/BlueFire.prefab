@@ -254,6 +254,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 0.3
   damagePercentage: 0
+  attackImpact: 1
+  attackKind: 1
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:

@@ -100,6 +100,7 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1
   damagePercentage: 0
+  attackImpact: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -207,6 +208,7 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1
   damagePercentage: 0
+  attackImpact: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    [Header("廣播")]
+    public VoidEventSO cameraLensEvent;
+
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
 
@@ -45,7 +48,11 @@ public class CameraControl : MonoBehaviour
             Transform boss = GameObject.FindGameObjectWithTag("Enemies").transform;
             bossVirtualCamera.Follow = boss;
             bossVirtualCamera.LookAt = boss;
-            getBoss();
+            Invoke("getBoss", 0.5f);
+        }
+        else 
+        {
+            cameraLensEventEnd();
         }
     }
 
@@ -64,12 +71,18 @@ public class CameraControl : MonoBehaviour
     {
         playerVirtualCamera.Priority = 0;
         bossVirtualCamera.Priority = 10;
-        Invoke("getPlayer", 3.0f);
+        Invoke("getPlayer", 1.5f);
     }
 
     private void getPlayer()
     {
         playerVirtualCamera.Priority = 10;
         bossVirtualCamera.Priority = 0;
+        Invoke("cameraLensEventEnd", 1.5f);
+    }
+
+    private void cameraLensEventEnd() 
+    {
+        cameraLensEvent.raiseEvent();
     }
 }

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
   m_Name: Cave2
   m_EditorClassIdentifier: 
-  sceneType: 0
+  sceneType: 2
   sceneReference:
     m_AssetGUID: 0f8107fa759193746838a19bcc58caa3
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  positionToGo: {x: -25, y: -4.8, z: 0}
+  portalPosition: {x: 22, y: -1, z: 0}
+  image: {fileID: -1272991395, guid: f41cb00124a98854790729c64ed169c2, type: 3}

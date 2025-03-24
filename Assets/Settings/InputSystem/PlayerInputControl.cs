@@ -62,6 +62,24 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Slide"",
+                    ""type"": ""Button"",
+                    ""id"": ""45808818-9e4b-4536-a474-8fe3578f4d47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveInterrupt"",
+                    ""type"": ""Button"",
+                    ""id"": ""31a0c84f-2efa-4b63-af2a-3c325a23f465"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +245,61 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7549dd4-3412-45e4-b54d-945204da5dde"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7a37f6d-a382-448d-ae31-3a3492a42760"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveInterrupt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebd27df6-49d6-44b4-acde-fe03d584e3cd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveInterrupt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37256fe2-8f67-4311-bd1b-091d64dbf1aa"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveInterrupt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80a8b6c7-436a-438e-b158-35274540539e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveInterrupt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,6 +891,8 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_Confirm = m_GamePlay.FindAction("Confirm", throwIfNotFound: true);
+        m_GamePlay_Slide = m_GamePlay.FindAction("Slide", throwIfNotFound: true);
+        m_GamePlay_MoveInterrupt = m_GamePlay.FindAction("MoveInterrupt", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -895,6 +970,8 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_Confirm;
+    private readonly InputAction m_GamePlay_Slide;
+    private readonly InputAction m_GamePlay_MoveInterrupt;
     public struct GamePlayActions
     {
         private @PlayerInputControl m_Wrapper;
@@ -903,6 +980,8 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
         public InputAction @Confirm => m_Wrapper.m_GamePlay_Confirm;
+        public InputAction @Slide => m_Wrapper.m_GamePlay_Slide;
+        public InputAction @MoveInterrupt => m_Wrapper.m_GamePlay_MoveInterrupt;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -924,6 +1003,12 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
+            @Slide.started += instance.OnSlide;
+            @Slide.performed += instance.OnSlide;
+            @Slide.canceled += instance.OnSlide;
+            @MoveInterrupt.started += instance.OnMoveInterrupt;
+            @MoveInterrupt.performed += instance.OnMoveInterrupt;
+            @MoveInterrupt.canceled += instance.OnMoveInterrupt;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -940,6 +1025,12 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
+            @Slide.started -= instance.OnSlide;
+            @Slide.performed -= instance.OnSlide;
+            @Slide.canceled -= instance.OnSlide;
+            @MoveInterrupt.started -= instance.OnMoveInterrupt;
+            @MoveInterrupt.performed -= instance.OnMoveInterrupt;
+            @MoveInterrupt.canceled -= instance.OnMoveInterrupt;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1126,6 +1217,8 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
+        void OnMoveInterrupt(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Burning : ScriptableObject, IBuff
 {
-    private float time;
+    public AttackBurning buffSource;
+    public float time;
 
     public void Apply(Character character)
     {
@@ -24,6 +25,7 @@ public class Burning : ScriptableObject, IBuff
         time -= 1;
         if (time < 0) 
         {
+            buffSource.buffCharacterList.Remove(this);
             BuffManager.instance.unRegisterBuff(this, character);
         }
     }

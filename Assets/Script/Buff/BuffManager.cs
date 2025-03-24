@@ -97,6 +97,8 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new BloodSuck();
             case "40002":
                 return new Thunder(thunder);
+            case "40003":
+                return new AttackBurning();
             default:
                 return null;
         }
