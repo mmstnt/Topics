@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FiremancerAnimation : MonoBehaviour
 {
-    public Animator ani;
-    public Rigidbody2D rb;
+    private Animator ani;
+    private Rigidbody2D rb;
+    private Character character;
     private Firemancer fire;
 
 
@@ -13,6 +14,7 @@ public class FiremancerAnimation : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        character = transform.parent.GetComponent<Character>();
         fire = transform.parent.GetComponent<Firemancer>();
     }
     private void Update()
@@ -23,9 +25,8 @@ public class FiremancerAnimation : MonoBehaviour
     public void SetAnimation()
     {
          
-        ani.SetBool("isDead", fire.isDead);
+        ani.SetBool("isDead", character.isDead);
     }
-
 
     public void Fire()
     {

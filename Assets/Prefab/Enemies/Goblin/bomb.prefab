@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af27f72e4951be249b424bb902e194b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startSpeedMin: {x: 10, y: 15}
   startSpeedMax: {x: 20, y: 25}
   bombCollider: {fileID: 7646755935021312265}
@@ -208,9 +209,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBasic: 0
-  damageRatio: 1
+  damageRatio: 0.8
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 1
   damageSource: {fileID: 0}
+  attackHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5172856225202981200
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,21 +24,18 @@ public class Goblin : MonoBehaviour
     public float bombDistance;
 
     [Header("角色狀態")]
-    public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
-    public bool isDead;
     public enum actionKind { move, cut, throwBomb, slide}
     public actionKind actionMode;
+    public List<actionKind> actionList;
     public float moveDuring;
-    public bool cut;
-
+    
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
         character = transform.GetComponent<Character>();
         ani = transform.Find("Ani").GetComponent<GoblinAnimation>();
-        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
@@ -65,42 +62,95 @@ public class Goblin : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
-        updateCharacterFacing();
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
-    public void slide()
+    public void characterAction()
     {
-        rb.AddForce(new Vector2(direction * FastSpeed * 10, 0), ForceMode2D.Impulse);
-    }
-
-    public void ThrowBomb()
-    {
-        GameObject bombObject = Instantiate(bomb, transform.position, transform.rotation);
-        if (distanceToPlayer < bombDistance)
+        if (action) return;
+        if (actionList.Count == 0)
         {
-            bombObject.GetComponent<Bomb>().startSpeedMin.x /= 2;
-            bombObject.GetComponent<Bomb>().startSpeedMax /= 2;
+            getActionMode();
+            return;
         }
-        bombObject.GetComponent<Bomb>().isThrow(direction);
-        bombObject.GetComponent<AttackSource>().attackSource = this.transform;
+        actionMode = actionList[0];
+        actionList.RemoveAt(0);
+        switch (actionMode) 
+        {
+            case actionKind.move:
+                action = true;
+                getPlayerSite();
+                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
+                break;
+            case actionKind.cut:
+                if (distanceToPlayer > cutDistance) 
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                ani.isCut();
+                break;
+            case actionKind.throwBomb:
+                if (distanceToPlayer < cutDistance) 
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                ani.isThrow();
+                break;
+            case actionKind.slide:
+                if (distanceToPlayer < cutDistance) 
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                ani.isSlide();
+                break;
+        }
     }
 
-    public void move()
+    private void getActionMode()
+    {
+        int mode = Random.RandomRange(0, 4);
+        switch (mode)
+        {
+            case 0:
+                actionList.Add(actionKind.move);
+                break;
+            case 1:
+                actionList.Add(actionKind.cut);
+                break;
+            case 2:
+                actionList.Add(actionKind.throwBomb);
+                break;
+            case 3:
+                actionList.Add(actionKind.slide);
+                actionList.Add(actionKind.cut);
+                break;
+        }
+    }
+
+    private void getPlayerSite()
+    {
+        float dir = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+        transform.localScale = new Vector3(dir, 1, 1);
+    }
+
+    private void move()
     {
         if (actionMode != actionKind.slide && actionMode != actionKind.move)  
             return;
         if (actionMode == actionKind.move) 
         {
-            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y); // 僅在 X 軸上移動
             if (moveDuring < 0) 
             {
                 action = false;
@@ -114,61 +164,20 @@ public class Goblin : MonoBehaviour
         moveDuring -= Time.deltaTime;
     }
 
-    public void updateCharacterFacing()
+    public void slide()
     {
-        // 根據移動方向改變角色的面向
-        if (direction == -1)
-        {
-            transform.localScale = new Vector3(-1, 1, 1); // 面向左
-        }
-        else if (direction == 1)
-        {
-            transform.localScale = new Vector3(1, 1, 1); // 面向右
-        }
-    }
-    
-
-    public void characterAction()
-    {
-        if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
-        switch (actionMode) 
-        {
-            case actionKind.move:
-                action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                moveDuring = Random.Range(moveTimeMin, moveTimeMax);
-                break;
-            case actionKind.cut:
-                if (distanceToPlayer > cutDistance) 
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                ani.isCut();
-                break;
-            case actionKind.throwBomb:
-                if (distanceToPlayer < cutDistance) 
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                ani.isThrow();
-                break;
-            case actionKind.slide:
-                if (distanceToPlayer < cutDistance) 
-                    break;
-                action = true;
-                rb.velocity = Vector2.zero;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
-                ani.isSlide();
-                break;
-        }
+        rb.AddForce(new Vector2(transform.localScale.x * FastSpeed * 10, 0), ForceMode2D.Impulse);
     }
 
-    public void goblinDead()
+    public void ThrowBomb()
     {
-        isDead = true;
-        rb.velocity = Vector2.zero;
+        GameObject bombObject = Instantiate(bomb, transform.position, transform.rotation);
+        bombObject.GetComponent<AttackSource>().attackSource = this.transform;
+        if (distanceToPlayer < bombDistance)
+        {
+            bombObject.GetComponent<Bomb>().startSpeedMin.x /= 2;
+            bombObject.GetComponent<Bomb>().startSpeedMax /= 2;
+        }
+        bombObject.GetComponent<Bomb>().isThrow(transform.localScale.x);
     }
 }

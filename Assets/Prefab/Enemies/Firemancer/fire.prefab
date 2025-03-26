@@ -190,6 +190,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 0.2
   damagePercentage: 0
+  attackImpact: 1
+  attackKind: 1
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -308,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4767366c3e17a7f458b8d57d68825690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   ani: {fileID: 1447880426148879872}
 --- !u!114 &5335948474587793096
 MonoBehaviour:

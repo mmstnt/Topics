@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Fire : MonoBehaviour
+public class CartoonVikingGunBullet : MonoBehaviour
 {
-    private PhysicsCheck physicsCheck;
-
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
 
     [Header("角色參數")]
-    public GameObject ani;
+    public float speed;
+    public float time;
 
     private void OnEnable()
     {
@@ -28,23 +27,22 @@ public class Fire : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void Awake()
-    {
-        physicsCheck = GetComponent<PhysicsCheck>();
-        ani.SetActive(false);
-        Destroy(gameObject, 3.0f);
-    }
-
     private void Update()
     {
-        jump();
+        if (time < 0)
+        {
+            destroyGameObject();
+        }
+        time -= Time.deltaTime;
     }
 
-    private void jump()
+    private void FixedUpdate()
     {
-        if (physicsCheck.isGround)
-        {
-            ani.SetActive(true);
-        }
+        transform.Translate(new Vector2(transform.localScale.x, 0) * speed * Time.deltaTime);
+    }
+
+    public void destroyGameObject() 
+    {
+        Destroy(gameObject);
     }
 }

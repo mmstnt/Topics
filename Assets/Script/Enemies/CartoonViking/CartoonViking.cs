@@ -15,6 +15,7 @@ public class CartoonViking : MonoBehaviour
     public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
+    public GameObject gunBullet;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
@@ -25,10 +26,9 @@ public class CartoonViking : MonoBehaviour
 
     [Header("角色狀態")]
     public float distanceToPlayer;
-    public bool isDead;
     public bool isGun;
     public bool action;
-    public enum actionKind { move, attack01, attack02, axeToGun, gunToAxe, slide , slideAttack }
+    public enum actionKind { move, attack01, attack02, axeToGun, gunToAxe, slide , slideAttack , slideGunAttack }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
@@ -66,7 +66,7 @@ public class CartoonViking : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
         slideAttack();
@@ -74,7 +74,7 @@ public class CartoonViking : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
@@ -105,15 +105,22 @@ public class CartoonViking : MonoBehaviour
                 ani.isAttack01();
                 break;
             case actionKind.attack02:
-                if (distanceToPlayer < attackMaxDistance || !isGun)
+                if (distanceToPlayer < attackMaxDistance || !isGun) 
+                {
+                    if (isGun) 
+                    {
+                        actionList.Add(actionKind.slideGunAttack);
+                        actionList.Add(actionKind.attack02);
+                    }
                     break;
+                }
                 action = true;
                 rb.velocity = Vector2.zero;
                 getPlayerSite();
                 ani.isAttack02();
                 break;
             case actionKind.axeToGun:
-                if (distanceToPlayer < attackMaxDistance || isGun || switchActionCount > 0) 
+                if (isGun || switchActionCount > 0) 
                     break;
                 action = true;
                 rb.velocity = Vector2.zero;
@@ -147,12 +154,22 @@ public class CartoonViking : MonoBehaviour
                 getPlayerSite();
                 ani.slideAttack();
                 break;
+            case actionKind.slideGunAttack:
+                if (!isGun)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
+                slide();
+                ani.slide();
+                break;
         }
     }
 
     private void getActionMode()
     {
-        int mode = Random.RandomRange(0, 7);
+        int mode = Random.RandomRange(0, 8);
         switch (mode)
         {
             case 0:
@@ -177,8 +194,12 @@ public class CartoonViking : MonoBehaviour
                 actionList.Add(actionKind.slide);
                 break;
             case 6:
-                actionList.Add(actionKind.move);
+                actionList.Add(actionKind.slide);
                 actionList.Add(actionKind.attack01);
+                break;
+            case 7:
+                actionList.Add(actionKind.slideGunAttack);
+                actionList.Add(actionKind.attack02);
                 break;
         }
     }
@@ -189,7 +210,7 @@ public class CartoonViking : MonoBehaviour
         transform.localScale = new Vector3(dir, 1, 1);
     }
 
-    public void move()
+    private void move()
     {
         if (actionMode != actionKind.move)
             return;
@@ -218,9 +239,10 @@ public class CartoonViking : MonoBehaviour
         }
     }
 
-    public void dead()
+    public void shoot() 
     {
-        isDead = true;
-        rb.velocity = Vector2.zero;
+        GameObject bullet = Instantiate(gunBullet, transform.position, transform.rotation);
+        bullet.GetComponent<AttackSource>().attackSource = this.transform;
+        bullet.transform.localScale = this.transform.localScale;
     }
 }

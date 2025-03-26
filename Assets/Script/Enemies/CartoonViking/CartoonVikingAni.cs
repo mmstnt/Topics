@@ -6,15 +6,15 @@ public class CartoonVikingAni : MonoBehaviour
 {
     private Animator ani;
     private Rigidbody2D rb;
+    private Character character;
     private CartoonViking cartoonViking;
-    private PhysicsCheck physicsCheck;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        character = transform.parent.GetComponent<Character>();
         cartoonViking = transform.parent.GetComponent<CartoonViking>();
-        physicsCheck = transform.parent.gameObject.GetComponent<PhysicsCheck>();
     }
 
     private void Update()
@@ -26,9 +26,8 @@ public class CartoonVikingAni : MonoBehaviour
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         ani.SetFloat("velocityY", rb.velocity.y);
-        ani.SetBool("isDead", cartoonViking.isDead);
+        ani.SetBool("isDead", character.isDead);
         ani.SetBool("isGun", cartoonViking.isGun);
-        ani.SetBool("isGround", physicsCheck.isGround);
     }
 
     public void isHurt()
@@ -69,5 +68,10 @@ public class CartoonVikingAni : MonoBehaviour
     public void slideAttack()
     {
         ani.SetTrigger("SlideAttack");
+    }
+
+    public void shoot() 
+    {
+        cartoonViking.shoot();
     }
 }

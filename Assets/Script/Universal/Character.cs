@@ -101,6 +101,8 @@ public class Character : MonoBehaviour,ISaveable
         {
             currentHp = 0;
             //¦º¤`
+            isDead = true;
+            transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             onDead?.Invoke();
         }
 

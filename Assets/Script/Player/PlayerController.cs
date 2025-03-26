@@ -170,9 +170,9 @@ public class PlayerController : MonoBehaviour
     public void getHurt(Transform attacker) 
     {
         isHurt = true;
-        rb.velocity = Vector2.zero;
         if(attacker.GetComponent<Attack>().attackImpact == AttackImpact.Normal) 
         {
+            rb.velocity = Vector2.zero;
             Vector2 dirForce = new Vector2(transform.position.x - attacker.position.x, 0).normalized;
             rb.AddForce(dirForce * hurtForce, ForceMode2D.Impulse);
         }

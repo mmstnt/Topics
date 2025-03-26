@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageBasic: 0
-  damageRatio: 1
+  damageRatio: 1.25
   damagePercentage: 0
   attackImpact: 0
   attackKind: 0
@@ -496,18 +496,6 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8976125130410760501}
-        m_TargetAssemblyTypeName: Goblin, Assembly-CSharp
-        m_MethodName: goblinDead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: raiseEvent
@@ -550,13 +538,11 @@ MonoBehaviour:
   sprintTime: 0.3
   cutDistance: 3
   bombDistance: 7
-  direction: 24
   distanceToPlayer: 0
   action: 0
-  isDead: 0
   actionMode: 0
+  actionList: 
   moveDuring: 0
-  cut: 0
 --- !u!114 &4999714211092772762
 MonoBehaviour:
   m_ObjectHideFlags: 0

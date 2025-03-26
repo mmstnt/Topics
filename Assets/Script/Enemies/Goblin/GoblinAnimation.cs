@@ -6,12 +6,14 @@ public class GoblinAnimation : MonoBehaviour
 {
     private Animator ani;
     private Rigidbody2D rb;
+    private Character character;
     private Goblin goblin;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        character = transform.parent.GetComponent<Character>();
         goblin = transform.parent.GetComponent<Goblin>();
     }
 
@@ -23,7 +25,7 @@ public class GoblinAnimation : MonoBehaviour
     public void SetAnimation()
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        ani.SetBool("isDead", goblin.isDead);
+        ani.SetBool("isDead", character.isDead);
     }
 
     public void isThrow()
