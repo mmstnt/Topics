@@ -21,6 +21,7 @@ public class BuffManager : MonoBehaviour,ISaveable
     [Header("²Õ¥ó")]
     public GameObject goblinBomb;
     public GameObject thunder;
+    public GameObject potions;
 
     [Header("¥d¦À")]
     public CardDataList cardDataList;
@@ -93,6 +94,10 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new GoblinBomb(goblinBomb);
             case "30002":
                 return new Zero();
+            case "30003":
+                return new Medical(potions);
+            case "30004":
+                return new Thornmail();
             case "40001":
                 return new BloodSuck();
             case "40002":
