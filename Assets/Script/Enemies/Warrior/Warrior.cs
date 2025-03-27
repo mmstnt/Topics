@@ -17,17 +17,22 @@ public class Warrior : MonoBehaviour
     public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
+    public float jumpMinDistance;
+    public float jumpMaxDistance;
     public float attackMinDistance;
     public float attackMaxDistance;
+    public Vector2 jumpForceMin;
+    public Vector2 jumpForceMax;
 
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
     public bool isDead;
     public bool action;
-    public enum actionKind { move, cut1, cut2, cut3 }
+    public enum actionKind { move, cut1, cut2, cut3, jump }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
+    public bool isJump;
 
     private void Awake()
     {
@@ -76,7 +81,10 @@ public class Warrior : MonoBehaviour
         actionList.RemoveAt(0);
         switch (actionMode)
         {
+             
             case actionKind.move:
+                if (distanceToPlayer < attackMaxDistance)
+                    break;
                 action = true;
                 getPlayerSite();
                 moveDuring = Random.Range(moveTimeMin, moveTimeMax);
@@ -106,6 +114,14 @@ public class Warrior : MonoBehaviour
                 ani.cut3();
                 break;
 
+            case actionKind.jump:
+                if (distanceToPlayer < jumpMinDistance|| distanceToPlayer > jumpMaxDistance || !physicsCheck.isGround || isJump)
+                    break;
+                action = true;
+                getPlayerSite();
+                jump();
+                break;
+
         }
     }
 
@@ -116,33 +132,44 @@ public class Warrior : MonoBehaviour
         {
             case 0:
                 actionList.Add(actionKind.move);
+                 
                 break;
             case 1:
+                actionList.Add(actionKind.jump);
                 actionList.Add(actionKind.cut1);
+                
                 break;
             case 2:
-                 
+                actionList.Add(actionKind.jump);
                 actionList.Add(actionKind.cut2);
-                 
+
                 break;
             case 3:
-                 
-                
+                actionList.Add(actionKind.jump);
                 actionList.Add(actionKind.cut3);
                 break;
             case 4:
+                actionList.Add(actionKind.jump);
                 actionList.Add(actionKind.cut1);
                 actionList.Add(actionKind.cut2);
                 actionList.Add(actionKind.cut3);
                 break;
             case 5:
+                actionList.Add(actionKind.jump);
+                actionList.Add(actionKind.cut1);
                 actionList.Add(actionKind.cut2);
-                actionList.Add(actionKind.cut3);
                 break;
 
 
 
         }
+    }
+
+    public void jump()
+    {
+        isJump = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(transform.localScale.x * Random.Range(jumpForceMin.x, jumpForceMax.x), Random.Range(jumpForceMin.y, jumpForceMax.y)), ForceMode2D.Impulse);
     }
 
     private void getPlayerSite()

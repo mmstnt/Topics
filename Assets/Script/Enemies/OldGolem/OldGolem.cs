@@ -17,15 +17,18 @@ public class OldGolem : MonoBehaviour
     public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
-     
+    public Vector2 jumpForceMin;
+    public Vector2 jumpForceMax;
+
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
     public bool isDead;
     public bool action;
-    public enum actionKind { move, hit1, hit2, spit}
+    public enum actionKind { move, hit1, hit2, spit,slide}
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
+    public bool isJump;
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -98,7 +101,14 @@ public class OldGolem : MonoBehaviour
                 getPlayerSite();
                 ani.spit();
                 break;
-             
+            case actionKind.slide:
+                if (!physicsCheck.isGround || isJump)
+                    break;
+                action = true;
+                getPlayerSite();
+                slide();
+                break;
+
         }
     }
 
@@ -112,13 +122,16 @@ public class OldGolem : MonoBehaviour
                 break;
             case 1:
                 actionList.Add(actionKind.hit1);
+                actionList.Add(actionKind.slide);
                 break;
 
             case 2:
                 actionList.Add(actionKind.hit2);
+                actionList.Add(actionKind.slide);
                 break;
             case 3:
                 actionList.Add(actionKind.spit);
+                actionList.Add(actionKind.slide);
                 break;
 
             case 4:
@@ -148,7 +161,12 @@ public class OldGolem : MonoBehaviour
         moveDuring -= Time.deltaTime; ;
 
     }
-
+    public void slide()
+    {
+        isJump = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(transform.localScale.x * Random.Range(jumpForceMin.x, jumpForceMax.x), Random.Range(jumpForceMin.y, jumpForceMax.y)), ForceMode2D.Impulse);
+    }
     public void spitBomb()
     {
         Vector3 vector = transform.position;

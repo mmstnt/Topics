@@ -7,12 +7,14 @@ public class OldGolemAnimation : MonoBehaviour
 private OldGolem oldgolem;
 private Animator ani;
 private Rigidbody2D rb;
+private PhysicsCheck physicsCheck;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
         oldgolem = transform.parent.GetComponent<OldGolem>();
+        physicsCheck = transform.parent.gameObject.GetComponent<PhysicsCheck>();
     }
 
     private void Update()
@@ -24,6 +26,7 @@ private Rigidbody2D rb;
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         ani.SetBool("isDead", oldgolem.isDead);
+        ani.SetBool("isGround", physicsCheck.isGround);
     }
 
     public void hit1()
