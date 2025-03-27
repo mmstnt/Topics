@@ -22,66 +22,78 @@ MonoBehaviour:
   - cardName: "\u653B\u64CA"
     cardIntroduce: "\u50B7\u5BB3\u63D0\u9AD81\u9EDE"
     cardID: 10001
-    cardImage: {fileID: 21300000, guid: d5fd7b1b56cf97b4ca9b2310ab050c27, type: 3}
+    cardImage: {fileID: 21300000, guid: 5f3e5461c11d99345974e28ab0f91290, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u751F\u547D\u63D0\u5347"
     cardIntroduce: "\u751F\u547D\u4E0A\u9650\u63D0\u53476\u9EDE"
     cardID: 10002
-    cardImage: {fileID: 21300000, guid: 45c02a4d2dd5d0e499584658599e0e63, type: 3}
+    cardImage: {fileID: 21300000, guid: c47bd48742bb54c499af4327af979291, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u56DE\u5FA9"
     cardIntroduce: "\u751F\u547D\u503C\u56DE\u6EFF"
     cardID: 10003
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: 9fe6146c5bda8ac4281b1256f778d88d, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u7B49\u50F9\u4EA4\u63DB"
     cardIntroduce: "\u6700\u5927\u8840\u91CF\u56FA\u5B9A\u70BA50%\u57FA\u790E\u653B\u64CA\u529B\xD72"
     cardID: 10004
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: 09d4a4e66fa295a439f71294299b1964, type: 3}
     cardKind: 0
     cardCount: 0
   - cardName: "\u518D\u751F"
     cardIntroduce: "\u6BCF\u79D2\u6062\u5FA90.5\u9EDE\u751F\u547D"
     cardID: 20001
-    cardImage: {fileID: 21300000, guid: 1ef3cdea9a13b0446b1d2e44e169c5d0, type: 3}
+    cardImage: {fileID: 21300000, guid: 42a34a4710cb6444788e7fc7743a18ee, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u5014\u5F37"
     cardIntroduce: "\u8840\u91CF\u4F4E\u65BC25%\u653B\u64CA\u529B\u63D0\u53475"
     cardID: 20002
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: 09d4a4e66fa295a439f71294299b1964, type: 3}
     cardKind: 0
     cardCount: 0
   - cardName: "\u54E5\u5E03\u6797\u70B8\u5F48"
     cardIntroduce: "\u53D7\u50B7\u6642\u5728\u539F\u5730\u7559\u4E0B\u4E00\u9846\u70B8\u5F48"
     cardID: 30001
-    cardImage: {fileID: -145475387, guid: 19bd7bfcc97a8b7408972f7d963d8804, type: 3}
+    cardImage: {fileID: 21300000, guid: b2e052050e5fdf6438ee5f69ddbab609, type: 3}
     cardKind: 0
     cardCount: 1
-  - cardName: "\u5929\u4F7F\u4FDD\u4F51"
+  - cardName: "\u5929\u4F7F\u7684\u6CE8\u8996"
     cardIntroduce: "10%\u7684\u6A5F\u7387\u514D\u53D7\u50B7\u5BB3"
     cardID: 30002
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: bf14096723ac23447863fb4f8c699b92, type: 3}
     cardKind: 0
     cardCount: 0
+  - cardName: "\u6CBB\u7642\u85E5\u6C34"
+    cardIntroduce: "\u53D7\u50B7\u6642\u5728\u9644\u8FD1\u751F\u6210\u4E00\u74F6\u6CBB\u7642\u85E5\u6C34"
+    cardID: 30003
+    cardImage: {fileID: 21300000, guid: c47bd48742bb54c499af4327af979291, type: 3}
+    cardKind: 0
+    cardCount: 1
+  - cardName: "\u9006\u9C57\u6230\u7532"
+    cardIntroduce: "\u6709\u4E00\u534A\u7684\u6A5F\u7387\u53CD\u5F48\u4E00\u534A\u7684\u50B7\u5BB3\u7D66\u6575\u4EBA"
+    cardID: 30004
+    cardImage: {fileID: 21300000, guid: 51709939a0cf744489d7bb14b24b746a, type: 3}
+    cardKind: 0
+    cardCount: 1
   - cardName: "\u5438\u8840"
     cardIntroduce: "\u653B\u64CA\u5438\u53D620%\u50B7\u5BB3\u7684\u751F\u547D\u503C"
     cardID: 40001
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: cd991e72162346a4a9ce128ccfc3104f, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u559A\u96F7"
     cardIntroduce: "\u653B\u64CA\u664225%\u6A5F\u7387\u53EC\u559A\u843D\u96F7"
     cardID: 40002
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: bb0735e922f770c4bb24a217cc1be9e8, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u653B\u64CA\u71C3\u71D2"
     cardIntroduce: "\u653B\u64CA\u71C3\u71D2\u76EE\u6A19"
     cardID: 40003
-    cardImage: {fileID: 21300000, guid: a4431f3cd1e56604c8cab9c0579370b1, type: 3}
+    cardImage: {fileID: 21300000, guid: 84c0d672dbcc08546ab2a552f6ebd24b, type: 3}
     cardKind: 0
     cardCount: 1

@@ -331,9 +331,9 @@ MonoBehaviour:
   player: {fileID: 100333604}
   curLevelPool: []
   levelPool_01:
-  - {fileID: 11400000, guid: 8818545e5e27f8141b1f028491a16e44, type: 2}
+  - {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
   - {fileID: 11400000, guid: 6748e94582df4564b94770756f200d31, type: 2}
-  - {fileID: 11400000, guid: fee73243675ff8f4e9b2c086df4a6820, type: 2}
+  - {fileID: 11400000, guid: 8c0d3bf721023da4ba4acca83f1d5b11, type: 2}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
 --- !u!1 &59935439
 GameObject:
@@ -5528,6 +5528,7 @@ MonoBehaviour:
   player: {fileID: 756704901}
   goblinBomb: {fileID: 3537624931708074332, guid: e574a713b45d125459a8129c9b771c3f, type: 3}
   thunder: {fileID: 6978865026993742715, guid: b1b889c812e9c28448abfdc5281861c6, type: 3}
+  potions: {fileID: 3141759743202865845, guid: cf7f10c9cd22206468f3a494f04c29cf, type: 3}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
   cardPool: []
 --- !u!1 &1893141476

@@ -1,0 +1,1808 @@
+fileFormatVersion: 2
+guid: bf4b3f25fb93db14086a6ec08034bb57
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: geiger tileset png_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b20d26003722e194daf7467e4d68acf5
+      internalID: -48628519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82da7a344e7f9c94694da4460c67dbe6
+      internalID: 1575366562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_2
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c815cf7100ce09842813198efe77fadf
+      internalID: 381008633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291ad9d758523654daded487a73c7147
+      internalID: -133039668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1918e1a274ec848aa5d052241563af
+      internalID: -441867673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_5
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31dd3886c4aa57a458a12922d451d0d8
+      internalID: 1402309119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_6
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d9f040be0556a24cbb499038b3059f4
+      internalID: 607375202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_7
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9468504912ea94288a9f5379519031
+      internalID: 1227778849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_8
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 182
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 233ff2ffad7b1874fbd1fb7b8f0b8b0b
+      internalID: 1809651099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_9
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 175
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49db59e2c036b60448162fa33da968ed
+      internalID: -1651354705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_10
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 182
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac055d02fd589bd4487f70943fe0abd9
+      internalID: 110882474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 164
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e0848220330554e994c1e2d02d6693
+      internalID: 175167924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_12
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 164
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223dce786f8a4714aaebc5433cbfece0
+      internalID: 1480018749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_13
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 164
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d303d818bce15b64e9e00278eebff34e
+      internalID: 176185290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_14
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 154
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d8a938f89b70343bf0773451f4de85
+      internalID: -823513502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_15
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 162
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b70dc94bc4453d4ea40ebf0630da505
+      internalID: -1667087186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_16
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3462fc91fb5bf2f4da168476f272a13e
+      internalID: 589273214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_17
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698ac77a1132c264fa8719d33f83e0ea
+      internalID: -550265969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_18
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178743474f33f7949a80b4017d8111a9
+      internalID: 721042107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_19
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2160aa843f89cae4a8596ddd2af40ef8
+      internalID: 728053537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_20
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91bd5bc518054f14e9cc3980a9c8559b
+      internalID: 2090476664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_21
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c28a608ef73644aa4a90dee67649fa
+      internalID: -1343106789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_22
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 142
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16dc39cf5405661439712b828a3527f2
+      internalID: 1982660087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_23
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0140033a219f2048bc77bc942c1414b
+      internalID: 1360411232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_24
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e863c37a6d62941addf53744343e8f
+      internalID: -386350163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_25
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0202cda7f2836834aa8e74410cb8e4b5
+      internalID: -402243819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_26
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b91878372b9cd9e478ba79a20543fea6
+      internalID: 380590566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cad5374e27486774e869da57e8f3b724
+      internalID: 627991318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_28
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 116
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f8d0c7d1582cf478b3fc55022fffba
+      internalID: 1695169998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_29
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 121
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88c83837f678b524383ff47c491bd8a3
+      internalID: 1319349868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_30
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 121
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad721e1c44300741a547879e24fd4a9
+      internalID: -499116212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_31
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 121
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75bf622a1460e314fa3f432b6f56b352
+      internalID: 1838475487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_32
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 121
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6db287d661e9a47a4c3f2913b7f25c
+      internalID: 1420093134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_33
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 122
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c414b5389c001a54ab8da538e3ffc179
+      internalID: -228031599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_34
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 98
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d942b1095ccb3024b8e6f00d56349b84
+      internalID: -259234370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_35
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 98
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54ef572edab5f04dabfa7a8ff35a06e
+      internalID: -1678390369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_36
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 100
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5589c87c9ec1654e860417145e0bf81
+      internalID: -659964297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_37
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 100
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d21827210b3d5b45a136aafd84bd58e
+      internalID: 1393556028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_38
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 100
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77f5c863dfa4774087e33ac5ac2be82
+      internalID: -1252395604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_39
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 100
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6032f2b146d7d9040b20f17370b2cf56
+      internalID: -808296083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_40
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 92
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b277c57f73ca304099136fcb68e23b2
+      internalID: 248678660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_41
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 80
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964606145dcf6824b847aa29baeba909
+      internalID: -1726829788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_42
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 80
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ccbc4e543f75794294a7804a81d3d50
+      internalID: 1105043905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_43
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 80
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83737d6629d318c41949fb8bd2958186
+      internalID: 18979738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_44
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 80
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7863471e5b7f00148b8acd61bff9c7dc
+      internalID: -355752659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_45
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 79
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 777a64cbebe3c054d929fd740205fdde
+      internalID: -1721725028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_46
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 79
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49af7c04aa93c2e4fb7ef1bfbe674f30
+      internalID: -1853657666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_47
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 79
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e57efb50711c46849828c972fb02ed97
+      internalID: -530339781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_48
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 79
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1864fcfe2672d0a49a1662ba609c2d4e
+      internalID: -1048873212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_49
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 72
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8337498dcf1e92143bc73c994c412c99
+      internalID: -1666394497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_50
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96286edd5d3f544099f3231fa396e82
+      internalID: -298172755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_51
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317e3f5b152e20845b5d6adea7092b2f
+      internalID: 413114981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_52
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb652f35d4f77954c95d0f235c44b177
+      internalID: 1972665560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_53
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da0834eb1a9c065489f2f4996faf45b8
+      internalID: 1021537766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_54
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bc87e1a031da346a579bb9bc5289fd
+      internalID: -1618930024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_55
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921a5ce610c6b3943bf29f4681a71c89
+      internalID: 1606249811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_56
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 54
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06401c44ba3a8f54cbd3bf6f3695b121
+      internalID: -1024301132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_57
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 54
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dab9fa7e02e90e34e914fb0ee8166727
+      internalID: 1664057281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_58
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 54
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f295245f4b81ae04cba1dd7e2cc5cae1
+      internalID: 1243525929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_59
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 54
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140d51fcc93efe140911d513cf239f81
+      internalID: -1265087531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_60
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 52
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af31442ede4f7284e83524882e072940
+      internalID: -705111973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_61
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 30
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff694d4a5140fb44921e6211caa8847
+      internalID: 840675531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_62
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 30
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fa4934e61baf34787ec287023adf5d
+      internalID: -98951753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_63
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 33
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d52077e4e64ee4380bf072b41e2f07
+      internalID: 146392614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_64
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 33
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b38542699180244caeb4d9152a9f18b
+      internalID: -904994185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_65
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 33
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4115783ba30974e89a29ad3f90ae1d
+      internalID: 2049913535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_66
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 33
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02275fd5ae79dd64abd5cf888e43f769
+      internalID: -1121557008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_67
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 32
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58ecc11243b4b0408778dacb439a722
+      internalID: 1864482990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_68
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcce44693a0a394eb3fe1bb44b95394
+      internalID: -1122310427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_69
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436115b295e70494ca7543e82c5509fd
+      internalID: -2022839501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_70
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970b98ef5c4e7bb4cb004e2158c2f9e8
+      internalID: 110040361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_71
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89643c9dc8409141b518f54536f19b0
+      internalID: -36243197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_72
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3f8bd6723db574d83ef73ec37267ea
+      internalID: -2126284368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_73
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ed218208e0a9f469c6df7cdb7b1e51
+      internalID: -1602583737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_74
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73187c4d2ec29bb4ea269d7deed240ba
+      internalID: -1541141999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_75
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 12
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0645c2e1ded150b4c9e00eb9e18f558f
+      internalID: -1965781073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geiger tileset png_76
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 12
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ea75ed283cfeb4e937026e50325aee
+      internalID: -1019147472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      geiger tileset png_0: -48628519
+      geiger tileset png_1: 1575366562
+      geiger tileset png_10: 110882474
+      geiger tileset png_11: 175167924
+      geiger tileset png_12: 1480018749
+      geiger tileset png_13: 176185290
+      geiger tileset png_14: -823513502
+      geiger tileset png_15: -1667087186
+      geiger tileset png_16: 589273214
+      geiger tileset png_17: -550265969
+      geiger tileset png_18: 721042107
+      geiger tileset png_19: 728053537
+      geiger tileset png_2: 381008633
+      geiger tileset png_20: 2090476664
+      geiger tileset png_21: -1343106789
+      geiger tileset png_22: 1982660087
+      geiger tileset png_23: 1360411232
+      geiger tileset png_24: -386350163
+      geiger tileset png_25: -402243819
+      geiger tileset png_26: 380590566
+      geiger tileset png_27: 627991318
+      geiger tileset png_28: 1695169998
+      geiger tileset png_29: 1319349868
+      geiger tileset png_3: -133039668
+      geiger tileset png_30: -499116212
+      geiger tileset png_31: 1838475487
+      geiger tileset png_32: 1420093134
+      geiger tileset png_33: -228031599
+      geiger tileset png_34: -259234370
+      geiger tileset png_35: -1678390369
+      geiger tileset png_36: -659964297
+      geiger tileset png_37: 1393556028
+      geiger tileset png_38: -1252395604
+      geiger tileset png_39: -808296083
+      geiger tileset png_4: -441867673
+      geiger tileset png_40: 248678660
+      geiger tileset png_41: -1726829788
+      geiger tileset png_42: 1105043905
+      geiger tileset png_43: 18979738
+      geiger tileset png_44: -355752659
+      geiger tileset png_45: -1721725028
+      geiger tileset png_46: -1853657666
+      geiger tileset png_47: -530339781
+      geiger tileset png_48: -1048873212
+      geiger tileset png_49: -1666394497
+      geiger tileset png_5: 1402309119
+      geiger tileset png_50: -298172755
+      geiger tileset png_51: 413114981
+      geiger tileset png_52: 1972665560
+      geiger tileset png_53: 1021537766
+      geiger tileset png_54: -1618930024
+      geiger tileset png_55: 1606249811
+      geiger tileset png_56: -1024301132
+      geiger tileset png_57: 1664057281
+      geiger tileset png_58: 1243525929
+      geiger tileset png_59: -1265087531
+      geiger tileset png_6: 607375202
+      geiger tileset png_60: -705111973
+      geiger tileset png_61: 840675531
+      geiger tileset png_62: -98951753
+      geiger tileset png_63: 146392614
+      geiger tileset png_64: -904994185
+      geiger tileset png_65: 2049913535
+      geiger tileset png_66: -1121557008
+      geiger tileset png_67: 1864482990
+      geiger tileset png_68: -1122310427
+      geiger tileset png_69: -2022839501
+      geiger tileset png_7: 1227778849
+      geiger tileset png_70: 110040361
+      geiger tileset png_71: -36243197
+      geiger tileset png_72: -2126284368
+      geiger tileset png_73: -1602583737
+      geiger tileset png_74: -1541141999
+      geiger tileset png_75: -1965781073
+      geiger tileset png_76: -1019147472
+      geiger tileset png_8: 1809651099
+      geiger tileset png_9: -1651354705
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
