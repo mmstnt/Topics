@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fcc1203ba947f40989bd6c991f79ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aniGameObject: {fileID: 0}
+  aniGameObject: {fileID: 7638632754962894983}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -243,11 +243,9 @@ MonoBehaviour:
   rock: {fileID: 8078933060929011391, guid: ea55969fc26c1dd4d9ae3919d072c92e, type: 3}
   moveTimeMin: 0.5
   moveTimeMax: 2
-  direction: 0
   distanceToPlayerY1: 0
   distanceToPlayerY2: 0
   action: 0
-  isDead: 0
   actionMode: 0
 --- !u!114 &6147811989732723053
 MonoBehaviour:
@@ -404,5 +402,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb8a9ffa35f2934a9911fa36271f546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ani: {fileID: 0}
-  rb: {fileID: 0}

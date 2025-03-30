@@ -20,7 +20,6 @@ public class FlyingeyeAttack3 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.parent.GetComponent<Flyingeye>().action = false;
-        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

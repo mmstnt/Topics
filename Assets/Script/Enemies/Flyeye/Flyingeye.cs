@@ -13,7 +13,6 @@ public class Flyingeye : MonoBehaviour
     public LayerMask GroundLayer;
     public LayerMask WallLayer;
 
-
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
     public VoidEventSO cameraLensEvent;
@@ -31,12 +30,11 @@ public class Flyingeye : MonoBehaviour
     public RaycastHit2D back;
 
     [Header("角色狀態")]
-    public int direction; // 移動方向（-1 表示左，1 表示右）
     public float distanceToPlayer;
     public bool action;
-    public bool isDead;
     public enum actionKind { move, throwSand, throwWind, laser }
     public actionKind actionMode;
+    public List<actionKind> actionList;
     public float moveDuring;
     public float upDuring;
     public float downDuring;
@@ -46,7 +44,6 @@ public class Flyingeye : MonoBehaviour
         rb = transform.GetComponent<Rigidbody2D>();
         character = transform.GetComponent<Character>();
         ani = transform.Find("Ani").GetComponent<FlyingeyeAnimation>();
-        direction = Random.Range(0, 2) * 2 - 1; // 隨機初始化方向（-1 或 1）
     }
 
     private void OnEnable()
@@ -73,39 +70,44 @@ public class Flyingeye : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
-        CliffTurn();
-        updateCharacterFacing();
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.y - transform.position.y);
+        CliffTurn();
 
     }
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
     public void characterAction()
     {
         if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4); // 隨機選擇 0, 1, 2
+        if (actionList.Count == 0)
+        {
+            getActionMode();
+            return;
+        }
+        actionMode = actionList[0];
+        actionList.RemoveAt(0);
         switch (actionMode)
         {
             case actionKind.move:
                 action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                getPlayerSite();
                 moveDuring = Random.Range(moveTimeMin, moveTimeMax);
                 break;
             case actionKind.throwSand:
                 action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                getPlayerSite();
                 rb.velocity = Vector2.zero;
                 ani.attack1();
                 break;
             case actionKind.throwWind:
                 action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                getPlayerSite();
                 rb.velocity = Vector2.zero;
                 ani.attack2();
                 break;
@@ -113,11 +115,37 @@ public class Flyingeye : MonoBehaviour
                 if (distanceToPlayer > laserDistance) 
                     break;
                 action = true;
-                direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+                getPlayerSite();
                 rb.velocity = Vector2.zero;
                 ani.attack3();
                 break;
         }
+    }
+
+    private void getActionMode()
+    {
+        int mode = Random.RandomRange(0, 4);
+        switch (mode)
+        {
+            case 0:
+                actionList.Add(actionKind.move);
+                break;
+            case 1:
+                actionList.Add(actionKind.throwSand);
+                break;
+            case 2:
+                actionList.Add(actionKind.throwWind);
+                break;
+            case 3:
+                actionList.Add(actionKind.laser);
+                break;
+        }
+    }
+
+    private void getPlayerSite()
+    {
+        float dir = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+        transform.localScale = new Vector3(dir, 1, 1);
     }
 
     public void ThrowSand()
@@ -142,7 +170,6 @@ public class Flyingeye : MonoBehaviour
         GameObject laserObject = Instantiate(laser, transform.position, transform.rotation);
         laserObject.GetComponent<Laser>().site = this.transform;
         laserObject.GetComponent<AttackSource>().attackSource = this.transform;
-
     }
 
     public void ThrowWind()
@@ -169,7 +196,7 @@ public class Flyingeye : MonoBehaviour
     public void move()
     {
         if (back.collider != null)
-            direction = direction * -1;
+            transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
         if (actionMode != actionKind.move)
             return;
         if (actionMode == actionKind.move)
@@ -197,7 +224,7 @@ public class Flyingeye : MonoBehaviour
                 upDuring -= Time.deltaTime;
             }
             
-            rb.velocity = new Vector2(direction * character.speed * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
+            rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, MoveSpeedY * Time.deltaTime); // 僅在 X 軸上移動
             if (moveDuring < 0)
             {
                 action = false;
@@ -209,25 +236,6 @@ public class Flyingeye : MonoBehaviour
             return;
         }
         moveDuring -= Time.deltaTime;
-    }
-     
-    public void updateCharacterFacing()
-    {
-        // 根據移動方向改變角色的面向
-        if (direction == -1)
-        {
-            transform.localScale = new Vector3(-1, 1, 1); // 面向左
-        }
-        else if (direction == 1)
-        {
-            transform.localScale = new Vector3(1, 1, 1); // 面向右
-        }
-    }
-
-    public void flyingeyeDead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
     }
 }
 

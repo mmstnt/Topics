@@ -3,32 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GolemAnimation : MonoBehaviour
-{ 
-    public Animator ani;
-    public Rigidbody2D rb;
-    private Golem golem;
-
+{
+    private Animator ani;
+    private Rigidbody2D rb;
+    private Character character;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        golem = transform.parent.GetComponent<Golem>();
+        character = transform.parent.GetComponent<Character>();
     }
 
     private void Update()
     {
         SetAnimation();
-
-
-
     }
+
     public void SetAnimation()
     {
-
-        
-        ani.SetBool("isDead", golem.isDead);
-
+        ani.SetBool("isDead", character.isDead);
     }
 
     public void Golemshoot()

@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-    public Vector2 attackSite;
-    public float distance;
-    private Rigidbody2D rb;
-    private bool isExploded = false; // 防止多次觸發銷毀
-    public float speed;
+    [Header("事件監聽")]
+    public VoidEventSO afterSceneLoadEvent;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("角色參數")]
+    public float speed;
+    public Vector2 direction;
+
+    private void OnEnable()
+    {
+        afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+    }
+
+    private void OnDisable()
+    {
+        afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+    }
+
+    private void onAfterSceneLoadEvent()
+    {
+        Destroy(this.gameObject);
+    }
+
+    private void Awake()
     {
         float angle = transform.eulerAngles.z;
 
-        Vector2 direction = new Vector2(
+        direction = new Vector2(
             Mathf.Cos(angle * Mathf.Deg2Rad), 
             Mathf.Sin(angle * Mathf.Deg2Rad)  
         );
-        attackSite = (Vector2)transform.position + direction * distance;
-        rb = transform.GetComponent<Rigidbody2D>();
 
         Destroy(gameObject, 1.0f);
-
-
-
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Move();
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
-
-    void Move()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, attackSite, speed * Time.deltaTime);         
-    }
-
-     
-
-
-     
 }
 
  

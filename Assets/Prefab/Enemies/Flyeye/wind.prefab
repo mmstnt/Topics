@@ -83,6 +83,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 1
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 1
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:
@@ -161,8 +163,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1324225735
-  m_SortingLayer: 17
+  m_SortingLayerID: -205872375
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9f1b31db1f6f6604986dde9d79e88590, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,7 +186,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167997674247698266}
-  - component: {fileID: 1314993443904890335}
   - component: {fileID: 3896577354782313801}
   - component: {fileID: 2999445303874594544}
   - component: {fileID: 9000771313359072238}
@@ -212,33 +213,6 @@ Transform:
   - {fileID: 5244186794813688064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1314993443904890335
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316076562366683970}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!70 &3896577354782313801
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -286,9 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e523b3c6274a3c45a3d84cf3a3f1d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSite: {x: 0, y: 0}
-  distance: 100
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   speed: 50
+  direction: {x: 0, y: 0}
 --- !u!114 &9000771313359072238
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class FlyingeyeAnimation : MonoBehaviour
 {
-     
-    public Animator ani;
-    public Rigidbody2D rb;
-    private Flyingeye flyingeye;
+    private Animator ani;
+    private Rigidbody2D rb;
+    private Character character;
    
     
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        flyingeye = transform.parent.GetComponent<Flyingeye>();
+        character = transform.parent.GetComponent<Character>();
     }
 
 
@@ -26,7 +25,7 @@ public class FlyingeyeAnimation : MonoBehaviour
     public void SetAnimation()
     {
          
-        ani.SetBool("isDead",flyingeye.isDead);
+        ani.SetBool("isDead",character.isDead);
     }
 
     public void attack1()
