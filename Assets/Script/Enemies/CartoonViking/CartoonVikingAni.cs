@@ -74,4 +74,9 @@ public class CartoonVikingAni : MonoBehaviour
     {
         cartoonViking.shoot();
     }
+
+    public void wave()
+    {
+        ani.SetTrigger("Wave");
+    }
 }

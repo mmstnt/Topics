@@ -58,7 +58,7 @@ public class BringerOfDeathBullet : MonoBehaviour
     {
         if (!isAttack || attackSource == null) return;
         transform.position = Vector2.MoveTowards(transform.position, attackSite, speed * Time.deltaTime);
-        if (new Vector2(transform.position.x, transform.position.y) == attackSite || attackSource.GetComponent<BringerOfDeath>().isDead) 
+        if (new Vector2(transform.position.x, transform.position.y) == attackSite || attackSource.GetComponent<Character>().isDead) 
         {
             destroyGameObject();
             attackSite = (Vector2)transform.position + directionSite * distance;

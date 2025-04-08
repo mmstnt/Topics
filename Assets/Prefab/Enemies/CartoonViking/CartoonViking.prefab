@@ -291,6 +291,7 @@ MonoBehaviour:
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   gunBullet: {fileID: 8696894063478156273, guid: c575c59fb1519044ba45ba97005c50e1, type: 3}
+  CartoonVikingWave: {fileID: 3911449866389690672, guid: b0d6a94d9a6d67948830c9e6eafe62ae, type: 3}
   moveTimeMin: 0.5
   moveTimeMax: 1.5
   attackMinDistance: 1

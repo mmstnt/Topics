@@ -386,18 +386,6 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 753667894698822548}
-        m_TargetAssemblyTypeName: SkeletonLighter, Assembly-CSharp
-        m_MethodName: dead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: raiseEvent
@@ -435,13 +423,11 @@ MonoBehaviour:
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   blueFireCast: {fileID: 8607682538737487295, guid: 643cfb77d1efca14d96ea151299817f2, type: 3}
-  moveSpeed: 200
   moveTimeMin: 0.5
   moveTimeMax: 1.5
   attackMinDistance: 1
   attackMaxDistance: 3
   distanceToPlayer: 0
-  isDead: 0
   action: 0
   actionMode: 0
   actionList: 

@@ -6,12 +6,14 @@ public class BringerOfDeathAnimation : MonoBehaviour
 {
     private Animator ani;
     private Rigidbody2D rb;
+    private Character character;
     private BringerOfDeath bringerOfDeath;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
+        character = transform.parent.GetComponent<Character>();
         bringerOfDeath = transform.parent.GetComponent<BringerOfDeath>();
     }
 
@@ -23,7 +25,7 @@ public class BringerOfDeathAnimation : MonoBehaviour
     public void SetAnimation()
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        ani.SetBool("isDead", bringerOfDeath.isDead);
+        ani.SetBool("isDead", character.isDead);
     }
 
     public void isHurt()

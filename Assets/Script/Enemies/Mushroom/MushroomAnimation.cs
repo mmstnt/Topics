@@ -6,14 +6,14 @@ public class MushroomAnimation : MonoBehaviour
 {
     public Animator ani;
     public Rigidbody2D rb;
-    private Mushroom mushroom;
+    private Character character;
 
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        mushroom = transform.parent.GetComponent<Mushroom>();
+        character = transform.parent.GetComponent<Character>();
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class MushroomAnimation : MonoBehaviour
     {
 
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        ani.SetBool("isDead", mushroom.isDead);
+        ani.SetBool("isDead", character.isDead);
 
     }
 

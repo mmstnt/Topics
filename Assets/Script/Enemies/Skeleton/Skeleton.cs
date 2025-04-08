@@ -30,8 +30,8 @@ public class Skeleton : MonoBehaviour
     public bool action;
     public enum actionKind { move, call, cut, wave }
     public actionKind actionMode;
+    public List<actionKind> actionList;
     private float moveDuring;
-    public bool isDead;
 
     private void Awake()
     {
@@ -66,7 +66,7 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         CliffTurn();
         updateCharacterFacing();
         characterAction();
@@ -76,15 +76,20 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
     public void characterAction()
     {
         if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
-
+        if (actionList.Count == 0)
+        {
+            getActionMode();
+            return;
+        }
+        actionMode = actionList[0];
+        actionList.RemoveAt(0);
         switch (actionMode)
         {
             case actionKind.move:
@@ -100,7 +105,6 @@ public class Skeleton : MonoBehaviour
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 ani.Skeletoncall();
                 break;
-
             case actionKind.cut:
                 if (distanceToPlayer > cutDistance)
                     break;
@@ -109,7 +113,6 @@ public class Skeleton : MonoBehaviour
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 ani.Skeletoncut();
                 break;
-
             case actionKind.wave:
                 if (distanceToPlayer > cutDistance)
                     break;
@@ -117,6 +120,25 @@ public class Skeleton : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 ani.Skeletonwave();
+                break;
+        }
+    }
+    private void getActionMode()
+    {
+        int mode = Random.RandomRange(0, 4);
+        switch (mode)
+        {
+            case 0:
+                actionList.Add(actionKind.move);
+                break;
+            case 1:
+                actionList.Add(actionKind.call);
+                break;
+            case 2:
+                actionList.Add(actionKind.cut);
+                break;
+            case 3:
+                actionList.Add(actionKind.wave);
                 break;
         }
     }
@@ -190,10 +212,4 @@ public class Skeleton : MonoBehaviour
             skeleton2Object.GetComponent<AttackSource>().attackSource = this.transform;
         }
     }
-    public void SkeletonDead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
-    }
-
 }

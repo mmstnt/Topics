@@ -24,7 +24,6 @@ public class BringerOfDeath : MonoBehaviour
 
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
-    public bool isDead;
     public bool isTeleport;
     public bool action;
     public enum actionKind { move , attack01, attack02, cast01 , cast02 , teleport }
@@ -63,14 +62,14 @@ public class BringerOfDeath : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
@@ -197,11 +196,5 @@ public class BringerOfDeath : MonoBehaviour
             }
             moveDuring -= Time.deltaTime;
         }
-    }
-
-    public void dead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
     }
 }

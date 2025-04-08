@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6147811989732723053}
   - component: {fileID: 47168456555127896}
   m_Layer: 8
-  m_Name: golem
+  m_Name: Golem
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,18 +188,6 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4258521230536626767}
-        m_TargetAssemblyTypeName: Golem, Assembly-CSharp
-        m_MethodName: GolemDead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: raiseEvent
@@ -247,6 +235,7 @@ MonoBehaviour:
   distanceToPlayerY2: 0
   action: 0
   actionMode: 0
+  actionList: 
 --- !u!114 &6147811989732723053
 MonoBehaviour:
   m_ObjectHideFlags: 0

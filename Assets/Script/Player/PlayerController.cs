@@ -25,13 +25,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("狀態")]
     public bool isHurt;
-    public bool isDead;
     public bool isAttack;
     public bool isSlide;
     private PlayerInputControl inputControl;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
     private PlayerAnimation playerAnimation;
+    private Character character;
     private Vector2 inputDirection;
     private int faceDir;
     private bool canDoubleJump;
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     //讀取遊戲進度
     private void onLoadDataEvent()
     {
-        isDead = false;
+        character.isDead = false;
     }
 
     private void onCameraLensEvent()
@@ -180,7 +180,6 @@ public class PlayerController : MonoBehaviour
 
     public void playerDead() 
     {
-        isDead = true;
         inputControl.GamePlay.Disable();
     }
 }

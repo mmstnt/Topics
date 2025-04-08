@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 2990616991161508435}
   - component: {fileID: 7171669830285228188}
   m_Layer: 8
-  m_Name: mushroom
+  m_Name: Mushroom
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,19 +278,7 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8993924508477670575}
-        m_TargetAssemblyTypeName: Mushroom, Assembly-CSharp
-        m_MethodName: MushroomDead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: e6595163d2b4e07488428ecdc1f0ffeb, type: 2}
+      - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: raiseEvent
         m_Mode: 1
@@ -337,8 +325,8 @@ MonoBehaviour:
   distanceToPlayerX: 0
   distanceToPlayerY: 0
   action: 0
-  isDead: 0
   actionMode: 0
+  actionList: 
 --- !u!114 &2990616991161508435
 MonoBehaviour:
   m_ObjectHideFlags: 0

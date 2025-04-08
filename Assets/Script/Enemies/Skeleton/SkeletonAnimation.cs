@@ -6,14 +6,14 @@ public class SkeletonAnimation : MonoBehaviour
 {
     public Animator ani;
     public Rigidbody2D rb;
-    private Skeleton skeleton;
+    private Character character;
 
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        skeleton = transform.parent.GetComponent<Skeleton>();
+        character = transform.parent.GetComponent<Character>();
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class SkeletonAnimation : MonoBehaviour
     {
 
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        ani.SetBool("isDead", skeleton.isDead);
+        ani.SetBool("isDead", character.isDead);
     }
 
     public void Skeletoncall()

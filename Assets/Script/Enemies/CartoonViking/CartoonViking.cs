@@ -16,6 +16,7 @@ public class CartoonViking : MonoBehaviour
 
     [Header("¨¤¦â°Ñ¼Æ")]
     public GameObject gunBullet;
+    public GameObject CartoonVikingWave;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
@@ -28,7 +29,7 @@ public class CartoonViking : MonoBehaviour
     public float distanceToPlayer;
     public bool isGun;
     public bool action;
-    public enum actionKind { move, attack01, attack02, axeToGun, gunToAxe, slide , slideAttack , slideGunAttack }
+    public enum actionKind { move, attack01, attack02, axeToGun, gunToAxe, slide , slideAttack , slideGunAttack , wave }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
@@ -97,8 +98,14 @@ public class CartoonViking : MonoBehaviour
                 moveDuring = Random.Range(moveTimeMin, moveTimeMax);
                 break;
             case actionKind.attack01:
-                if (distanceToPlayer < attackMinDistance || distanceToPlayer > attackMaxDistance || isGun)
+                if (distanceToPlayer < attackMinDistance || distanceToPlayer > attackMaxDistance || isGun) 
+                {
+                    if(distanceToPlayer < attackMinDistance) 
+                    {
+                        actionList.Add(actionKind.wave);
+                    }
                     break;
+                }
                 action = true;
                 rb.velocity = Vector2.zero;
                 getPlayerSite();
@@ -110,7 +117,7 @@ public class CartoonViking : MonoBehaviour
                     if (isGun) 
                     {
                         actionList.Add(actionKind.slideGunAttack);
-                        actionList.Add(actionKind.attack02);
+                        switchActionCount++;
                     }
                     break;
                 }
@@ -163,6 +170,14 @@ public class CartoonViking : MonoBehaviour
                 transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
                 slide();
                 ani.slide();
+                break;
+            case actionKind.wave:
+                if (!isGun)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                ani.wave();
                 break;
         }
     }

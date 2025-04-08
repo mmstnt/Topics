@@ -29,9 +29,9 @@ public class Mushroom : MonoBehaviour
     public float distanceToPlayerX;
     public float distanceToPlayerY;
     public bool action;
-    public bool isDead;
     public enum actionKind {move, controlMushroom,bite, throwSpore }
     public actionKind actionMode;
+    public List<actionKind> actionList;
     private float moveDuring;
 
     private void Awake()
@@ -67,7 +67,7 @@ public class Mushroom : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         CliffTurn();
         updateCharacterFacing();
         characterAction();
@@ -77,14 +77,20 @@ public class Mushroom : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
     public void characterAction()
     {
         if (action) return;
-        actionMode = (actionKind)Random.Range(0, 4);
+        if (actionList.Count == 0)
+        {
+            getActionMode();
+            return;
+        }
+        actionMode = actionList[0];
+        actionList.RemoveAt(0);
         switch (actionMode)
         {
             case actionKind.move:
@@ -114,6 +120,26 @@ public class Mushroom : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 direction = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
                 ani.attack3();
+                break;
+        }
+    }
+
+    private void getActionMode()
+    {
+        int mode = Random.RandomRange(0, 4);
+        switch (mode)
+        {
+            case 0:
+                actionList.Add(actionKind.move);
+                break;
+            case 1:
+                actionList.Add(actionKind.controlMushroom);
+                break;
+            case 2:
+                actionList.Add(actionKind.bite);
+                break;
+            case 3:
+                actionList.Add(actionKind.throwSpore);
                 break;
         }
     }
@@ -202,13 +228,5 @@ public class Mushroom : MonoBehaviour
         hit = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
         // 繪製射線（用於調試，可視化射線）
         Debug.DrawRay(rayStart, rayDirection * 3, Color.red);
-
-    }    
-
-
-    public void MushroomDead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
-    }
+    }   
 }

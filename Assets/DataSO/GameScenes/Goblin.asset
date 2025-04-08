@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  sceneType: 2
+  sceneReference:
+    m_AssetGUID: 0553eb1008bd51742941d5de7b2958d2
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  positionToGo: {x: -24, y: 0.8, z: 0}
+  portalPosition: {x: 0, y: -3, z: 0}
+  image: {fileID: 1027130014, guid: 94fe5396914d39b4d9020dea71590083, type: 3}

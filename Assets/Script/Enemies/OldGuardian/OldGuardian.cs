@@ -29,7 +29,6 @@ public class OldGuardian : MonoBehaviour
 
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
-    public bool isDead;
     public bool action;
     public enum actionKind { move , attack01 , attack02 , spit , jump }
     public actionKind actionMode;
@@ -70,14 +69,14 @@ public class OldGuardian : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
@@ -203,11 +202,5 @@ public class OldGuardian : MonoBehaviour
         GameObject bombObject = Instantiate(oldGuardianBomb, vector, transform.rotation);
         bombObject.GetComponent<OldGuardianBomb>().isThrow(transform.localScale.x);
         bombObject.GetComponent<AttackSource>().attackSource = this.transform;
-    }
-
-    public void dead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
     }
 }

@@ -22,9 +22,8 @@ public class SkeletonLighter : MonoBehaviour
 
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
-    public bool isDead;
     public bool action;
-    public enum actionKind { move, attack01, attack02}
+    public enum actionKind { move, attack01, attack02 }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
@@ -60,14 +59,14 @@ public class SkeletonLighter : MonoBehaviour
 
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
@@ -151,11 +150,5 @@ public class SkeletonLighter : MonoBehaviour
     {
         GameObject blueFiretObject = Instantiate(blueFireCast, transform.position, transform.rotation);
         blueFiretObject.GetComponent<BlueFireCast>().attackSource = this.transform;
-    }
-
-    public void dead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
     }
 }
