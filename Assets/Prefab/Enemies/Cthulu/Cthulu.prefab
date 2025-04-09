@@ -412,10 +412,14 @@ MonoBehaviour:
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   CthuluSkill01Cast: {fileID: 8063084829959888395, guid: aabab30152977c34f8b4ffc05f6a9565, type: 3}
+  CthuluBullet01Cast: {fileID: 4619814798047893453, guid: 4d933763efa8c3a46a3cf0823f5d4b47, type: 3}
+  CthuluSkill02: {fileID: 1935725832139707472, guid: ac6b09280eca7994291cb13ffd3d08f2, type: 3}
   moveTimeMin: 0.5
   moveTimeMax: 1
   attackMinDistance: 0
   attackMaxDistance: 0
+  skill02MinCount: 2
+  skill02MaxCount: 4
   distanceToPlayer: 0
   action: 0
   actionMode: 0

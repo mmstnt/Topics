@@ -15,10 +15,14 @@ public class Cthulu : MonoBehaviour
 
     [Header("角色參數")]
     public GameObject CthuluSkill01Cast;
+    public GameObject CthuluBullet01Cast;
+    public GameObject CthuluSkill02;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
     public float attackMaxDistance;
+    public int skill02MinCount;
+    public int skill02MaxCount;
 
     [Header("角色狀態")]
     public float distanceToPlayer;
@@ -148,5 +152,20 @@ public class Cthulu : MonoBehaviour
     {
         GameObject skill01Cast = Instantiate(CthuluSkill01Cast,transform.position,transform.rotation);
         skill01Cast.transform.GetComponent<CthuluSkill01Cast>().attackSource = this.transform;
+        GameObject bullet01Cast = Instantiate(CthuluBullet01Cast, transform.position, transform.rotation);
+        bullet01Cast.transform.GetComponent<CthuluBullet01Cast>().attackSource = this.transform;
+    }
+
+    public void skill02() 
+    {
+        int skill02Count = Random.Range(skill02MinCount, skill02MaxCount + 1);
+        Vector2 vector = transform.position;
+        vector.x += transform.localScale.x * 6;
+        for(int i = 0; i < skill02Count; i++) 
+        {
+            GameObject skill02 = Instantiate(CthuluSkill02, vector, transform.rotation);
+            skill02.transform.GetComponent<AttackSource>().attackSource = this.transform;
+            skill02.transform.GetComponent<CthuluSkill02>().isThrow(transform.localScale.x);
+        }
     }
 }

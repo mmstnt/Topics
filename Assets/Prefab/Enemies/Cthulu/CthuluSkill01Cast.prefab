@@ -47,6 +47,6 @@ MonoBehaviour:
   attackSource: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   CthuluSkill01GameObject: {fileID: 3365409361308499977, guid: 3d863449404592d4ba9f9c0614280f1b, type: 3}
-  Interval: 0.075
-  Count: 30
+  Interval: 0.05
+  Count: 6
   distance: 1

@@ -30,7 +30,7 @@ public class CthuluSkill01Cast : MonoBehaviour
             Mathf.Cos(angle * Mathf.Deg2Rad),
             Mathf.Sin(angle * Mathf.Deg2Rad)
         );
-        CurCount = Count;
+        CurCount = Count * 3 + 1;
     }
 
     private void OnEnable()
@@ -53,22 +53,22 @@ public class CthuluSkill01Cast : MonoBehaviour
         if (attackSource == null) return;
         if (time < 0)
         {
-            time = Interval;
-            transform.position = (Vector2)transform.position + dir * distance;
-            float angle = (CurCount % 3 == 0 ? 0 : (CurCount % 3 == 1 ? 60 : -60)) + transform.eulerAngles.z;
+            float angle = (CurCount % 3 == 0 ? 0 : (CurCount % 3 == 1 ? 45 : -45)) + transform.eulerAngles.z;
             Vector2 direction = new Vector2(
                 Mathf.Cos(angle * Mathf.Deg2Rad),
                 Mathf.Sin(angle * Mathf.Deg2Rad)
             );
             direction = direction.normalized;
             Vector2 vector = (Vector2)transform.position + direction;
-            GameObject bringerOfDeathBulletObject = Instantiate(CthuluSkill01GameObject, vector, Quaternion.Euler(0,0,angle));
+            GameObject bringerOfDeathBulletObject = Instantiate(CthuluSkill01GameObject, vector, Quaternion.Euler(0,0,transform.eulerAngles.z));
             bringerOfDeathBulletObject.GetComponent<AttackSource>().attackSource = this.attackSource;
             CurCount -= 1;
             if (CurCount <= 0)
             {
                 Destroy(this.gameObject);
             }
+            time = Interval;
+            transform.position = (Vector2)transform.position + dir * distance;
         }
         else
         {
