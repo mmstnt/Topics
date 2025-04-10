@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: oldgolemslideend
+  m_Name: bullet
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -31,16 +31,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.125
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.375
+        time: 0.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -60,17 +51,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 457983166, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
-    - time: 0.125
-      value: {fileID: 2076757514, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
-    - time: 0.25
-      value: {fileID: 751473892, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
+      value: {fileID: 1672821005, guid: 8d3b68aece7d304479a32a6bd58af2e5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 8
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -96,15 +83,13 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 457983166, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
-    - {fileID: 2076757514, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
-    - {fileID: 751473892, guid: 87fc6fad7dcc5364c944e77ddaf6a0ba, type: 3}
+    - {fileID: 1672821005, guid: 8d3b68aece7d304479a32a6bd58af2e5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.375
+    m_StopTime: 0.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -134,16 +119,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.125
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.375
+        time: 0.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity

@@ -49,5 +49,10 @@ public class WarriorAnimation : MonoBehaviour
     {
         ani.SetTrigger("hurt");
     }
+
+    public void slide()
+    {
+        ani.SetTrigger("isSlide");
+    }
 }
 

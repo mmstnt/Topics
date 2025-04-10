@@ -11,6 +11,7 @@ public class Warrior : MonoBehaviour
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
 
@@ -21,14 +22,16 @@ public class Warrior : MonoBehaviour
     public float jumpMaxDistance;
     public float attackMinDistance;
     public float attackMaxDistance;
+    public float slideDistance;
     public Vector2 jumpForceMin;
     public Vector2 jumpForceMax;
+    public float slideForce;
 
     [Header("角色狀態")]
     public float distanceToPlayer;
     public bool isDead;
     public bool action;
-    public enum actionKind { move, cut1, cut2, cut3, jump }
+    public enum actionKind { move, cut1, cut2, cut3, jump,slide }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
@@ -44,28 +47,34 @@ public class Warrior : MonoBehaviour
     private void OnEnable()
     {
         afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised += onCameraLensEvent;
     }
 
     private void OnDisable()
     {
         afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+        cameraLensEvent.onEventRaised -= onCameraLensEvent;
     }
 
     private void onAfterSceneLoadEvent()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void onCameraLensEvent()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void Update()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         oldgolemAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || player == null) return;
         move();
     }
 
@@ -122,12 +131,22 @@ public class Warrior : MonoBehaviour
                 jump();
                 break;
 
+            case actionKind.slide:
+                if (distanceToPlayer < slideDistance)
+                    break;
+                action = true;
+                rb.velocity = Vector2.zero;
+                getPlayerSite();
+                slide();
+                ani.slide();
+                break;
+
         }
     }
 
     private void getActionMode()
     {
-        int mode = Random.RandomRange(0, 6);
+        int mode = Random.RandomRange(0, 4);
         switch (mode)
         {
             case 0:
@@ -135,30 +154,20 @@ public class Warrior : MonoBehaviour
                  
                 break;
             case 1:
-                actionList.Add(actionKind.jump);
+                actionList.Add(actionKind.slide);
                 actionList.Add(actionKind.cut1);
                 
                 break;
             case 2:
-                actionList.Add(actionKind.jump);
+                actionList.Add(actionKind.slide);
                 actionList.Add(actionKind.cut2);
 
                 break;
             case 3:
-                actionList.Add(actionKind.jump);
+                actionList.Add(actionKind.slide);
                 actionList.Add(actionKind.cut3);
                 break;
-            case 4:
-                actionList.Add(actionKind.jump);
-                actionList.Add(actionKind.cut1);
-                actionList.Add(actionKind.cut2);
-                actionList.Add(actionKind.cut3);
-                break;
-            case 5:
-                actionList.Add(actionKind.jump);
-                actionList.Add(actionKind.cut1);
-                actionList.Add(actionKind.cut2);
-                break;
+             
 
 
 
@@ -189,6 +198,13 @@ public class Warrior : MonoBehaviour
         }
         moveDuring -= Time.deltaTime; ;
 
+    }
+
+    private void slide()
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        Vector2 dirForce = new Vector2(transform.localScale.x, 0).normalized;
+        rb.AddForce(dirForce * slideForce, ForceMode2D.Impulse);
     }
 
     public void dead()

@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isExploded)
+        if (!isExploded && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isExploded = true;
             transform.Find("Ani").GetComponent<Animator>().SetTrigger("isExplode");

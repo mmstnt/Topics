@@ -258,7 +258,7 @@ MonoBehaviour:
   speed: 0
   isDead: 0
   invulnerable: 0
-  invulnerableTime: 0
+  invulnerableTime: 0.2
   invulnerableDuration: 0
   onHealthChange:
     m_PersistentCalls:
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
+  cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
   moveSpeed: 400
   moveTimeMin: 0.5
   moveTimeMax: 1
@@ -349,8 +350,10 @@ MonoBehaviour:
   jumpMaxDistance: 15
   attackMinDistance: 1
   attackMaxDistance: 3
+  slideDistance: 5
   jumpForceMin: {x: 10, y: 15}
   jumpForceMax: {x: 20, y: 20}
+  slideForce: 30
   distanceToPlayer: 0
   isDead: 0
   action: 0

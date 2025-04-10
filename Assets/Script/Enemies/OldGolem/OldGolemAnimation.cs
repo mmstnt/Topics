@@ -48,5 +48,15 @@ private PhysicsCheck physicsCheck;
     {
         ani.SetTrigger("hurt");
     }
+
+    public void slide()
+    {
+        ani.SetTrigger("isSlide");
+    }
+
+    public void spitOldGuardianBomb()
+    {
+        oldgolem.spitBomb();
+    }
 }
 
