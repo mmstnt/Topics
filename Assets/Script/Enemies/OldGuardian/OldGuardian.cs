@@ -133,7 +133,7 @@ public class OldGuardian : MonoBehaviour
 
     private void getActionMode()
     {
-        int mode = Random.RandomRange(0, 5);
+        int mode = Random.RandomRange(0, 6);
         switch (mode)
         {
             case 0:

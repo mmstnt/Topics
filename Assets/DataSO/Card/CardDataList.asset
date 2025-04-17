@@ -82,7 +82,7 @@ MonoBehaviour:
   - cardName: "\u5438\u8840"
     cardIntroduce: "\u653B\u64CA\u5438\u53D620%\u50B7\u5BB3\u7684\u751F\u547D\u503C"
     cardID: 40001
-    cardImage: {fileID: 21300000, guid: cd991e72162346a4a9ce128ccfc3104f, type: 3}
+    cardImage: {fileID: 21300000, guid: 3648c69d91b48ec40974d86475155515, type: 3}
     cardKind: 0
     cardCount: 1
   - cardName: "\u559A\u96F7"
@@ -95,5 +95,11 @@ MonoBehaviour:
     cardIntroduce: "\u653B\u64CA\u71C3\u71D2\u76EE\u6A19"
     cardID: 40003
     cardImage: {fileID: 21300000, guid: 84c0d672dbcc08546ab2a552f6ebd24b, type: 3}
+    cardKind: 0
+    cardCount: 1
+  - cardName: "\u66B4\u64CA"
+    cardIntroduce: "\u6BCF\u9032\u884C\u7B2C4\u6B21\u653B\u64CA\u6642\u5FC5\u5B9A\u9020\u6210\u66B4\u64CA\u50B7\u5BB3"
+    cardID: 40004
+    cardImage: {fileID: 21300000, guid: f82d43f8752636041bb2c9daa2d3d1b0, type: 3}
     cardKind: 0
     cardCount: 1

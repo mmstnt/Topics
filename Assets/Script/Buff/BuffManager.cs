@@ -104,6 +104,8 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new Thunder(thunder);
             case "40003":
                 return new AttackBurning();
+            case "40004":
+                return new Critical();
             default:
                 return null;
         }
