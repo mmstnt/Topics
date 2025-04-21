@@ -126,10 +126,10 @@ GameObject:
   - component: {fileID: 4837404828862788739}
   - component: {fileID: 1941424292339625443}
   - component: {fileID: 1670009457738724181}
-  - component: {fileID: 8100636704220457942}
   - component: {fileID: 8831143130512696648}
-  - component: {fileID: 2792200144231799163}
   - component: {fileID: 1802273348925779881}
+  - component: {fileID: 8100636704220457942}
+  - component: {fileID: 2792200144231799163}
   m_Layer: 8
   m_Name: Warrior
   m_TagString: Enemies
@@ -215,27 +215,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.2}
   m_Size: {x: 1.3, y: 3}
   m_Direction: 0
---- !u!114 &8100636704220457942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3469151898683612870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGround: 0
-  bottomOffset: {x: 0, y: -1.2}
-  checkRaduis: 0.3
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  notChangeMaterial2D: 0
-  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
-  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
 --- !u!114 &8831143130512696648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +284,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: b46b69a9857f86c4aa5cb5a1e44f91be, type: 2}
+        m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
+        m_MethodName: raiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -314,20 +305,6 @@ MonoBehaviour:
   onAttack:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2792200144231799163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3469151898683612870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  persistentType: 0
-  ID: 178a6b9a-0605-4269-b4eb-649d7d9aa586
 --- !u!114 &1802273348925779881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +337,41 @@ MonoBehaviour:
   actionMode: 0
   actionList: 
   isJump: 0
+--- !u!114 &8100636704220457942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469151898683612870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77b6fa2a7b3ca64a9ff4a49de093976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  bottomOffset: {x: 0, y: -1.2}
+  checkRaduis: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  notChangeMaterial2D: 0
+  normal: {fileID: 6200000, guid: d3873d7030d5e044a812b8ea9e3d18c9, type: 2}
+  wall: {fileID: 6200000, guid: d5ca742013b903c448c00ea339fa1e7a, type: 2}
+--- !u!114 &2792200144231799163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469151898683612870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10951aad7b83aa479c16618e2b9c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 0
+  ID: 178a6b9a-0605-4269-b4eb-649d7d9aa586
 --- !u!1 &4419445802249326170
 GameObject:
   m_ObjectHideFlags: 0

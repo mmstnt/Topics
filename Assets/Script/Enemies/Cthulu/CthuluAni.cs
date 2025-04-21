@@ -43,9 +43,9 @@ public class CthuluAni : MonoBehaviour
         ani.SetTrigger("isAtk02");
     }
 
-    public void isSkill01()
+    public void isAttack03()
     {
-        ani.SetTrigger("isSkill01");
+        ani.SetTrigger("isAtk03");
     }
 
     public void isSkill01Cast()

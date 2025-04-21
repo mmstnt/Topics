@@ -27,7 +27,7 @@ public class Cthulu : MonoBehaviour
     [Header("¨¤¦âª¬ºA")]
     public float distanceToPlayer;
     public bool action;
-    public enum actionKind { move, attack01, attack02, skill01 }
+    public enum actionKind { move, attack01, attack02, attack03 }
     public actionKind actionMode;
     public List<actionKind> actionList;
     private float moveDuring;
@@ -104,18 +104,18 @@ public class Cthulu : MonoBehaviour
                 getPlayerSite();
                 ani.isAttack02();
                 break;
-            case actionKind.skill01:
+            case actionKind.attack03:
                 action = true;
                 rb.velocity = Vector2.zero;
                 getPlayerSite();
-                ani.isSkill01();
+                ani.isAttack03();
                 break;
         }
     }
 
     private void getActionMode()
     {
-        int mode = Random.RandomRange(0, 3);
+        int mode = Random.RandomRange(0, 4);
         switch (mode)
         {
             case 0:
@@ -125,7 +125,10 @@ public class Cthulu : MonoBehaviour
                 actionList.Add(actionKind.attack01);
                 break;
             case 2:
-                actionList.Add(actionKind.skill01);
+                actionList.Add(actionKind.attack02);
+                break;
+            case 3:
+                actionList.Add(actionKind.attack03);
                 break;
         }
     }
