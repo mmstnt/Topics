@@ -57,4 +57,9 @@ public class CthuluAni : MonoBehaviour
     {
         cthulu.skill02();
     }
+
+    public void isSkill03()
+    {
+        cthulu.skill03();
+    }
 }

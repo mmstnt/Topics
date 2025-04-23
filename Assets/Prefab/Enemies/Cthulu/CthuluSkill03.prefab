@@ -187,7 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4254723dfc1f24194c67521dff656d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   gravityForce: 2000
+  speed: 8
+  times: 5
 --- !u!1 &3050035158298685075
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +267,7 @@ SpriteRenderer:
   m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: -824347966, guid: 953c54569b4e4ab48b490a4bacc8c472, type: 3}
-  m_Color: {r: 0.09803922, g: 0.29411766, b: 0, a: 1}
+  m_Color: {r: 0.09803922, g: 0.78431374, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -17,6 +17,7 @@ public class Cthulu : MonoBehaviour
     public GameObject CthuluSkill01Cast;
     public GameObject CthuluBullet01Cast;
     public GameObject CthuluSkill02;
+    public GameObject CthuluSkill03;
     public float moveTimeMin;
     public float moveTimeMax;
     public float attackMinDistance;
@@ -170,5 +171,14 @@ public class Cthulu : MonoBehaviour
             skill02.transform.GetComponent<AttackSource>().attackSource = this.transform;
             skill02.transform.GetComponent<CthuluSkill02>().isThrow(transform.localScale.x);
         }
+    }
+
+    public void skill03() 
+    {
+        Vector2 vector = transform.position;
+        vector.x += transform.localScale.x * 4;
+        vector.y += 1;
+        GameObject skill03 = Instantiate(CthuluSkill03, vector, transform.rotation);
+        skill03.transform.GetComponent<AttackSource>().attackSource = this.transform;
     }
 }
