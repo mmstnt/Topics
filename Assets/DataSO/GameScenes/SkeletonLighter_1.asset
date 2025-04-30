@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
-  m_Name: CartoonViking
+  m_Name: SkeletonLighter_1
   m_EditorClassIdentifier: 
   sceneType: 2
   sceneReference:
-    m_AssetGUID: 2566873c1be81294798b1cef08dcf3f2
+    m_AssetGUID: 0f8107fa759193746838a19bcc58caa3
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  positionToGo: {x: -15, y: 0, z: 0}
-  portalPosition: {x: 13, y: 0, z: 0}
-  image: {fileID: 21300000, guid: ad1b6026d64de3049998424a550b2399, type: 3}
+  positionToGo: {x: -25, y: -4.8, z: 0}
+  portalPosition: {x: 22, y: -1, z: 0}
+  image: {fileID: -1272991395, guid: f41cb00124a98854790729c64ed169c2, type: 3}

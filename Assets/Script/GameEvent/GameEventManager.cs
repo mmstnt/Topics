@@ -28,6 +28,9 @@ public class GameEventManager : MonoBehaviour,ISaveable
     [Header("Ãö¥d¦À")]
     public List<GameSceneSO> curLevelPool;
     public List<GameSceneSO> levelPool_01;
+    public List<GameSceneSO> levelPool_01Boss;
+    public List<GameSceneSO> levelPool_02;
+    public List<GameSceneSO> levelPool_02Boss;
 
     [Header("¥dµP®w")]
     public CardDataList cardDataList;
@@ -62,8 +65,6 @@ public class GameEventManager : MonoBehaviour,ISaveable
         cardDataList.cardInitialize();
         levelInitialize(levelPool_01);
 
-        player.GetComponent<Character>().newGame();
-        player.GetComponent<Character>().isDead = false;
     }
 
     private void onAfterSceneLoadedEvent()
@@ -82,6 +83,21 @@ public class GameEventManager : MonoBehaviour,ISaveable
         else 
         {
             removePortal();
+            if (sceneLoadManager.currentLevel == 3) 
+            {
+                levelInitialize(levelPool_01Boss);
+                sceneLoadManager.levelAddition = new(0.2f,0.1f);
+            }
+            else if(sceneLoadManager.currentLevel == 4) 
+            {
+                levelInitialize(levelPool_02);
+                sceneLoadManager.levelAddition = new(0.1f, 0.05f);
+            }
+            else if(sceneLoadManager.currentLevel == 7) 
+            {
+                levelInitialize(levelPool_02Boss);
+                sceneLoadManager.levelAddition = new(0.2f, 0.1f);
+            }
         }
     }
 

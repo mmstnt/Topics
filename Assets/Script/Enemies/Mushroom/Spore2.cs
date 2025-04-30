@@ -5,31 +5,48 @@ using UnityEngine;
  
 public class Spore2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Vector2 startSpeed; // 紆﹍硉
+    [Header("ㄆン菏钮")]
+    public VoidEventSO afterSceneLoadEvent;
+
+    [Header("à︹把计")]
+    public Vector2 startSpeed;
     public float time;
     public float maxtime;
 
-    private bool isExploded = false; // ňゎΩ牟祇綪反
+    private bool isExploded = false;
     public Spore2Animation sporeAnimation;
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Awake()
     {
         sporeAnimation = transform.Find("Ani").GetComponent<Spore2Animation>();
         time = maxtime;
     }
+
+    private void OnEnable()
+    {
+        afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+    }
+
+    private void OnDisable()
+    {
+        afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+    }
+
+    private void onAfterSceneLoadEvent()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void attack3(int direction)
     {
         transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * Random.Range(-10, startSpeed.x), Random.Range(10, startSpeed.y)), ForceMode2D.Impulse);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isExploded) // 絋玂度牟祇Ω
         {
-       
             isExploded = true;
-            
-
         }
     }
 

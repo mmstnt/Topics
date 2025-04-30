@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
-  m_Name: OldGuardian
+  m_Name: Skeleton_1
   m_EditorClassIdentifier: 
   sceneType: 2
   sceneReference:
-    m_AssetGUID: 9c46895baf4e5da4caa7dffbcf22f88b
+    m_AssetGUID: e34a047db04b83e48a78e8900a7f2a8c
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  positionToGo: {x: -7, y: -5, z: 0}
-  portalPosition: {x: 18, y: -4, z: 0}
-  image: {fileID: 0}
+  positionToGo: {x: -8, y: 2, z: 0}
+  portalPosition: {x: 2, y: 5, z: 0}
+  image: {fileID: 404937961, guid: e80a90f2c17eb144ea687bfb5b8755b7, type: 3}

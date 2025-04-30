@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b71196360e1f842b5d92b84a6a9db5, type: 3}
-  m_Name: Robot
+  m_Name: BringerOfDeath_1Boss
   m_EditorClassIdentifier: 
   sceneType: 2
   sceneReference:
-    m_AssetGUID: b6158c9996dced743adf800d0af57546
+    m_AssetGUID: 615f174edf9561442bcbd86bf34e7b1d
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  positionToGo: {x: -3, y: -5, z: 0}
-  portalPosition: {x: 30, y: -4, z: 0}
-  image: {fileID: 0}
+  positionToGo: {x: -7, y: -5, z: 0}
+  portalPosition: {x: 0, y: -3, z: 0}
+  image: {fileID: 21300000, guid: 76a6353189f50914d945adb5fd5aa671, type: 3}

@@ -33,8 +33,8 @@ public class Character : MonoBehaviour,ISaveable
 
     public void newGame()
     {
-        maxHp = startHp;
-        damage = startDamage;
+        maxHp = startHp * (1 + SceneLoadManager.instance.currentLevelHealthAddition);
+        damage = startDamage * (1 + SceneLoadManager.instance.currentLevelDamageAddition);
         speed = startSpeed;
         currentHp = maxHp;
         isDead = false;

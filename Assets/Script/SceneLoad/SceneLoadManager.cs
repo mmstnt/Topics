@@ -9,10 +9,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : MonoBehaviour,ISaveable
 {
+    public static SceneLoadManager instance;
     public Transform playerTrans;
     public Vector3 firstPosition;
     public Vector3 menuPosition;
     public int currentLevel;
+    public float currentLevelHealthAddition;
+    public float currentLevelDamageAddition;
+    public Vector2 levelAddition;
     [Header("®∆•Û∫ ≈•")]
     public SceneLoadEventSO sceneLoadEventSO;
     public VoidEventSO newGameEvent;
@@ -35,6 +39,10 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     public float fadeDuration;
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
         //currentLoadedScene = firstLoadScene;
         //currentLoadedScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive);
     }
@@ -75,6 +83,13 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     private void newGame() 
     {
         currentLevel = 0;
+        currentLevelHealthAddition = 0;
+        currentLevelDamageAddition = 0;
+        levelAddition = new Vector2(0.1f, 0.05f);
+
+        playerTrans.GetComponent<Character>().newGame();
+        playerTrans.GetComponent<Character>().isDead = false;
+
         sceneToLoad = firstLoadScene;
         sceneLoadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true, false);
     }
@@ -88,7 +103,12 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
         sceneToLoad = locationToLoad;
         positionToGo = posToGo;
         this.fadeScreen = fadeScreen;
-        if (nextLevel) currentLevel += 1;
+        if (nextLevel)
+        {
+            currentLevel += 1;
+            currentLevelHealthAddition += levelAddition.x;
+            currentLevelDamageAddition += levelAddition.y;
+        }
         if (currentLoadedScene != null)
         {
             StartCoroutine(unLoadPreviousScene());

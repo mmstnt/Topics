@@ -8,14 +8,13 @@ public class Warrior : MonoBehaviour
     private GameObject player;
     private WarriorAnimation ani;
     private PhysicsCheck physicsCheck;
+    private Character character;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
     public VoidEventSO cameraLensEvent;
 
     [Header("角色參數")]
-
-    public float moveSpeed;
     public float moveTimeMin;
     public float moveTimeMax;
     public float jumpMinDistance;
@@ -29,7 +28,6 @@ public class Warrior : MonoBehaviour
 
     [Header("角色狀態")]
     public float distanceToPlayer;
-    public bool isDead;
     public bool action;
     public enum actionKind { move, cut1, cut2, cut3, jump,slide }
     public actionKind actionMode;
@@ -41,6 +39,7 @@ public class Warrior : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         ani = transform.Find("Ani").GetComponent<WarriorAnimation>();
+        character = transform.GetComponent<Character>();
         physicsCheck = transform.GetComponent<PhysicsCheck>();
     }
 
@@ -67,14 +66,14 @@ public class Warrior : MonoBehaviour
     }
     private void Update()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         oldgolemAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (isDead || player == null) return;
+        if (character.isDead || player == null) return;
         move();
     }
 
@@ -90,7 +89,6 @@ public class Warrior : MonoBehaviour
         actionList.RemoveAt(0);
         switch (actionMode)
         {
-             
             case actionKind.move:
                 if (distanceToPlayer < attackMaxDistance)
                     break;
@@ -167,10 +165,6 @@ public class Warrior : MonoBehaviour
                 actionList.Add(actionKind.slide);
                 actionList.Add(actionKind.cut3);
                 break;
-             
-
-
-
         }
     }
 
@@ -191,7 +185,7 @@ public class Warrior : MonoBehaviour
     {
         if (actionMode != actionKind.move)
             return;
-        rb.velocity = new Vector2(transform.localScale.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
         if (moveDuring < 0)
         {
             action = false;
@@ -206,12 +200,5 @@ public class Warrior : MonoBehaviour
         Vector2 dirForce = new Vector2(transform.localScale.x, 0).normalized;
         rb.AddForce(dirForce * slideForce, ForceMode2D.Impulse);
     }
-
-    public void dead()
-    {
-        isDead = true;
-        rb.velocity = Vector2.zero;
-    }
-
 }
 

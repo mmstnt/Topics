@@ -331,8 +331,20 @@ MonoBehaviour:
   player: {fileID: 100333604}
   curLevelPool: []
   levelPool_01:
+  - {fileID: 11400000, guid: 6748e94582df4564b94770756f200d31, type: 2}
+  - {fileID: 11400000, guid: df44ef87efd0e0c4aa51f3e5b5bf6d83, type: 2}
+  - {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
+  - {fileID: 11400000, guid: 8e1c7432642a05f4385ab331a2487931, type: 2}
+  - {fileID: 11400000, guid: 8818545e5e27f8141b1f028491a16e44, type: 2}
+  - {fileID: 11400000, guid: 39543ed287f8ec44b8e0bff502504dc1, type: 2}
+  - {fileID: 11400000, guid: e349755d0a01f6a4eb14cef296ad03b9, type: 2}
+  levelPool_01Boss:
   - {fileID: 11400000, guid: 04da94b5146e51241bc96c31a0425b63, type: 2}
+  levelPool_02:
   - {fileID: 11400000, guid: 8c0d3bf721023da4ba4acca83f1d5b11, type: 2}
+  - {fileID: 11400000, guid: f7a20452e28b55843b2cfe6d54988625, type: 2}
+  - {fileID: 11400000, guid: 82dde95d1e9d7b342a74429c34c817c5, type: 2}
+  levelPool_02Boss:
   - {fileID: 11400000, guid: fee73243675ff8f4e9b2c086df4a6820, type: 2}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
 --- !u!1 &59935439

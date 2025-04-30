@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarriorAnimation : MonoBehaviour
 {
-    private Warrior warrior;
+    private Character character;
     private Animator ani;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
@@ -13,7 +13,7 @@ public class WarriorAnimation : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        warrior = transform.parent.GetComponent<Warrior>();
+        character = transform.GetComponent<Character>();
         physicsCheck = transform.parent.gameObject.GetComponent<PhysicsCheck>();
     }
 
@@ -26,7 +26,7 @@ public class WarriorAnimation : MonoBehaviour
     {
         ani.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         ani.SetFloat("velocityY", rb.velocity.y);
-        ani.SetBool("isDead", warrior.isDead);
+        ani.SetBool("isDead", character.isDead);
         ani.SetBool("isGround", physicsCheck.isGround);
     }
 

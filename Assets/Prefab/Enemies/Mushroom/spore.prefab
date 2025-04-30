@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f366cafb5c83cc4d888fd951832d924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startSpeed: {x: 25, y: 40}
   jumptime: 0
   sporeAnimation: {fileID: 0}
@@ -318,6 +319,8 @@ MonoBehaviour:
   damageBasic: 0
   damageRatio: 0.5
   damagePercentage: 0
+  attackImpact: 0
+  attackKind: 0
   damageSource: {fileID: 0}
   attackHitEvent:
     m_PersistentCalls:

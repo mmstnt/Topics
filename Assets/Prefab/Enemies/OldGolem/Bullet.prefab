@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15a71cf519d64f48b253731739db925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startSpeedMin: {x: -5, y: 5}
   startSpeedMax: {x: -50, y: 10}
   bombCollider: {fileID: 6349554830070953360}

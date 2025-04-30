@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("事件監聽")]
+    public VoidEventSO afterSceneLoadEvent;
+
+    [Header("角色參數")]
     public Vector2 startSpeedMin;
     public Vector2 startSpeedMax;
     public GameObject bombCollider;
@@ -12,6 +16,21 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         isExploded = false;
+    }
+
+
+    private void OnEnable()
+    {
+        afterSceneLoadEvent.onEventRaised += onAfterSceneLoadEvent;
+    }
+
+    private void OnDisable()
+    {
+        afterSceneLoadEvent.onEventRaised -= onAfterSceneLoadEvent;
+    }
+    private void onAfterSceneLoadEvent()
+    {
+        Destroy(this.gameObject);
     }
 
     public void isThrow(float direction)
