@@ -9,6 +9,7 @@ public class BladeKeeper : MonoBehaviour
     private GameObject player;
     private Character character;
     private PhysicsCheck physicsCheck;
+    public LayerMask GroundLayer;
 
     [Header("事件監聽")]
     public VoidEventSO afterSceneLoadEvent;
@@ -19,7 +20,11 @@ public class BladeKeeper : MonoBehaviour
     public GameObject bladeKeeperThrow;
     public float moveTimeMin;
     public float moveTimeMax;
-     
+    public float attack01MoveDistance;
+    public float attack01MoveSpeed;
+    public RaycastHit2D hit;
+
+
     public float throwDistance;
     public float spikeDistance;
     public float cutDistance;
@@ -72,6 +77,7 @@ public class BladeKeeper : MonoBehaviour
     private void Update()
     {
         if (character.isDead || player == null) return;
+        CliffTurn();
         characterAction();
         distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
     }
@@ -160,11 +166,14 @@ public class BladeKeeper : MonoBehaviour
     private void getPlayerSite()
     {
         float dir = (player.transform.position.x - transform.position.x) > 0 ? 1 : -1;
+        if (hit.collider != null)
+            dir = dir * -1;
         transform.localScale = new Vector3(dir, 1, 1);
     }
 
     public void move()
     {
+         
         if (actionMode != actionKind.move )
             return;
         rb.velocity = new Vector2(transform.localScale.x * character.speed * Time.deltaTime, rb.velocity.y);
@@ -196,6 +205,18 @@ public class BladeKeeper : MonoBehaviour
 
 
 
+    }
+
+
+    public void CliffTurn()
+    {
+        // 計算射線的方向
+        Vector3 rayDirection = transform.localScale.x * new Vector3(1f, 0, 0);
+        // 射線的起點
+        Vector3 rayStart = transform.position + new Vector3(0, -1, 0);
+        hit = Physics2D.Raycast(rayStart, rayDirection, 3, GroundLayer);
+        // 繪製射線（用於調試，可視化射線）
+        Debug.DrawRay(rayStart, rayDirection * 3, Color.red);
     }
 
 }

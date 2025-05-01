@@ -57,4 +57,10 @@ public class BladeKeeperAni : MonoBehaviour
         bladeKeeper.throwKnife();
     }
 
+    public void isAttack01Move()
+    {
+        if (bladeKeeper.distanceToPlayer < bladeKeeper.attack01MoveDistance) return;
+        bladeKeeper.rb.AddForce(new Vector2(transform.parent.transform.localScale.x * bladeKeeper.attack01MoveSpeed, 0), ForceMode2D.Impulse);
+    }
+
 }
