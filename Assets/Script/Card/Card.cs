@@ -43,6 +43,7 @@ public class Card : MonoBehaviour
         isChoose = true;
         IBuff newBuff = BuffManager.instance.getCardBuff(cardID);
         BuffManager.instance.registerBuff(newBuff, BuffManager.instance.player);
+        BuffManager.instance.cardChooseList.Add(cardID);
         cardChooseEndEvent.raiseEvent();
     }
 

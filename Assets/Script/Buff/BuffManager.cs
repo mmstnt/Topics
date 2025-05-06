@@ -26,6 +26,7 @@ public class BuffManager : MonoBehaviour,ISaveable
     [Header("¥d¦À")]
     public CardDataList cardDataList;
     public List<string> cardPool;
+    public List<string> cardChooseList;
 
     private void newGame()
     {
@@ -46,6 +47,7 @@ public class BuffManager : MonoBehaviour,ISaveable
         }
         
         allBuffs = new Dictionary<IBuff, Character>();
+        cardChooseList = new List<string>();
     }
 
     private void OnEnable()
@@ -119,6 +121,7 @@ public class BuffManager : MonoBehaviour,ISaveable
     public void getSaveDate(Data data)
     {
         data.cardPool = this.cardPool;
+        data.saveCardChooseList = this.cardChooseList;
         foreach(var buff in allBuffs) 
         {
             if (data.buffCharacter.ContainsKey(buff.Key))
@@ -135,6 +138,7 @@ public class BuffManager : MonoBehaviour,ISaveable
     public void loadData(Data data)
     {
         this.cardPool = data.cardPool;
+        this.cardChooseList = data.saveCardChooseList;
         foreach (var buff in allBuffs) 
         {
             buff.Key.Remove(buff.Value);

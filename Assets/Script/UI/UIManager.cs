@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("卡牌庫")]
+    public CardDataList cardDataList;
+
     [Header("物件監聽")]
     public PlayerHPUI playerHp;
     public PlayerHPUI bossHp;
@@ -22,6 +26,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject Btn;
     public GameObject cardChoose;
+    public List<GameObject> endLevelImageGameObject;
+    public List<GameObject> endCardChooseGameObject;
 
     private void OnEnable()
     {
@@ -47,6 +53,30 @@ public class UIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(Btn);
+        foreach (GameObject endLevel in endLevelImageGameObject) 
+        {
+            endLevel.GetComponent<Image>().enabled = false;
+        }
+        foreach (GameObject endCardChoose in endCardChooseGameObject)
+        {
+            endCardChoose.GetComponent<Image>().enabled = false;
+        }
+        for (int i=0;i<SceneLoadManager.instance.passSceneList.Count;i++) 
+        {   
+            if(SceneLoadManager.instance.passSceneList[i].image != null) 
+            {
+                endLevelImageGameObject[i].GetComponent<Image>().sprite = SceneLoadManager.instance.passSceneList[i].image;
+                endLevelImageGameObject[i].GetComponent<Image>().enabled = true;
+            }
+        }
+        for (int i = 0; i < BuffManager.instance.cardChooseList.Count; i++)
+        {
+            if (BuffManager.instance.cardChooseList[i] != null)
+            {
+                endCardChooseGameObject[i].GetComponent<Image>().sprite = cardDataList.getCradImage(BuffManager.instance.cardChooseList[i]);
+                endCardChooseGameObject[i].GetComponent<Image>().enabled = true;
+            }
+        }
     }
 
     private void onLoadDataEvent()

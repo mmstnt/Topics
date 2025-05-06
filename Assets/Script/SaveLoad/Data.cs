@@ -7,8 +7,10 @@ public class Data
 {
     public int levelSave;
     public string sceneToSave;
+    public List<string> passSceneList;
     public List<string> cardPool;
     public List<string> levelPool;
+    public List<string> saveCardChooseList;
 
     public Dictionary<string, Vector3> characterPosDict = new Dictionary<string, Vector3>();
 
@@ -21,6 +23,15 @@ public class Data
     public void saveGameScene(GameSceneSO savedScene) 
     {
         sceneToSave = JsonUtility.ToJson(savedScene);
+    }
+
+    public void savePassSceneList(List<GameSceneSO> savedSceneList)
+    {
+        passSceneList = new List<string>();
+        foreach (var savedScene in savedSceneList)
+        {
+            passSceneList.Add(JsonUtility.ToJson(savedScene));
+        }
     }
 
     public void saveGameSceneList(List<GameSceneSO> savedSceneList) 
@@ -50,10 +61,22 @@ public class Data
         return newScene;
     }
 
-    public List<GameSceneSO> getSaveGameSceneList() 
+    public List<GameSceneSO> getSavePassSceneList() 
     {
         List<GameSceneSO> newSceneList = new List<GameSceneSO>();
-        foreach(var level in levelPool) 
+        foreach(var passScene in passSceneList) 
+        {
+            var newScene = ScriptableObject.CreateInstance<GameSceneSO>();
+            JsonUtility.FromJsonOverwrite(passScene, newScene);
+            newSceneList.Add(newScene);
+        }
+        return newSceneList;
+    }
+
+    public List<GameSceneSO> getSaveGameSceneList()
+    {
+        List<GameSceneSO> newSceneList = new List<GameSceneSO>();
+        foreach (var level in levelPool)
         {
             var newScene = ScriptableObject.CreateInstance<GameSceneSO>();
             JsonUtility.FromJsonOverwrite(level, newScene);

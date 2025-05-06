@@ -31,6 +31,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     public GameSceneSO firstLoadScene;
     public GameSceneSO menuScene;
     public GameSceneSO currentLoadedScene;
+    public List<GameSceneSO> passSceneList;
     private GameSceneSO sceneToLoad;
     private Vector3 positionToGo;
     private bool fadeScreen;
@@ -85,6 +86,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
         currentLevel = 0;
         currentLevelHealthAddition = 0;
         currentLevelDamageAddition = 0;
+        passSceneList = new List<GameSceneSO>();
         levelAddition = new Vector2(0.1f, 0.05f);
 
         playerTrans.GetComponent<Character>().newGame();
@@ -108,6 +110,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
             currentLevel += 1;
             currentLevelHealthAddition += levelAddition.x;
             currentLevelDamageAddition += levelAddition.y;
+            passSceneList.Add(locationToLoad);
         }
         if (currentLoadedScene != null)
         {
@@ -176,6 +179,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
     public void getSaveDate(Data data)
     {
         data.saveGameScene(currentLoadedScene);
+        data.savePassSceneList(passSceneList);
         data.levelSave = currentLevel;
     }
 
@@ -186,6 +190,7 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
         {
             positionToGo = data.characterPosDict[playerID];
             sceneToLoad = data.getSavedScene();
+            passSceneList = data.getSavePassSceneList();
             currentLevel = data.levelSave;
 
             onLoadRequestEvent(sceneToLoad, positionToGo, true, false);

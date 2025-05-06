@@ -283,7 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoadEventSO: {fileID: 11400000, guid: 4644fe515e4e6c44e901f64d80b2df5e, type: 2}
-  portalChooseEvent: {fileID: 11400000, guid: 09f5ac7c3ea6f924bb7d4d171dba286c, type: 2}
   image: {fileID: 1167983357796393258}
   sceneToGo: {fileID: 11400000, guid: 885f998dbb5d65c47a4d33ef1133f118, type: 2}
   positionToGo: {x: -24, y: -0.8, z: 0}
