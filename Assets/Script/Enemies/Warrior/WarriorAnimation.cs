@@ -13,7 +13,7 @@ public class WarriorAnimation : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
-        character = transform.GetComponent<Character>();
+        character = transform.parent.GetComponent<Character>();
         physicsCheck = transform.parent.gameObject.GetComponent<PhysicsCheck>();
     }
 

@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startHp: 50
-  startDamage: 1
+  startDamage: 3
   startSpeed: 400
   maxHp: 0
   currentHp: 0
@@ -308,7 +308,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   afterSceneLoadEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   cameraLensEvent: {fileID: 11400000, guid: 02e226593af823842bc4c0cfcac558db, type: 2}
-  moveSpeed: 400
   moveTimeMin: 0.5
   moveTimeMax: 1
   jumpMinDistance: 7
@@ -320,7 +319,6 @@ MonoBehaviour:
   jumpForceMax: {x: 20, y: 20}
   slideForce: 30
   distanceToPlayer: 0
-  isDead: 0
   action: 0
   actionMode: 0
   actionList: 

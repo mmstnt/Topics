@@ -344,6 +344,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c0d3bf721023da4ba4acca83f1d5b11, type: 2}
   - {fileID: 11400000, guid: f7a20452e28b55843b2cfe6d54988625, type: 2}
   - {fileID: 11400000, guid: 82dde95d1e9d7b342a74429c34c817c5, type: 2}
+  - {fileID: 11400000, guid: fb774478813bb6c4a9004c7004a73e4c, type: 2}
+  - {fileID: 11400000, guid: 93f4ff0758361854893ad8f479d87a1a, type: 2}
   levelPool_02Boss:
   - {fileID: 11400000, guid: fee73243675ff8f4e9b2c086df4a6820, type: 2}
   cardDataList: {fileID: 11400000, guid: 9c3681590c10b2849960a500b4a695ab, type: 2}
@@ -4914,7 +4916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: 06296da18f7598a47a73948ab5a22deb, type: 2}
-  startHp: 18
+  startHp: 50
   startDamage: 3
   startSpeed: 0
   maxHp: 0

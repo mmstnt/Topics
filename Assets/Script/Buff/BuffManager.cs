@@ -100,6 +100,8 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new Medical(potions);
             case "30004":
                 return new Thornmail();
+            case "30005":
+                return new FightingBack();
             case "40001":
                 return new BloodSuck();
             case "40002":
@@ -108,6 +110,8 @@ public class BuffManager : MonoBehaviour,ISaveable
                 return new AttackBurning();
             case "40004":
                 return new Critical();
+            case "40005":
+                return new Battlelust();
             default:
                 return null;
         }

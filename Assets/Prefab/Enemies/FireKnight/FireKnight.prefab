@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: 7caa386ca7a0ec5439da384aea4cc55f, type: 2}
   startHp: 85
-  startDamage: 1
+  startDamage: 3
   startSpeed: 300
   maxHp: 0
   currentHp: 0

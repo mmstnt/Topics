@@ -74,9 +74,7 @@ public class A : MonoBehaviour
             isUpdated = true;
         }
 
-        // float TotalLength = ItemList.Length * (ItemList[0].rect.width + HLG.spacing);
-        //Debug.Log("：" + TotalLength);
-        //SR.normalizedPosition = new Vector3(0, SR.normalizedPosition.y);
+        
         void SimulateScrollWithVelocity(Vector3 velocity)
         {
             SR.velocity = velocity;

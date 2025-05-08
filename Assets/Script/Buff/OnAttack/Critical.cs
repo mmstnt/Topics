@@ -19,7 +19,6 @@ public class Critical : ScriptableObject, IBuff
         attackCounters.Remove(character);
     }
 
-    // Start is called before the first frame update
     public void critical(Transform target, Character character, Attack attacker)
     {
         if (!attackCounters.ContainsKey(character))
@@ -31,7 +30,7 @@ public class Critical : ScriptableObject, IBuff
         {
             if (!isbuff)
             {
-                attacker.damageSource.damage *= 2f; // ¼ÉÀ»¶Ë®`¡]¨Ò¦p2­¿¡^
+                attacker.damageSource.damage *= 2f; // ¼ÉÀ»¶Ë®`¡]2­¿¡^
                 isbuff = true;
             }
             else

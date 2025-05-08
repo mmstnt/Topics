@@ -20,7 +20,7 @@ MonoBehaviour:
     cardKind: 2
     cardCount: 1
   - cardName: "\u653B\u64CA"
-    cardIntroduce: "\u50B7\u5BB3\u63D0\u9AD81\u9EDE"
+    cardIntroduce: "\u521D\u59CB\u653B\u64CA\u529B\u63D0\u9AD81\u9EDE"
     cardID: 10001
     cardImage: {fileID: 21300000, guid: 5f3e5461c11d99345974e28ab0f91290, type: 3}
     cardKind: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     cardID: 20002
     cardImage: {fileID: 21300000, guid: 09d4a4e66fa295a439f71294299b1964, type: 3}
     cardKind: 0
-    cardCount: 0
+    cardCount: 1
   - cardName: "\u54E5\u5E03\u6797\u70B8\u5F48"
     cardIntroduce: "\u53D7\u50B7\u6642\u5728\u539F\u5730\u7559\u4E0B\u4E00\u9846\u70B8\u5F48"
     cardID: 30001
@@ -79,6 +79,12 @@ MonoBehaviour:
     cardImage: {fileID: 21300000, guid: 51709939a0cf744489d7bb14b24b746a, type: 3}
     cardKind: 0
     cardCount: 1
+  - cardName: "\u5438\u6536\u53CD\u64CA"
+    cardIntroduce: "\u5728\u627F\u53D7\u50B7\u5BB3\u6642\uFF0C\u6703\u7D2F\u7A4D\u6240\u53D7\u7684\u50B7\u5BB3\uFF0C\u4E0B\u4E00\u6B21\u653B\u64CA\u6642\uFF0C\u5C07\u91CB\u653E\u7D2F\u7A4D\u7684\u50B7\u5BB3\uFF0C\u5C0D\u6575\u4EBA\u9020\u6210\u984D\u5916\u50B7\u5BB3\u3002"
+    cardID: 30005
+    cardImage: {fileID: 21300000, guid: 51b59b46d3b25fc48b54eec96d6d8238, type: 3}
+    cardKind: 0
+    cardCount: 1
   - cardName: "\u5438\u8840"
     cardIntroduce: "\u653B\u64CA\u5438\u53D620%\u50B7\u5BB3\u7684\u751F\u547D\u503C"
     cardID: 40001
@@ -98,8 +104,16 @@ MonoBehaviour:
     cardKind: 0
     cardCount: 1
   - cardName: "\u66B4\u64CA"
-    cardIntroduce: "\u6BCF\u9032\u884C\u7B2C4\u6B21\u653B\u64CA\u6642\u5FC5\u5B9A\u9020\u6210\u66B4\u64CA\u50B7\u5BB3"
+    cardIntroduce: "\u6BCF\u9032\u884C\u7B2C 4 \u6B21\u653B\u64CA\u6642\uFF0C\u5FC5\u5B9A\u9020\u6210\u4E00\u6B21\u66B4\u64CA\u50B7\u5BB3\u3002  "
     cardID: 40004
     cardImage: {fileID: 21300000, guid: f82d43f8752636041bb2c9daa2d3d1b0, type: 3}
+    cardKind: 0
+    cardCount: 1
+  - cardName: "\u6230\u610F"
+    cardIntroduce: "\u6BCF\u6B21\u653B\u64CA\u6575\u4EBA\u6642\uFF0C\u7372\u5F97\u4E00\u5C64(\u6230\u610F)\uFF0C\u6BCF\u5C64\u63D0\u5347\u653B\u64CA\u529B
+      +5\uFF0C\u6700\u591A\u758A\u52A0\u81F3 4 \u5C64\uFF08\u5171 +20 \u653B\u64CA\u529B\uFF09\u3002
+      \u6BCF\u79D2\u640D\u5931 1 \u9EDE\u653B\u64CA\u529B\uFF0C\u76F4\u5230\u653B\u64CA\u529B\u56DE\u5FA9\u81F3\u521D\u59CB\u653B\u64CA\u529B\u70BA\u6B62\u3002"
+    cardID: 40005
+    cardImage: {fileID: 21300000, guid: 09d4a4e66fa295a439f71294299b1964, type: 3}
     cardKind: 0
     cardCount: 1

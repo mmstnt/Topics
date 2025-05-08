@@ -87,6 +87,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1548a881de1a22543a5fa40d542c76d1
+    m_Address: Assets/Scenes/Storm.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23bf982832c086446a67cb0a7b56c014
+    m_Address: Assets/Scenes/Fire.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1f63924cb7417f34a8d973e25ed2f592, type: 2}
   m_SchemaSet:
