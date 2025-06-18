@@ -17,13 +17,17 @@ public class MediaPipeKeyboard : MonoBehaviour
     public float attackDistance;
     public float attackTime;
     public float attackDruing;
+    public float slideVerticalDistance;
+    public float slideTime;
+    public float slideDruing;
 
     private Vector2 distance;
     private Keyboard keyboard;
     private bool isJump = false;
+    private bool isSlide = false;
     private PhysicsCheck playerPhysicsCheck;
-
-    private void Start()
+    
+    private void Awake()
     {
         keyboard = InputSystem.AddDevice<Keyboard>();
         playerPhysicsCheck = player.GetComponent<PhysicsCheck>();
@@ -40,18 +44,18 @@ public class MediaPipeKeyboard : MonoBehaviour
     private void Update()
     {
         distance = transform.position - player.transform.position;
-        if (attackDruing >= 0) 
-        {
-            attackDruing -= Time.deltaTime;
-        }
+        if (attackDruing >= 0) attackDruing -= Time.deltaTime;
+        if(slideDruing >= 0) slideDruing -= Time.deltaTime;
+        else if(isSlide) isSlide = false;
         move();
         jump();
-
+        slide();
         InputSystem.Update();
     }
 
     private void move()
     {
+        if (isSlide) return;
         if (Mathf.Abs(distance.x) < horizontalDistance) 
         {
             InputSystem.QueueStateEvent(keyboard, new KeyboardState());
@@ -83,6 +87,17 @@ public class MediaPipeKeyboard : MonoBehaviour
         {
             InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Space));
             isJump = true;
+        }
+    }
+
+    private void slide() 
+    {
+        if (Mathf.Abs(distance.x) > horizontalDistance && !isSlide && distance.y < slideVerticalDistance)
+        {
+            isSlide = true;
+            slideDruing = slideTime;
+            player.transform.localScale = new Vector3(distance.x > 0 ? 1 : -1, 1, 1);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.L));
         }
     }
 

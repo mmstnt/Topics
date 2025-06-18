@@ -24,6 +24,7 @@ public class MediaPipeControl : MonoBehaviour
     public GameObject rightEve;
     public GameObject testgame;
     public float test;
+    public List<Vector3> faceWorldLandmarkList;
 
     private Vector3 previousDirection = Vector3.zero;
     private Vector3 lastFixedDirection = Vector3.zero;
@@ -39,6 +40,7 @@ public class MediaPipeControl : MonoBehaviour
             g.name = i.ToString();
             pointGameObjectList.Add(g);
             faceLandmarkList.Add(new Vector3(0, 0, 0));
+            faceWorldLandmarkList.Add(new Vector3(0, 0, 0));
         }
 
         _faceLandmarkerRunner.callBackFaceLandmark += result =>
@@ -69,6 +71,7 @@ public class MediaPipeControl : MonoBehaviour
         for (int i = 0; i < pointGameObjectList.Count; i++)
         {
             pointGameObjectList[i].transform.position = getPointSite(i);
+            faceWorldLandmarkList[i] = pointGameObjectList[i].transform.position;
         }
         
         if (rightDirection != Vector3.zero)

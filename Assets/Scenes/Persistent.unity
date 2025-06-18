@@ -743,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &123420266
 Transform:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 598929366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &123420267
 SpriteRenderer:
@@ -829,6 +829,9 @@ MonoBehaviour:
   attackDistance: 1.5
   attackTime: 0.25
   attackDruing: 0
+  slideVerticalDistance: 0
+  slideTime: 0.5
+  slideDruing: 0
 --- !u!58 &123420269
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3752,6 +3755,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 123420266}
   - {fileID: 2095911985}
   - {fileID: 1173399440}
   - {fileID: 1113030173}
@@ -8116,7 +8120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1113030173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14953,7 +14957,6 @@ SceneRoots:
   - {fileID: 1464257644}
   - {fileID: 648962062}
   - {fileID: 100333604}
-  - {fileID: 123420266}
   - {fileID: 598929366}
   - {fileID: 1005329535}
   - {fileID: 933498207}
