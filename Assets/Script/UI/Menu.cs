@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class Menu : MonoBehaviour
 {
     public GameObject newGameButton;
+    [Header("¼s¼½")]
+    public VoidEventSO loadDataEvent;
 
     private void OnEnable()
     {
@@ -15,5 +17,13 @@ public class Menu : MonoBehaviour
     public void ExitGame() 
     {
         Application.Quit();
+    }
+
+    public void LoadGame() 
+    {
+        if (!DataManager.instance.start)
+        {
+            loadDataEvent.raiseEvent();
+        }
     }
 }

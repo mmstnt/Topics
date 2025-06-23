@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isHurt;
     public bool isAttack;
     public bool isSlide;
-    private PlayerInputControl inputControl;
+    public PlayerInputControl inputControl;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
     private PlayerAnimation playerAnimation;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
@@ -155,9 +156,9 @@ public class SceneLoadManager : MonoBehaviour,ISaveable
 
         playerTrans.position = positionToGo;
         
-        var isMenu = (currentLoadedScene.sceneType == SceneType.Menu);
+        //var isMenu = (currentLoadedScene.sceneType == SceneType.Menu);
 
-        playerTrans.gameObject.SetActive(!isMenu);
+        playerTrans.gameObject.SetActive(true);
         if (fadeScreen) 
         {
             //º¥³z©ú

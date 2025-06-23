@@ -42,7 +42,7 @@ MonoBehaviour:
     cardID: 10004
     cardImage: {fileID: 21300000, guid: 09d4a4e66fa295a439f71294299b1964, type: 3}
     cardKind: 0
-    cardCount: 0
+    cardCount: 1
   - cardName: "\u518D\u751F"
     cardIntroduce: "\u6BCF\u79D2\u6062\u5FA90.5\u9EDE\u751F\u547D"
     cardID: 20001
@@ -66,7 +66,7 @@ MonoBehaviour:
     cardID: 30002
     cardImage: {fileID: 21300000, guid: bf14096723ac23447863fb4f8c699b92, type: 3}
     cardKind: 0
-    cardCount: 0
+    cardCount: 1
   - cardName: "\u6CBB\u7642\u85E5\u6C34"
     cardIntroduce: "\u53D7\u50B7\u6642\u5728\u9644\u8FD1\u751F\u6210\u4E00\u74F6\u6CBB\u7642\u85E5\u6C34"
     cardID: 30003
