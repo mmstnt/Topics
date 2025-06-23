@@ -10,8 +10,9 @@ public class Sign : MonoBehaviour
     private Animator ani;
     public Transform playerTransform;
     public GameObject signAni;
-    private IInteractable targetItem;
-    private bool canPress;
+    public bool canPress;
+    public GameObject pressGameObject;
+    public IInteractable targetItem;
 
     private void Awake()
     {

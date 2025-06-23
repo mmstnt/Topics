@@ -89,9 +89,15 @@ public class MediaPipeControl : MonoBehaviour
             //leftEve.transform.LookAt(pointGameObjectList[473].transform);
         }
 
-        
-        
-        testgame.transform.position = Vector3.Lerp(pointGameObjectList[473].GetComponent<MediaPipeRay>().hit, pointGameObjectList[468].GetComponent<MediaPipeRay>().hit, 0.5f);
+
+        if (testgame.active) 
+        {
+            testgame.transform.position = Vector3.Lerp(pointGameObjectList[473].GetComponent<MediaPipeRay>().hit, pointGameObjectList[468].GetComponent<MediaPipeRay>().hit, 0.5f);
+        }
+        else 
+        {
+            testgame.SetActive(true);
+        }
 
         //testgame.transform.position = (pointGameObjectList[468].GetComponent<MediaPipeRay>().hit + pointGameObjectList[473].GetComponent<MediaPipeRay>().hit) / 2;
     }

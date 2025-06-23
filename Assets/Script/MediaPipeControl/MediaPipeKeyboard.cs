@@ -6,11 +6,14 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 
 public class MediaPipeKeyboard : MonoBehaviour
 {
     public GameObject player;
+    public Sign signGameObject;
+    public GameObject ani;
     [Header("°Ñ¼Æ")]
     public float horizontalDistance;
     public float verticalDistance;
@@ -21,6 +24,7 @@ public class MediaPipeKeyboard : MonoBehaviour
     public float slideTime;
     public float slideDruing;
 
+    private float color;
     private Vector2 distance;
     private Keyboard keyboard;
     private bool isJump = false;
@@ -50,6 +54,7 @@ public class MediaPipeKeyboard : MonoBehaviour
         move();
         jump();
         slide();
+        ani.transform.localScale = new Vector2(color, color);
         InputSystem.Update();
     }
 
@@ -113,5 +118,40 @@ public class MediaPipeKeyboard : MonoBehaviour
                 attackDruing = attackTime;
             }
         }
+        else if (other.CompareTag("Interactable") && signGameObject.canPress) 
+        {
+            if(other.GetComponent<IInteractable>() == signGameObject.targetItem) 
+            {
+                color += Time.deltaTime * 1.5f;
+                if (color >= 1) 
+                {
+                    InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.E));
+                    color = 0;
+                }
+            }
+        }
+        else if (other.CompareTag("Card"))
+        {
+            color += Time.deltaTime;
+            if (color >= 1)
+            {
+                other.GetComponent<Card>().cardIsChoose();
+                color = 0;
+            }
+        }
+        else if (other.CompareTag("Buttle"))
+        {
+            color += Time.deltaTime * 1.5f;
+            if (color >= 1)
+            {
+                other.GetComponent<Button>().onClick.Invoke();
+                color = 0;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        color = 0;
     }
 }

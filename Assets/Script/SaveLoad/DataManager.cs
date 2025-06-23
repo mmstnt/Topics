@@ -6,6 +6,8 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
+
+    public bool start;
     [Header("®∆•Û∫ ≈•")]
     public VoidEventSO saveDataEvent;
     public VoidEventSO loadDataEvent;
@@ -20,6 +22,7 @@ public class DataManager : MonoBehaviour
         else 
             Destroy(this.gameObject);
 
+        start = true;
         saveData = new Data();
     }
 
@@ -50,6 +53,7 @@ public class DataManager : MonoBehaviour
 
     public void save() 
     {
+        start = false;
         foreach (var saveable in saveableList) 
         {
             saveable.getSaveDate(saveData);

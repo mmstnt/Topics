@@ -21,11 +21,14 @@ public class UIManager : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO mainMenuEvent;
+    public VoidEventSO newGameEvent;
 
     [Header("²Õ¥ó")]
     public GameObject gameOverPanel;
     public GameObject Btn;
     public GameObject cardChoose;
+    public GameObject menu;
     public List<GameObject> endLevelImageGameObject;
     public List<GameObject> endCardChooseGameObject;
 
@@ -37,6 +40,8 @@ public class UIManager : MonoBehaviour
         loadDataEvent.onEventRaised += onLoadDataEvent;
         gameOverEvent.onEventRaised += onGameOverEvent;
         backToMenuEvent.onEventRaised += onLoadDataEvent;
+        mainMenuEvent.onEventRaised += onMainMenuEvent;
+        newGameEvent.onEventRaised += onLoadDataEvent;
     }
 
     private void OnDisable()
@@ -47,6 +52,8 @@ public class UIManager : MonoBehaviour
         loadDataEvent.onEventRaised -= onLoadDataEvent;
         gameOverEvent.onEventRaised -= onGameOverEvent;
         backToMenuEvent.onEventRaised -= onLoadDataEvent;
+        mainMenuEvent.onEventRaised -= onMainMenuEvent;
+        newGameEvent.onEventRaised -= onLoadDataEvent;
     }
 
     private void onGameOverEvent()
@@ -79,9 +86,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void onMainMenuEvent() 
+    { 
+        menu.SetActive(true);
+    }
+
     private void onLoadDataEvent()
     {
-        gameOverPanel.SetActive(false);
+        gameOverPanel.SetActive(false); 
+        menu.SetActive(false);
     }
 
     private void onUnLoadedSceneEvent(GameSceneSO sceneToload, Vector3 arg1, bool arg2, bool n)
